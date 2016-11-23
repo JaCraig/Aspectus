@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Aspectus</id>
+    <version>$version$</version>
+    <title>Aspectus</title>
+    <authors>James Craig</authors>
+    <owners>James Craig</owners>
+    <licenseUrl>https://github.com/JaCraig/Aspectus/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/JaCraig/Aspectus</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright 2016</copyright>
+    <tags>AOP</tags>
+    <dependencies>
+      <dependency id="NETStandard.Library" version="1.6.0" />
+      <dependency id="System.Threading.Tasks.Parallel" version="4.0.1" />
+      <dependency id="Canister.IoC" version="1.0.26" />
+      <dependency id="System.Reflection.TypeExtensions" version="4.1.0" />
+      <dependency id="System.IO.FileSystem" version="4.0.1" />
+      <dependency id="Microsoft.CodeAnalysis.CSharp" version="1.3.2" />
+      <dependency id="System.Runtime.Loader" version="4.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\netstandard1.1\Aspectus.dll" target="lib\netstandard1.1\Aspectus.dll" />
+    <file src="bin\Release\netstandard1.1\Aspectus.xml" target="lib\netstandard1.1\Aspectus.xml" />
+  </files>
+</package>
