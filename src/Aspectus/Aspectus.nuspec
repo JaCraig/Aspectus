@@ -23,7 +23,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\netstandard1.1\Aspectus.dll" target="lib\netstandard1.1\Aspectus.dll" />
-    <file src="bin\Release\netstandard1.1\Aspectus.xml" target="lib\netstandard1.1\Aspectus.xml" />
+    <file src="bin\Release\netstandard1.6\Aspectus.dll" target="lib\netstandard1.6\Aspectus.dll" />
+    <file src="bin\Release\netstandard1.6\Aspectus.xml" target="lib\netstandard1.6\Aspectus.xml" />
   </files>
 </package>
