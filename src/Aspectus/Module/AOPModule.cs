@@ -17,6 +17,7 @@ limitations under the License.
 using Aspectus.CodeGen;
 using Aspectus.Interfaces;
 using Canister.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Aspectus.Module
 {
@@ -38,10 +39,10 @@ namespace Aspectus.Module
         {
             if (bootstrapper == null)
                 return;
-            bootstrapper.Register(new Compiler());
+            bootstrapper.Register<Compiler>(ServiceLifetime.Singleton);
             bootstrapper.RegisterAll<IAspect>();
             bootstrapper.RegisterAll<IAOPModule>();
-            bootstrapper.Register(new Aspectus(bootstrapper.Resolve<Compiler>(), bootstrapper.ResolveAll<IAspect>(), bootstrapper.ResolveAll<IAOPModule>()));
+            bootstrapper.Register<Aspectus>(ServiceLifetime.Singleton);
         }
     }
 }
