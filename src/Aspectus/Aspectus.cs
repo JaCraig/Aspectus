@@ -82,6 +82,8 @@ namespace Aspectus
         {
             if (!Classes.ContainsKey(baseType))
                 Setup(baseType);
+            if (!Classes.ContainsKey(baseType))
+                return Activator.CreateInstance(baseType);
             var ReturnObject = Activator.CreateInstance(Classes[baseType]);
             if (Classes[baseType] != baseType)
                 Aspects.ForEach(x => x.Setup(ReturnObject));
