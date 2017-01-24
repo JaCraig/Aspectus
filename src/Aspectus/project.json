@@ -13,7 +13,7 @@
   "dependencies": {
     "NETStandard.Library": "1.6.1",
     "System.Threading.Tasks.Parallel": "4.3.0",
-    "Canister.IoC": "1.0.31",
+    "Canister.IoC": "1.0.35",
     "System.Reflection.TypeExtensions": "4.3.0",
     "System.IO.FileSystem": "4.3.0",
     "Microsoft.CodeAnalysis.CSharp": "1.3.2",

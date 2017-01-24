@@ -1,4 +1,5 @@
-﻿using FileCurator;
+﻿using Aspectus.ExtensionMethods;
+using FileCurator;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace Aspectus.Tests.BaseClasses
     {
         public TestingDirectoryFixture()
         {
-            Canister.Builder.CreateContainer(new List<ServiceDescriptor>(),
-                typeof(TestingDirectoryFixture).GetTypeInfo().Assembly,
-                typeof(Aspectus).GetTypeInfo().Assembly,
-                typeof(FileInfo).GetTypeInfo().Assembly);
+            if (Canister.Builder.Bootstrapper == null)
+                Canister.Builder.CreateContainer(new List<ServiceDescriptor>(),
+                    typeof(TestingDirectoryFixture).GetTypeInfo().Assembly,
+                    typeof(FileInfo).GetTypeInfo().Assembly)
+                    .RegisterAspectus()
+                    .Build();
             new DirectoryInfo(@".\Testing").Create();
             new DirectoryInfo(@".\App_Data").Create();
             new DirectoryInfo(@".\Logs").Create();

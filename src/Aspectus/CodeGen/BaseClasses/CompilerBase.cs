@@ -44,7 +44,7 @@ namespace Aspectus.CodeGen.BaseClasses
             AssemblyStream = new MemoryStream();
             Code = new StringBuilder();
             Usings = new List<string>();
-            Assemblies = new List<Assembly>();
+            Assemblies = new List<MetadataReference>();
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// Gets or sets the assemblies.
         /// </summary>
         /// <value>The assemblies.</value>
-        private List<Assembly> Assemblies { get; set; }
+        private List<MetadataReference> Assemblies { get; set; }
 
         /// <summary>
         /// Gets or sets the code.
@@ -93,10 +93,10 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <exception cref="System.Exception">Any errors that are sent back by Roslyn</exception>
         public CompilerBase Compile()
         {
-            var CSharpCompiler = CSharpCompilation.Create(AssemblyName + ".dll",
-                                                    new SyntaxTree[] { CSharpSyntaxTree.ParseText(Code.ToString()) },
-                                                    Assemblies.ForEach(x => { return MetadataReference.CreateFromFile(x.Location); }),
-                                                    new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, usings: Usings, optimizationLevel: Optimize ? OptimizationLevel.Release : OptimizationLevel.Debug));
+            var CSharpCompiler = CSharpCompilation.Create(AssemblyName + ".dll")
+                .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, usings: Usings, optimizationLevel: Optimize ? OptimizationLevel.Release : OptimizationLevel.Debug))
+                .AddReferences(Assemblies)
+                .AddSyntaxTrees(new SyntaxTree[] { CSharpSyntaxTree.ParseText(Code.ToString()) });
             using (MemoryStream TempStream = new MemoryStream())
             {
                 var Result = CSharpCompiler.Emit(TempStream);
@@ -164,7 +164,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <param name="usings">The usings.</param>
         /// <param name="references">The references.</param>
         /// <returns>This</returns>
-        protected CompilerBase Add(string code, IEnumerable<string> usings, params Assembly[] references)
+        protected CompilerBase Add(string code, IEnumerable<string> usings, params MetadataReference[] references)
         {
             if (AssemblyStream == null)
                 return this;

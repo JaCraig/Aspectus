@@ -17,6 +17,7 @@ limitations under the License.
 using Aspectus.CodeGen;
 using Aspectus.HelperFunctions;
 using Aspectus.Interfaces;
+using Microsoft.CodeAnalysis;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -108,8 +109,10 @@ namespace Aspectus
         public void Setup(params Type[] types)
         {
             IEnumerable<Type> TempTypes = FilterTypesToSetup(types);
-            var AssembliesUsing = new List<Assembly>();
-            AssembliesUsing.Add(typeof(object).GetTypeInfo().Assembly, typeof(Enumerable).GetTypeInfo().Assembly);
+            var AssemblyPath = System.IO.Path.GetDirectoryName(typeof(object).GetTypeInfo().Assembly.Location);
+            var AssembliesUsing = new List<MetadataReference>();
+            AssembliesUsing.AddIfUnique(MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location));
+            AssembliesUsing.AddIfUnique(MetadataReference.CreateFromFile(typeof(Enumerable).GetTypeInfo().Assembly.Location));
             Aspects.ForEach(x => AssembliesUsing.AddIfUnique(x.AssembliesUsing));
 
             var Usings = new List<string>();
@@ -127,8 +130,8 @@ namespace Aspectus
 
             foreach (Type TempType in TempTypes)
             {
-                AssembliesUsing.AddIfUnique(TempType.GetTypeInfo().Assembly);
-                AssembliesUsing.AddIfUnique(GetAssemblies(TempType));
+                AssembliesUsing.AddIfUnique(MetadataReference.CreateFromFile(TempType.GetTypeInfo().Assembly.Location));
+                AssembliesUsing.AddIfUnique(GetAssemblies(TempType).ForEach(y => MetadataReference.CreateFromFile(y.Location)));
 
                 string Namespace = "AspectusGeneratedTypes.C" + Guid.NewGuid().ToString("N");
                 string ClassName = TempType.Name + "Derived";
@@ -239,7 +242,7 @@ namespace Aspectus
         /// <returns></returns>
         private string Setup(Type type, string namespaceUsing,
             string className, List<string> usings,
-            List<Type> interfaces, List<Assembly> assembliesUsing)
+            List<Type> interfaces, List<MetadataReference> assembliesUsing)
         {
             var Builder = new StringBuilder();
             Builder.AppendLineFormat(@"namespace {1}
@@ -252,7 +255,7 @@ namespace Aspectus
  namespaceUsing,
  className,
  type.FullName.Replace("+", "."),
- interfaces.Count > 0 ? "," : "", interfaces.ToString(x => x.Name));
+ interfaces.Count > 0 ? "," : "", interfaces.ToString(x => x.FullName.Replace("+", ".")));
             if (type.HasDefaultConstructor())
             {
                 Builder.AppendLineFormat(@"
@@ -285,7 +288,7 @@ namespace Aspectus
                         && !GetMethodInfo.IsFinal
                         && Property.GetIndexParameters().Length == 0)
                     {
-                        assembliesUsing.AddIfUnique(GetAssemblies(Property.PropertyType));
+                        assembliesUsing.AddIfUnique(GetAssemblies(Property.PropertyType).ForEach(y => MetadataReference.CreateFromFile(y.Location)));
                         Builder.AppendLineFormat(@"
         public override {0} {1}
         {{
@@ -312,7 +315,7 @@ namespace Aspectus
                         && !GetMethodInfo.IsFinal
                         && Property.GetIndexParameters().Length == 0)
                     {
-                        assembliesUsing.AddIfUnique(GetAssemblies(Property.PropertyType));
+                        assembliesUsing.AddIfUnique(GetAssemblies(Property.PropertyType).ForEach(y => MetadataReference.CreateFromFile(y.Location)));
                         Builder.AppendLineFormat(@"
         public override {0} {1}
         {{
@@ -345,8 +348,8 @@ namespace Aspectus
                         && !Method.Name.StartsWith("remove_", StringComparison.OrdinalIgnoreCase)
                         && !Method.IsGenericMethod)
                     {
-                        assembliesUsing.AddIfUnique(GetAssemblies(Method.ReturnType));
-                        Method.GetParameters().ForEach(x => assembliesUsing.AddIfUnique(GetAssemblies(x.ParameterType)));
+                        assembliesUsing.AddIfUnique(GetAssemblies(Method.ReturnType).ForEach(y => MetadataReference.CreateFromFile(y.Location)));
+                        Method.GetParameters().ForEach(x => assembliesUsing.AddIfUnique(GetAssemblies(x.ParameterType).ForEach(y => MetadataReference.CreateFromFile(y.Location))));
                         string Static = Method.IsStatic ? "static " : "";
                         Builder.AppendLineFormat(@"
         {4} override {0} {1}({2})
@@ -370,20 +373,20 @@ namespace Aspectus
             return Builder.ToString();
         }
 
-        private string SetupMethod(Type Type, MethodInfo MethodInfo, bool IsProperty)
+        private string SetupMethod(Type type, MethodInfo methodInfo, bool isProperty)
         {
-            if (MethodInfo == null)
+            if (methodInfo == null)
                 return "";
             var Builder = new StringBuilder();
-            var BaseMethodName = MethodInfo.Name.Replace("get_", "").Replace("set_", "");
-            string ReturnValue = MethodInfo.ReturnType != typeof(void) ? "FinalReturnValue" : "";
+            var BaseMethodName = methodInfo.Name.Replace("get_", "").Replace("set_", "");
+            string ReturnValue = methodInfo.ReturnType != typeof(void) ? "FinalReturnValue" : "";
             string BaseCall = "";
-            if (IsProperty)
+            if (isProperty)
                 BaseCall = string.IsNullOrEmpty(ReturnValue) ? "base." + BaseMethodName : ReturnValue + "=base." + BaseMethodName;
             else
                 BaseCall = string.IsNullOrEmpty(ReturnValue) ? "base." + BaseMethodName + "(" : ReturnValue + "=base." + BaseMethodName + "(";
-            var Parameters = MethodInfo.GetParameters();
-            if (IsProperty)
+            var Parameters = methodInfo.GetParameters();
+            if (isProperty)
             {
                 BaseCall += Parameters.Length > 0 ? "=" + Parameters.ToString(x => x.Name) + ";" : ";";
             }
@@ -406,12 +409,12 @@ namespace Aspectus
                     {5}
                     throw;
                 }}",
-                MethodInfo.ReturnType != typeof(void) ? MethodInfo.ReturnType.GetName() + " " + ReturnValue + ";" : "",
-                Aspects.ForEach(x => x.SetupStartMethod(MethodInfo, Type)).ToString(x => x, "\r\n"),
+                methodInfo.ReturnType != typeof(void) ? methodInfo.ReturnType.GetName() + " " + ReturnValue + ";" : "",
+                Aspects.ForEach(x => x.SetupStartMethod(methodInfo, type)).ToString(x => x, "\r\n"),
                 BaseCall,
-                Aspects.ForEach(x => x.SetupEndMethod(MethodInfo, Type, ReturnValue)).ToString(x => x, "\r\n"),
+                Aspects.ForEach(x => x.SetupEndMethod(methodInfo, type, ReturnValue)).ToString(x => x, "\r\n"),
                 string.IsNullOrEmpty(ReturnValue) ? "" : "return " + ReturnValue + ";",
-                Aspects.ForEach(x => x.SetupExceptionMethod(MethodInfo, Type)).ToString(x => x, "\r\n"));
+                Aspects.ForEach(x => x.SetupExceptionMethod(methodInfo, type)).ToString(x => x, "\r\n"));
             return Builder.ToString();
         }
     }

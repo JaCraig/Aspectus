@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using Microsoft.CodeAnalysis;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -28,7 +29,7 @@ namespace Aspectus.Interfaces
         /// <summary>
         /// Set of assemblies that the aspect requires
         /// </summary>
-        ICollection<Assembly> AssembliesUsing { get; }
+        ICollection<MetadataReference> AssembliesUsing { get; }
 
         /// <summary>
         /// List of interfaces that need to be injected by this aspect

@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using Aspectus.CodeGen.BaseClasses;
+using Microsoft.CodeAnalysis;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -50,21 +51,7 @@ namespace Aspectus.CodeGen
         /// <param name="usings">The usings.</param>
         /// <param name="references">The references.</param>
         /// <returns>The list of types that are generated</returns>
-        public Compiler Create(string code, IEnumerable<string> usings, params Assembly[] references)
-        {
-            Add(code, usings, references);
-            return this;
-        }
-
-        /// <summary>
-        /// Creates a class object
-        /// </summary>
-        /// <param name="className">Class name</param>
-        /// <param name="code">Code</param>
-        /// <param name="references">Assembly references</param>
-        /// <param name="usings">Namespace usings</param>
-        /// <returns>Type generated</returns>
-        public Compiler CreateClass(string className, string code, IEnumerable<string> usings, params Assembly[] references)
+        public Compiler Create(string code, IEnumerable<string> usings, params MetadataReference[] references)
         {
             Add(code, usings, references);
             return this;
