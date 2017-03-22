@@ -1,12 +1,10 @@
 ﻿using Aspectus.Interfaces;
+using FileCurator;
+using Microsoft.CodeAnalysis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Reflection;
-using Microsoft.CodeAnalysis;
-using FileCurator;
-using System.Runtime.Loader;
 
 namespace Aspectus.Tests.Aspects
 {
@@ -19,9 +17,11 @@ namespace Aspectus.Tests.Aspects
     {
         public TestAspect()
         {
-            AssembliesUsing = new List<MetadataReference>();
-            AssembliesUsing.Add(MetadataReference.CreateFromFile(typeof(TestAspect).GetTypeInfo().Assembly.Location));
-            foreach (var DLL in new DirectoryInfo(@"C:\Program Files\dotnet\shared\Microsoft.NETCore.App\1.0.0\")
+            AssembliesUsing = new List<MetadataReference>
+            {
+                MetadataReference.CreateFromFile(typeof(TestAspect).GetTypeInfo().Assembly.Location)
+            };
+            foreach (var DLL in new DirectoryInfo(@"C:\Program Files\dotnet\shared\Microsoft.NETCore.App\1.0.4\")
                                                         .EnumerateFiles("*.dll")
                                                         .Where(x => !DontLoad.Contains(x.Name)))
             {
@@ -29,12 +29,6 @@ namespace Aspectus.Tests.Aspects
                 AssembliesUsing.Add(TempAssembly);
             }
         }
-
-        public ICollection<MetadataReference> AssembliesUsing { get; private set; }
-
-        public ICollection<Type> InterfacesUsing => new Type[] { typeof(IExample) };
-
-        public ICollection<string> Usings => new string[] { };
 
         private string[] DontLoad =
                                         {
@@ -176,10 +170,15 @@ namespace Aspectus.Tests.Aspects
 "API-MS-Win-Base-Util-L1-1-0.dll"
         };
 
+        public ICollection<MetadataReference> AssembliesUsing { get; private set; }
+
+        public ICollection<Type> InterfacesUsing => new Type[] { typeof(IExample) };
+
+        public ICollection<string> Usings => new string[] { };
+
         public void Setup(object value)
         {
-            var ExampleValue = value as IExample;
-            if (ExampleValue != null)
+            if (value is IExample ExampleValue)
                 ExampleValue.MySecretData = "BLAH";
         }
 
