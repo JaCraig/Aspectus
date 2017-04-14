@@ -50,11 +50,6 @@ namespace Aspectus
         }
 
         /// <summary>
-        /// Gets the system's compiler
-        /// </summary>
-        protected static Compiler Compiler { get; private set; }
-
-        /// <summary>
         /// The list of aspects that are being used
         /// </summary>
         private readonly ConcurrentBag<IAspect> Aspects = new ConcurrentBag<IAspect>();
@@ -63,6 +58,11 @@ namespace Aspectus
         /// Dictionary containing generated types and associates it with original type
         /// </summary>
         private ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
+
+        /// <summary>
+        /// Gets the system's compiler
+        /// </summary>
+        protected static Compiler Compiler { get; private set; }
 
         /// <summary>
         /// Creates an object of the specified base type, registering the type if necessary
@@ -115,12 +115,14 @@ namespace Aspectus
             AssembliesUsing.AddIfUnique(MetadataReference.CreateFromFile(typeof(Enumerable).GetTypeInfo().Assembly.Location));
             Aspects.ForEach(x => AssembliesUsing.AddIfUnique(x.AssembliesUsing));
 
-            var Usings = new List<string>();
-            Usings.Add("System");
-            Usings.Add("System.Collections.Generic");
-            Usings.Add("System.Linq");
-            Usings.Add("System.Text");
-            Usings.Add("System.Threading.Tasks");
+            var Usings = new List<string>
+            {
+                "System",
+                "System.Collections.Generic",
+                "System.Linq",
+                "System.Text",
+                "System.Threading.Tasks"
+            };
             Aspects.ForEach(x => Usings.AddIfUnique(x.Usings));
 
             var InterfacesUsed = new List<Type>();

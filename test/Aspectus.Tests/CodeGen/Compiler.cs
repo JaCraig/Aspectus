@@ -1,7 +1,6 @@
 ﻿using Aspectus.CodeGen;
 using Aspectus.Tests.BaseClasses;
 using Microsoft.CodeAnalysis;
-using System;
 using System.Linq;
 using System.Reflection;
 using Xunit;

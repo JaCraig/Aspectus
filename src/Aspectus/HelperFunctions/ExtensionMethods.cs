@@ -101,7 +101,7 @@ namespace Aspectus.HelperFunctions
         {
             if (collection == null || predicate == null)
                 return false;
-            if (items == null || items.Count() == 0)
+            if (items == null || !items.Any())
                 return true;
             return collection.AddIf(predicate, items.ToArray());
         }
@@ -302,8 +302,7 @@ namespace Aspectus.HelperFunctions
         {
             if (input == null)
                 return new byte[0];
-            var TempInput = input as MemoryStream;
-            if (TempInput != null)
+            if (input is MemoryStream TempInput)
                 return TempInput.ToArray();
             byte[] Buffer = new byte[1024];
             byte[] ReturnValue = null;
