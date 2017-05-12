@@ -110,7 +110,7 @@ namespace Aspectus.CodeGen.BaseClasses
                 if (!Result.Success)
                 {
                     var ErrorText = Code + Environment.NewLine + Environment.NewLine + Result.Diagnostics.ToString(x => x.GetMessage() + " : " + x.Location.GetLineSpan().StartLinePosition.Line, Environment.NewLine);
-                    Logger.Debug("Error compiling code: {Info:l}", ErrorText);
+                    Logger.Error("Error compiling code: {Info:l}", ErrorText);
                     throw new Exception(ErrorText);
                 }
                 var MiniAssembly = TempStream.ToArray();
