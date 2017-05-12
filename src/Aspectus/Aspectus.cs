@@ -18,6 +18,7 @@ using Aspectus.CodeGen;
 using Aspectus.HelperFunctions;
 using Aspectus.Interfaces;
 using Microsoft.CodeAnalysis;
+using Serilog;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -38,12 +39,13 @@ namespace Aspectus
         /// <param name="compiler">The compiler.</param>
         /// <param name="aspects">The aspects.</param>
         /// <param name="modules">The modules.</param>
-        public Aspectus(Compiler compiler, IEnumerable<IAspect> aspects, IEnumerable<IAOPModule> modules)
+        /// <param name="logger">Serilog based log object</param>
+        public Aspectus(Compiler compiler, IEnumerable<IAspect> aspects, IEnumerable<IAOPModule> modules, ILogger logger)
         {
-            compiler = compiler ?? new Compiler();
+            Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             aspects = aspects ?? new List<IAspect>();
             modules = modules ?? new List<IAOPModule>();
-            Compiler = compiler;
+            Compiler = compiler ?? new Compiler(Logger);
             if (Aspects.Count == 0)
                 Aspects.Add(aspects);
             modules.ForEachParallel(x => x.Setup(this));
@@ -63,6 +65,11 @@ namespace Aspectus
         /// Gets the system's compiler
         /// </summary>
         protected static Compiler Compiler { get; private set; }
+
+        /// <summary>
+        /// Logging object
+        /// </summary>
+        private ILogger Logger { get; }
 
         /// <summary>
         /// Creates an object of the specified base type, registering the type if necessary
@@ -109,6 +116,8 @@ namespace Aspectus
         public void Setup(params Type[] types)
         {
             IEnumerable<Type> TempTypes = FilterTypesToSetup(types);
+            if (!TempTypes.Any())
+                return;
             var AssemblyPath = System.IO.Path.GetDirectoryName(typeof(object).GetTypeInfo().Assembly.Location);
             var AssembliesUsing = new List<MetadataReference>();
             AssembliesUsing.AddIfUnique(MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location));
@@ -132,6 +141,7 @@ namespace Aspectus
 
             foreach (Type TempType in TempTypes)
             {
+                Logger.Debug("Generating type for {Info:l}", TempType.GetName());
                 AssembliesUsing.AddIfUnique(MetadataReference.CreateFromFile(TempType.GetTypeInfo().Assembly.Location));
                 AssembliesUsing.AddIfUnique(GetAssemblies(TempType).ForEach(y => MetadataReference.CreateFromFile(y.Location)));
 

@@ -1,6 +1,7 @@
 ﻿using Aspectus.ExtensionMethods;
 using FileCurator;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -23,6 +24,8 @@ namespace Aspectus.Tests.BaseClasses
             new DirectoryInfo(@".\App_Data").Create();
             new DirectoryInfo(@".\Logs").Create();
         }
+
+        public ILogger Logger => Canister.Builder.Bootstrapper.Resolve<ILogger>();
 
         public void Dispose()
         {

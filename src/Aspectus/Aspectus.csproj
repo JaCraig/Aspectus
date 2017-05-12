@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="2.1.0" />
+    <PackageReference Include="Serilog" Version="2.4.0" />
     <PackageReference Include="System.Threading.Tasks.Parallel" Version="4.3.0" />
     <PackageReference Include="Canister.IoC" Version="1.0.41" />
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />

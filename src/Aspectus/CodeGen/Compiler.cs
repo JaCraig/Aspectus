@@ -16,8 +16,8 @@ limitations under the License.
 
 using Aspectus.CodeGen.BaseClasses;
 using Microsoft.CodeAnalysis;
+using Serilog;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace Aspectus.CodeGen
 {
@@ -29,8 +29,9 @@ namespace Aspectus.CodeGen
         /// <summary>
         /// Constructor
         /// </summary>
-        public Compiler()
-            : base("AspectusGeneratedTypes")
+        /// <param name="logger">Logging object</param>
+        public Compiler(ILogger logger)
+            : base("AspectusGeneratedTypes", true, logger)
         {
         }
 
@@ -39,8 +40,9 @@ namespace Aspectus.CodeGen
         /// </summary>
         /// <param name="assemblyName">Assembly name</param>
         /// <param name="optimize">Optimize the assembly?</param>
-        public Compiler(string assemblyName, bool optimize)
-            : base(assemblyName, optimize)
+        /// <param name="logger">Logging object</param>
+        public Compiler(string assemblyName, bool optimize, ILogger logger)
+            : base(assemblyName, optimize, logger)
         {
         }
 

@@ -34,7 +34,8 @@ namespace Aspectus.Tests
         [Fact]
         public void Create()
         {
-            var Test = new Aspectus(new Compiler(), new List<IAspect>(), new List<IAOPModule>());
+            Logger.Information("AspectusTests.Create");
+            var Test = new Aspectus(new Compiler(Logger), new List<IAspect>(), new List<IAOPModule>(), Logger);
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
             Assert.NotNull(Item);
         }
@@ -42,6 +43,7 @@ namespace Aspectus.Tests
         [Fact]
         public void TestAspectTest()
         {
+            Logger.Information("AspectusTests.TestAspectTest");
             var Test = Canister.Builder.Bootstrapper.Resolve<Aspectus>();
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
@@ -54,6 +56,7 @@ namespace Aspectus.Tests
         [Fact]
         public void TestAspectTestMultiple()
         {
+            Logger.Information("AspectusTests.TestAspectTestMultiple");
             var Test = Canister.Builder.Bootstrapper.Resolve<Aspectus>();
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));

@@ -17,10 +17,10 @@ limitations under the License.
 using Aspectus.HelperFunctions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Runtime.Loader;
 using System.Text;
 
@@ -36,8 +36,10 @@ namespace Aspectus.CodeGen.BaseClasses
         /// </summary>
         /// <param name="assemblyName">Assembly name to save the generated types as</param>
         /// <param name="optimize">Should this be optimized (defaults to true)</param>
-        protected CompilerBase(string assemblyName, bool optimize = true)
+        /// <param name="logger">Logger object</param>
+        protected CompilerBase(string assemblyName, bool optimize = true, ILogger logger = null)
         {
+            Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             AssemblyName = assemblyName;
             Optimize = optimize;
             Classes = new List<Type>();
@@ -62,6 +64,11 @@ namespace Aspectus.CodeGen.BaseClasses
         /// </summary>
         /// <value>The assembly stream.</value>
         protected MemoryStream AssemblyStream { get; private set; }
+
+        /// <summary>
+        /// Logger object
+        /// </summary>
+        protected ILogger Logger { get; }
 
         /// <summary>
         /// Should this be optimized?
@@ -101,7 +108,11 @@ namespace Aspectus.CodeGen.BaseClasses
             {
                 var Result = CSharpCompiler.Emit(TempStream);
                 if (!Result.Success)
-                    throw new Exception(Code + Environment.NewLine + Environment.NewLine + Result.Diagnostics.ToString(x => x.GetMessage() + " : " + x.Location.GetLineSpan().StartLinePosition.Line, Environment.NewLine));
+                {
+                    var ErrorText = Code + Environment.NewLine + Environment.NewLine + Result.Diagnostics.ToString(x => x.GetMessage() + " : " + x.Location.GetLineSpan().StartLinePosition.Line, Environment.NewLine);
+                    Logger.Debug("Error compiling code: {Info:l}", ErrorText);
+                    throw new Exception(ErrorText);
+                }
                 var MiniAssembly = TempStream.ToArray();
                 AssemblyStream.Write(MiniAssembly, 0, MiniAssembly.Length);
             }
