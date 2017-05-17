@@ -34,7 +34,7 @@ namespace Aspectus
     public class Aspectus
     {
         /// <summary>
-        /// Constructor
+        /// Initializes a new instance of the <see cref="Aspectus"/> class.
         /// </summary>
         /// <param name="compiler">The compiler.</param>
         /// <param name="aspects">The aspects.</param>
@@ -49,6 +49,17 @@ namespace Aspectus
             if (Aspects.Count == 0)
                 Aspects.Add(aspects);
             modules.ForEachParallel(x => x.Setup(this));
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Aspectus"/> class.
+        /// </summary>
+        /// <param name="compiler">The compiler.</param>
+        /// <param name="aspects">The aspects.</param>
+        /// <param name="modules">The modules.</param>
+        public Aspectus(Compiler compiler, IEnumerable<IAspect> aspects, IEnumerable<IAOPModule> modules)
+            : this(compiler, aspects, modules, Log.Logger ?? new LoggerConfiguration().CreateLogger())
+        {
         }
 
         /// <summary>
