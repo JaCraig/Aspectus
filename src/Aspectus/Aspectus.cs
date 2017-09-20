@@ -129,11 +129,10 @@ namespace Aspectus
             IEnumerable<Type> TempTypes = FilterTypesToSetup(types);
             if (!TempTypes.Any())
                 return;
-            var AssemblyPath = System.IO.Path.GetDirectoryName(typeof(object).GetTypeInfo().Assembly.Location);
-            var AssembliesUsing = new List<MetadataReference>();
-            AssembliesUsing.AddIfUnique(MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location));
-            AssembliesUsing.AddIfUnique(MetadataReference.CreateFromFile(typeof(Enumerable).GetTypeInfo().Assembly.Location));
-            Aspects.ForEach(x => AssembliesUsing.AddIfUnique(x.AssembliesUsing));
+            var TempAssemblies = new List<Assembly>();
+            GetAssemblies(typeof(object), TempAssemblies);
+            GetAssemblies(typeof(Enumerable), TempAssemblies);
+            //var AssembliesUsing = new List<MetadataReference>();
 
             var Usings = new List<string>
             {
@@ -153,16 +152,17 @@ namespace Aspectus
             foreach (Type TempType in TempTypes)
             {
                 Logger.Debug("Generating type for {Info:l}", TempType.GetName());
-                AssembliesUsing.AddIfUnique(MetadataReference.CreateFromFile(TempType.GetTypeInfo().Assembly.Location));
-                AssembliesUsing.AddIfUnique(GetAssemblies(TempType).ForEach(y => MetadataReference.CreateFromFile(y.Location)));
+                GetAssemblies(TempType, TempAssemblies);
 
                 string Namespace = "AspectusGeneratedTypes.C" + Guid.NewGuid().ToString("N");
                 string ClassName = TempType.Name + "Derived";
-                Builder.AppendLine(Setup(TempType, Namespace, ClassName, Usings, InterfacesUsed, AssembliesUsing));
+                Builder.AppendLine(Setup(TempType, Namespace, ClassName, Usings, InterfacesUsed, TempAssemblies));
             }
             try
             {
-                var Types = Compiler.Create(Builder.ToString(), Usings, AssembliesUsing.ToArray())
+                var MetadataReferences = TempAssemblies.ForEach(x => { return (MetadataReference)MetadataReference.CreateFromFile(x.Location); }).ToList();
+                Aspects.ForEach(x => MetadataReferences.AddIfUnique((z, y) => z.Display == y.Display, x.AssembliesUsing.ToArray()));
+                var Types = Compiler.Create(Builder.ToString(), Usings, MetadataReferences.ToArray())
                                                     .Compile()
                                                     .LoadAssembly();
                 foreach (Type TempType in TempTypes)
@@ -192,42 +192,38 @@ namespace Aspectus
             return "AOP registered classes: " + Classes.Keys.ToString(x => x.Name) + "\r\n";
         }
 
-        private static Assembly[] GetAssemblies(Type type)
+        private static void GetAssemblies(Type type, List<Assembly> assembliesUsing)
         {
-            var Types = new List<Assembly>();
             Type TempType = type;
             while (TempType != null)
             {
-                Types.AddIfUnique(TempType.GetTypeInfo().Assembly);
-                TempType.GetTypeInfo().ImplementedInterfaces.ForEach(x => Types.AddIfUnique(GetAssembliesSimple(x)));
-                TempType.GetTypeInfo().DeclaredEvents.ForEach(x => Types.AddIfUnique(GetAssembliesSimple(x.EventHandlerType)));
-                TempType.GetTypeInfo().DeclaredFields.ForEach(x => Types.AddIfUnique(GetAssembliesSimple(x.FieldType)));
-                TempType.GetTypeInfo().DeclaredProperties.ForEach(x => Types.AddIfUnique(GetAssembliesSimple(x.PropertyType)));
+                assembliesUsing.AddIfUnique(TempType.GetTypeInfo().Assembly);
+                TempType.GetTypeInfo().ImplementedInterfaces.ForEach(x => GetAssembliesSimple(x, assembliesUsing));
+                TempType.GetTypeInfo().DeclaredEvents.ForEach(x => GetAssembliesSimple(x.EventHandlerType, assembliesUsing));
+                TempType.GetTypeInfo().DeclaredFields.ForEach(x => GetAssembliesSimple(x.FieldType, assembliesUsing));
+                TempType.GetTypeInfo().DeclaredProperties.ForEach(x => GetAssembliesSimple(x.PropertyType, assembliesUsing));
                 TempType.GetTypeInfo().DeclaredMethods.ForEach(x =>
                 {
-                    Types.AddIfUnique(GetAssembliesSimple(x.ReturnType));
-                    x.GetParameters().ForEach(y => Types.AddIfUnique(GetAssembliesSimple(y.ParameterType)));
+                    GetAssembliesSimple(x.ReturnType, assembliesUsing);
+                    x.GetParameters().ForEach(y => GetAssembliesSimple(y.ParameterType, assembliesUsing));
                 });
                 TempType = TempType.GetTypeInfo().BaseType;
                 if (TempType == typeof(object))
                     break;
             }
-            return Types.ToArray();
         }
 
-        private static Assembly[] GetAssembliesSimple(Type type)
+        private static void GetAssembliesSimple(Type type, List<Assembly> assembliesUsing)
         {
-            var Types = new List<Assembly>();
             Type TempType = type;
             while (TempType != null)
             {
-                Types.AddIfUnique(TempType.GetTypeInfo().Assembly);
-                TempType.GetTypeInfo().ImplementedInterfaces.ForEach(x => Types.AddIfUnique(GetAssembliesSimple(x)));
+                assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, TempType.GetTypeInfo().Assembly);
+                TempType.GetTypeInfo().ImplementedInterfaces.ForEach(x => GetAssembliesSimple(x, assembliesUsing));
                 TempType = TempType.GetTypeInfo().BaseType;
                 if (TempType == typeof(object))
                     break;
             }
-            return Types.ToArray();
         }
 
         /// <summary>
@@ -263,9 +259,12 @@ namespace Aspectus
         /// <param name="interfaces">The interfaces.</param>
         /// <param name="assembliesUsing">The assemblies using.</param>
         /// <returns></returns>
-        private string Setup(Type type, string namespaceUsing,
-            string className, List<string> usings,
-            List<Type> interfaces, List<MetadataReference> assembliesUsing)
+        private string Setup(Type type,
+            string namespaceUsing,
+            string className,
+            List<string> usings,
+            List<Type> interfaces,
+            List<Assembly> assembliesUsing)
         {
             var Builder = new StringBuilder();
             Builder.AppendLineFormat(@"namespace {1}
@@ -311,7 +310,7 @@ namespace Aspectus
                         && !GetMethodInfo.IsFinal
                         && Property.GetIndexParameters().Length == 0)
                     {
-                        assembliesUsing.AddIfUnique(GetAssemblies(Property.PropertyType).ForEach(y => MetadataReference.CreateFromFile(y.Location)));
+                        GetAssemblies(Property.PropertyType, assembliesUsing);
                         Builder.AppendLineFormat(@"
         public override {0} {1}
         {{
@@ -338,7 +337,7 @@ namespace Aspectus
                         && !GetMethodInfo.IsFinal
                         && Property.GetIndexParameters().Length == 0)
                     {
-                        assembliesUsing.AddIfUnique(GetAssemblies(Property.PropertyType).ForEach(y => MetadataReference.CreateFromFile(y.Location)));
+                        GetAssemblies(Property.PropertyType, assembliesUsing);
                         Builder.AppendLineFormat(@"
         public override {0} {1}
         {{
@@ -371,8 +370,11 @@ namespace Aspectus
                         && !Method.Name.StartsWith("remove_", StringComparison.OrdinalIgnoreCase)
                         && !Method.IsGenericMethod)
                     {
-                        assembliesUsing.AddIfUnique(GetAssemblies(Method.ReturnType).ForEach(y => MetadataReference.CreateFromFile(y.Location)));
-                        Method.GetParameters().ForEach(x => assembliesUsing.AddIfUnique(GetAssemblies(x.ParameterType).ForEach(y => MetadataReference.CreateFromFile(y.Location))));
+                        GetAssemblies(Method.ReturnType, assembliesUsing);
+                        Method.GetParameters().ForEach(x =>
+                        {
+                            GetAssemblies(x.ParameterType, assembliesUsing);
+                        });
                         string Static = Method.IsStatic ? "static " : "";
                         Builder.AppendLineFormat(@"
         {4} override {0} {1}({2})
