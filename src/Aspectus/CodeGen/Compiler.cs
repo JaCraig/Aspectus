@@ -42,7 +42,9 @@ namespace Aspectus.CodeGen
         /// <param name="optimize">Optimize the assembly?</param>
         /// <param name="logger">Logging object</param>
         public Compiler(string assemblyName, bool optimize, ILogger logger)
-            : base(assemblyName, optimize, logger)
+            : base(string.IsNullOrEmpty(assemblyName) ? "AspectusGeneratedTypes" : assemblyName,
+                  true,
+                  logger)
         {
         }
 
