@@ -22,6 +22,7 @@ using Serilog;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -63,16 +64,6 @@ namespace Aspectus
         }
 
         /// <summary>
-        /// The list of aspects that are being used
-        /// </summary>
-        private readonly ConcurrentBag<IAspect> Aspects = new ConcurrentBag<IAspect>();
-
-        /// <summary>
-        /// Dictionary containing generated types and associates it with original type
-        /// </summary>
-        private ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
-
-        /// <summary>
         /// Gets the system's compiler
         /// </summary>
         protected static Compiler Compiler { get; private set; }
@@ -81,6 +72,16 @@ namespace Aspectus
         /// Logging object
         /// </summary>
         private ILogger Logger { get; }
+
+        /// <summary>
+        /// The list of aspects that are being used
+        /// </summary>
+        private readonly ConcurrentBag<IAspect> Aspects = new ConcurrentBag<IAspect>();
+
+        /// <summary>
+        /// Dictionary containing generated types and associates it with original type
+        /// </summary>
+        private ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
 
         /// <summary>
         /// Creates an object of the specified base type, registering the type if necessary
@@ -130,7 +131,7 @@ namespace Aspectus
             if (!TempTypes.Any())
                 return;
             var TempAssemblies = new List<Assembly>();
-            GetAssemblies(typeof(object), TempAssemblies);
+            GetAssemblies(typeof(Object), TempAssemblies);
             GetAssemblies(typeof(Enumerable), TempAssemblies);
             //var AssembliesUsing = new List<MetadataReference>();
 
@@ -160,7 +161,7 @@ namespace Aspectus
             }
             try
             {
-                var MetadataReferences = TempAssemblies.ForEach(x => { return (MetadataReference)MetadataReference.CreateFromFile(x.Location); }).ToList();
+                var MetadataReferences = GetFinalAssemblies(TempAssemblies);
                 Aspects.ForEach(x => MetadataReferences.AddIfUnique((z, y) => z.Display == y.Display, x.AssembliesUsing.ToArray()));
                 var Types = Compiler.Create(Builder.ToString(), Usings, MetadataReferences.ToArray())
                                                     .Compile()
@@ -172,8 +173,9 @@ namespace Aspectus
                         (x, y) => x);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Error(ex, "Error compiling code");
                 foreach (Type TempType in TempTypes)
                 {
                     Classes.AddOrUpdate(TempType,
@@ -224,6 +226,30 @@ namespace Aspectus
                 if (TempType == typeof(object))
                     break;
             }
+        }
+
+        private static List<MetadataReference> GetFinalAssemblies(List<Assembly> assembliesUsing)
+        {
+            assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, assembliesUsing
+                                                    .SelectMany(x => x.GetReferencedAssemblies())
+                                                    .Select(x => Assembly.Load(x)).ToArray());
+            string[] Load = {
+                "mscorlib.dll",
+                "mscorlib.ni.dll"
+            };
+            var ReturnList = assembliesUsing.ForEach(x => { return (MetadataReference)MetadataReference.CreateFromFile(x.Location); })
+                                  .ToList();
+            foreach (var Directory in assembliesUsing.Select(x => new FileInfo(x.Location).DirectoryName).Distinct())
+            {
+                foreach (var DLL in new DirectoryInfo(Directory)
+                                            .EnumerateFiles("*.dll")
+                                            .Where(x => Load.Contains(x.Name)))
+                {
+                    var TempAssembly = MetadataReference.CreateFromFile(DLL.FullName);
+                    ReturnList.Add(TempAssembly);
+                }
+            }
+            return ReturnList;
         }
 
         /// <summary>

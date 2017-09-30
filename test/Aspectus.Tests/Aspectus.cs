@@ -3,6 +3,7 @@ using Aspectus.Interfaces;
 using Aspectus.Tests.Aspects;
 using Aspectus.Tests.BaseClasses;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Aspectus.Tests
@@ -44,7 +45,7 @@ namespace Aspectus.Tests
         public void TestAspectTest()
         {
             Logger.Information("AspectusTests.TestAspectTest");
-            var Test = Canister.Builder.Bootstrapper.Resolve<Aspectus>();
+            var Test = new Aspectus(new Compiler("TestAspectTest", true, Logger), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), Logger);
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
             Assert.NotNull(Item);
@@ -57,7 +58,7 @@ namespace Aspectus.Tests
         public void TestAspectTestMultiple()
         {
             Logger.Information("AspectusTests.TestAspectTestMultiple");
-            var Test = Canister.Builder.Bootstrapper.Resolve<Aspectus>();
+            var Test = new Aspectus(new Compiler("TestAspectTestMultiple", true, Logger), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), Logger);
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
             Assert.NotNull(Item);
