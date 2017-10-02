@@ -43,7 +43,10 @@ namespace Aspectus.HelperFunctions
                 return new List<T>();
             if (items == null)
                 return collection;
-            items.ForEach(x => collection.Add(x));
+            for (int x = 0; x < items.Length; ++x)
+            {
+                collection.Add(items[x]);
+            }
             return collection;
         }
 
@@ -78,15 +81,43 @@ namespace Aspectus.HelperFunctions
             if (items == null || items.Length == 0)
                 return true;
             bool ReturnValue = false;
-            foreach (T Item in items)
+            int itemsLength = items.Length;
+            for (int i = 0; i < itemsLength; ++i)
             {
+                T Item = items[i];
                 if (predicate(Item))
                 {
                     collection.Add(Item);
                     ReturnValue = true;
                 }
             }
+
             return ReturnValue;
+        }
+
+        /// <summary>
+        /// Adds items to the collection if it passes the predicate test
+        /// </summary>
+        /// <typeparam name="T">Collection type</typeparam>
+        /// <param name="collection">Collection to add to</param>
+        /// <param name="items">Items to add to the collection</param>
+        /// <param name="predicate">Predicate that an item needs to satisfy in order to be added</param>
+        /// <returns>True if any are added, false otherwise</returns>
+        public static bool AddIf<T>(this ConcurrentBag<T> collection, Predicate<T> predicate, params T[] items)
+        {
+            if (collection == null || predicate == null)
+                return false;
+            if (items == null || items.Length == 0)
+                return true;
+            return items.ForEachParallel(x =>
+              {
+                  if (predicate(x))
+                  {
+                      collection.Add(x);
+                      return true;
+                  }
+                  return false;
+              }).Any();
         }
 
         /// <summary>
@@ -98,6 +129,23 @@ namespace Aspectus.HelperFunctions
         /// <param name="predicate">Predicate that an item needs to satisfy in order to be added</param>
         /// <returns>True if it is added, false otherwise</returns>
         public static bool AddIf<T>(this ICollection<T> collection, Predicate<T> predicate, IEnumerable<T> items)
+        {
+            if (collection == null || predicate == null)
+                return false;
+            if (items == null || !items.Any())
+                return true;
+            return collection.AddIf(predicate, items.ToArray());
+        }
+
+        /// <summary>
+        /// Adds an item to the collection if it isn't already in the collection
+        /// </summary>
+        /// <typeparam name="T">Collection type</typeparam>
+        /// <param name="collection">Collection to add to</param>
+        /// <param name="items">Items to add to the collection</param>
+        /// <param name="predicate">Predicate that an item needs to satisfy in order to be added</param>
+        /// <returns>True if it is added, false otherwise</returns>
+        public static bool AddIf<T>(this ConcurrentBag<T> collection, Predicate<T> predicate, IEnumerable<T> items)
         {
             if (collection == null || predicate == null)
                 return false;
@@ -132,6 +180,26 @@ namespace Aspectus.HelperFunctions
         /// <typeparam name="T">Collection type</typeparam>
         /// <param name="collection">Collection to add to</param>
         /// <param name="items">Items to add to the collection</param>
+        /// <param name="predicate">
+        /// Predicate used to determine if two values are equal. Return true if they are the same,
+        /// false otherwise
+        /// </param>
+        /// <returns>True if it is added, false otherwise</returns>
+        public static bool AddIfUnique<T>(this ConcurrentBag<T> collection, Func<T, T, bool> predicate, params T[] items)
+        {
+            if (collection == null || predicate == null)
+                return false;
+            if (items == null)
+                return true;
+            return collection.AddIf(x => !collection.Any(y => predicate(x, y)), items);
+        }
+
+        /// <summary>
+        /// Adds an item to the collection if it isn't already in the collection
+        /// </summary>
+        /// <typeparam name="T">Collection type</typeparam>
+        /// <param name="collection">Collection to add to</param>
+        /// <param name="items">Items to add to the collection</param>
         /// <returns>True if it is added, false otherwise</returns>
         public static bool AddIfUnique<T>(this ICollection<T> collection, IEnumerable<T> items)
         {
@@ -149,7 +217,39 @@ namespace Aspectus.HelperFunctions
         /// <param name="collection">Collection to add to</param>
         /// <param name="items">Items to add to the collection</param>
         /// <returns>True if it is added, false otherwise</returns>
+        public static bool AddIfUnique<T>(this ConcurrentBag<T> collection, IEnumerable<T> items)
+        {
+            if (collection == null)
+                return false;
+            if (items == null)
+                return true;
+            return collection.AddIf(x => !collection.Contains(x), items);
+        }
+
+        /// <summary>
+        /// Adds an item to the collection if it isn't already in the collection
+        /// </summary>
+        /// <typeparam name="T">Collection type</typeparam>
+        /// <param name="collection">Collection to add to</param>
+        /// <param name="items">Items to add to the collection</param>
+        /// <returns>True if it is added, false otherwise</returns>
         public static bool AddIfUnique<T>(this ICollection<T> collection, params T[] items)
+        {
+            if (collection == null)
+                return false;
+            if (items == null)
+                return true;
+            return collection.AddIf(x => !collection.Contains(x), items);
+        }
+
+        /// <summary>
+        /// Adds an item to the collection if it isn't already in the collection
+        /// </summary>
+        /// <typeparam name="T">Collection type</typeparam>
+        /// <param name="collection">Collection to add to</param>
+        /// <param name="items">Items to add to the collection</param>
+        /// <returns>True if it is added, false otherwise</returns>
+        public static bool AddIfUnique<T>(this ConcurrentBag<T> collection, params T[] items)
         {
             if (collection == null)
                 return false;
@@ -241,6 +341,24 @@ namespace Aspectus.HelperFunctions
         }
 
         /// <summary>
+        /// Does an action for each item in the IEnumerable in parallel
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="list">IEnumerable to iterate over</param>
+        /// <param name="function">Action to do</param>
+        /// <returns>The resulting list.</returns>
+        public static IEnumerable<R> ForEachParallel<T, R>(this IEnumerable<T> list, Func<T, R> function)
+        {
+            if (list == null || function == null || !list.Any())
+                return new List<R>();
+            int end = list.Count();
+            var TempArray = list.ToArray();
+            R[] Results = new R[end];
+            Parallel.For(0, end, new Action<int>(x => Results[x] = function(TempArray[x])));
+            return Results;
+        }
+
+        /// <summary>
         /// Returns the type's name (Actual C# name, not the funky version from the Name property)
         /// </summary>
         /// <param name="objectType">Type to get the name of</param>
@@ -264,11 +382,14 @@ namespace Aspectus.HelperFunctions
                     Output.Append(objectType.Name.Remove(objectType.Name.IndexOf("`", StringComparison.OrdinalIgnoreCase)))
                         .Append("<");
                     string Seperator = "";
-                    foreach (Type GenericType in GenericTypes)
+                    int GenericTypesLength = GenericTypes.Length;
+                    for (int i = 0; i < GenericTypesLength; i++)
                     {
+                        Type GenericType = GenericTypes[i];
                         Output.Append(Seperator).Append(GenericType.GetName());
                         Seperator = ",";
                     }
+
                     Output.Append(">");
                 }
                 else
@@ -338,14 +459,7 @@ namespace Aspectus.HelperFunctions
                 return "";
             seperator = seperator ?? "";
             itemOutput = itemOutput ?? (x => x.ToString());
-            var Builder = new StringBuilder();
-            string TempSeperator = "";
-            list.ForEach(x =>
-            {
-                Builder.Append(TempSeperator).Append(itemOutput(x));
-                TempSeperator = seperator;
-            });
-            return Builder.ToString();
+            return string.Join(seperator, list.Select(itemOutput));
         }
     }
 }

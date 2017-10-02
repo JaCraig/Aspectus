@@ -22,7 +22,6 @@ using Serilog;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -64,16 +63,6 @@ namespace Aspectus
         }
 
         /// <summary>
-        /// Gets the system's compiler
-        /// </summary>
-        protected static Compiler Compiler { get; private set; }
-
-        /// <summary>
-        /// Logging object
-        /// </summary>
-        private ILogger Logger { get; }
-
-        /// <summary>
         /// The list of aspects that are being used
         /// </summary>
         private readonly ConcurrentBag<IAspect> Aspects = new ConcurrentBag<IAspect>();
@@ -82,6 +71,16 @@ namespace Aspectus
         /// Dictionary containing generated types and associates it with original type
         /// </summary>
         private ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
+
+        /// <summary>
+        /// Gets the system's compiler
+        /// </summary>
+        protected static Compiler Compiler { get; private set; }
+
+        /// <summary>
+        /// Logging object
+        /// </summary>
+        private ILogger Logger { get; }
 
         /// <summary>
         /// Creates an object of the specified base type, registering the type if necessary
@@ -133,7 +132,6 @@ namespace Aspectus
             var TempAssemblies = new List<Assembly>();
             GetAssemblies(typeof(Object), TempAssemblies);
             GetAssemblies(typeof(Enumerable), TempAssemblies);
-            //var AssembliesUsing = new List<MetadataReference>();
 
             var Usings = new List<string>
             {
@@ -230,26 +228,32 @@ namespace Aspectus
 
         private static List<MetadataReference> GetFinalAssemblies(List<Assembly> assembliesUsing)
         {
-            assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, assembliesUsing
-                                                    .SelectMany(x => x.GetReferencedAssemblies())
-                                                    .Select(x => Assembly.Load(x)).ToArray());
-            string[] Load = {
-                "mscorlib.dll",
-                "mscorlib.ni.dll"
-            };
-            var ReturnList = assembliesUsing.ForEach(x => { return (MetadataReference)MetadataReference.CreateFromFile(x.Location); })
+            LoadReferencedAssemblies(assembliesUsing, assembliesUsing.ToArray());
+            return assembliesUsing.ForEach(x => { return (MetadataReference)MetadataReference.CreateFromFile(x.Location); })
                                   .ToList();
-            foreach (var Directory in assembliesUsing.Select(x => new FileInfo(x.Location).DirectoryName).Distinct())
+        }
+
+        /// <summary>
+        /// Loads the referenced assemblies.
+        /// </summary>
+        /// <param name="assembliesUsing">The assemblies using.</param>
+        /// <param name="referencedAssemblies">The referenced assemblies.</param>
+        private static void LoadReferencedAssemblies(List<Assembly> assembliesUsing, Assembly[] referencedAssemblies)
+        {
+            int referencedAssembliesLength = referencedAssemblies.Length;
+            for (int i = 0; i < referencedAssembliesLength; ++i)
             {
-                foreach (var DLL in new DirectoryInfo(Directory)
-                                            .EnumerateFiles("*.dll")
-                                            .Where(x => Load.Contains(x.Name)))
+                var TempAssembly = referencedAssemblies[i];
+                var ReferencedAssemblies = TempAssembly.GetReferencedAssemblies()
+                                                        .Where(x => !assembliesUsing.Any(y => y.GetName().FullName == x.FullName))
+                                                        .ForEachParallel(x => { return Assembly.Load(x); })
+                                                        .ToArray();
+                if (ReferencedAssemblies.Any())
                 {
-                    var TempAssembly = MetadataReference.CreateFromFile(DLL.FullName);
-                    ReturnList.Add(TempAssembly);
+                    assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, ReferencedAssemblies);
+                    LoadReferencedAssemblies(assembliesUsing, ReferencedAssemblies);
                 }
             }
-            return ReturnList;
         }
 
         /// <summary>
