@@ -64,16 +64,6 @@ namespace Aspectus
         }
 
         /// <summary>
-        /// Gets the system's compiler
-        /// </summary>
-        protected static Compiler Compiler { get; private set; }
-
-        /// <summary>
-        /// Logging object
-        /// </summary>
-        private ILogger Logger { get; }
-
-        /// <summary>
         /// The list of aspects that are being used
         /// </summary>
         private readonly ConcurrentBag<IAspect> Aspects = new ConcurrentBag<IAspect>();
@@ -82,6 +72,16 @@ namespace Aspectus
         /// Dictionary containing generated types and associates it with original type
         /// </summary>
         private ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
+
+        /// <summary>
+        /// Gets the system's compiler
+        /// </summary>
+        protected static Compiler Compiler { get; private set; }
+
+        /// <summary>
+        /// Logging object
+        /// </summary>
+        private ILogger Logger { get; }
 
         /// <summary>
         /// Creates an object of the specified base type, registering the type if necessary
@@ -235,7 +235,7 @@ namespace Aspectus
                                                     .Select(x => Assembly.Load(x)).ToArray());
             string[] Load = {
                 "mscorlib.dll",
-                "mscorlib.ni.dll"
+                "netstandard.dll"
             };
             var ReturnList = assembliesUsing.ForEach(x => { return (MetadataReference)MetadataReference.CreateFromFile(x.Location); })
                                   .ToList();
@@ -246,7 +246,7 @@ namespace Aspectus
                                             .Where(x => Load.Contains(x.Name)))
                 {
                     var TempAssembly = MetadataReference.CreateFromFile(DLL.FullName);
-                    ReturnList.Add(TempAssembly);
+                    ReturnList.AddIfUnique((z, y) => z.Display == y.Display, TempAssembly);
                 }
             }
             return ReturnList;
