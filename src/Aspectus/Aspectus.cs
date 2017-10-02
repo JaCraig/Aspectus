@@ -246,12 +246,15 @@ namespace Aspectus
                 var TempAssembly = referencedAssemblies[i];
                 var ReferencedAssemblies = TempAssembly.GetReferencedAssemblies()
                                                         .Where(x => !assembliesUsing.Any(y => y.GetName().FullName == x.FullName))
-                                                        .ForEachParallel(x => { return Assembly.Load(x); })
+                                                        .ForEachParallel(x => { try { return Assembly.Load(x); } catch { } return null; })
+                                                        .Where(x => x != null)
                                                         .ToArray();
                 if (ReferencedAssemblies.Any())
                 {
-                    assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, ReferencedAssemblies);
-                    LoadReferencedAssemblies(assembliesUsing, ReferencedAssemblies);
+                    if (assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, ReferencedAssemblies))
+                    {
+                        LoadReferencedAssemblies(assembliesUsing, ReferencedAssemblies);
+                    }
                 }
             }
         }
