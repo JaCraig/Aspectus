@@ -45,7 +45,7 @@ namespace Aspectus.Tests
         public void TestAspectTest()
         {
             Logger.Information("AspectusTests.TestAspectTest");
-            var Test = new Aspectus(new Compiler("TestAspectTest", true, Logger), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), Logger);
+            var Test = new Aspectus(new Compiler("TestAspectTest", Logger), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), Logger);
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
             Assert.NotNull(Item);
@@ -58,7 +58,7 @@ namespace Aspectus.Tests
         public void TestAspectTestMultiple()
         {
             Logger.Information("AspectusTests.TestAspectTestMultiple");
-            var Test = new Aspectus(new Compiler("TestAspectTestMultiple", true, Logger), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), Logger);
+            var Test = new Aspectus(new Compiler("TestAspectTestMultiple", Logger), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), Logger);
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
             Assert.NotNull(Item);

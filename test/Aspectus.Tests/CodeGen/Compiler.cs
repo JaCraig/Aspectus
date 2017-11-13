@@ -13,7 +13,7 @@ namespace Aspectus.Tests.CodeGen
         public void CreateMultipleTypes()
         {
             Logger.Information("CompilerTests.CreateMultipleTypes");
-            using (Compiler Test = new Compiler("CreateMultipleTypes", true, Logger))
+            using (Compiler Test = new Compiler("CreateMultipleTypes", Logger))
             {
                 Test.Create("public class A{ public string Value1{get;set;}}", null, MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location));
                 Test.Create("public class B{ public string Value1{get;set;}}", null, MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location));
@@ -33,7 +33,7 @@ namespace Aspectus.Tests.CodeGen
         public void CreateType()
         {
             Logger.Information("CompilerTests.CreateType");
-            using (Compiler Test = new Compiler("CreateType", true, Logger))
+            using (Compiler Test = new Compiler("CreateType", Logger))
             {
                 Test.Create("public class A{ public string Value1{get;set;}}", null, MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location));
                 var TempAssembly = Test.Compile().LoadAssembly();
@@ -47,7 +47,7 @@ namespace Aspectus.Tests.CodeGen
         public void Creation()
         {
             Logger.Information("CompilerTests.Creation");
-            using (Compiler Test = new Compiler("Somewhere", true, Logger))
+            using (Compiler Test = new Compiler("Somewhere", Logger))
             {
                 Assert.Equal(0, Test.Classes.Count);
                 Assert.Equal("Somewhere", Test.AssemblyName);

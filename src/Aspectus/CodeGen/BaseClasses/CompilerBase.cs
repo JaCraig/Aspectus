@@ -20,7 +20,10 @@ using Microsoft.CodeAnalysis.CSharp;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.Loader;
 using System.Text;
 
@@ -35,13 +38,20 @@ namespace Aspectus.CodeGen.BaseClasses
         /// Constructor
         /// </summary>
         /// <param name="assemblyName">Assembly name to save the generated types as</param>
-        /// <param name="optimize">Should this be optimized (defaults to true)</param>
         /// <param name="logger">Logger object</param>
-        protected CompilerBase(string assemblyName, bool optimize = true, ILogger logger = null)
+        /// <exception cref="ArgumentNullException">logger</exception>
+        protected CompilerBase(string assemblyName, ILogger logger = null)
         {
             Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             AssemblyName = assemblyName;
-            Optimize = optimize;
+            var DebuggableAttribute = Assembly.GetEntryAssembly()
+                                                     .GetCustomAttributes()
+                                                     .OfType<DebuggableAttribute>()
+                                                     .SingleOrDefault();
+            var TempOptimize = DebuggableAttribute == null;
+            if (!TempOptimize)
+                TempOptimize = CheckJitProperty(DebuggableAttribute);
+            Optimize = TempOptimize;
             Classes = new List<Type>();
             AssemblyStream = new MemoryStream();
             Code = new StringBuilder();
@@ -182,6 +192,16 @@ namespace Aspectus.CodeGen.BaseClasses
             Usings.AddIfUnique(usings);
             Assemblies.AddIfUnique(references);
             return this;
+        }
+
+        /// <summary>
+        /// Checks the JIT property.
+        /// </summary>
+        /// <param name="debuggableAttribute">The debuggable attribute.</param>
+        /// <returns>True if in Release mode, false otherwise</returns>
+        private bool CheckJitProperty(DebuggableAttribute debuggableAttribute)
+        {
+            return !(bool)(debuggableAttribute.GetType().GetProperty("IsJITOptimizerDisabled").GetValue(debuggableAttribute) ?? true);
         }
     }
 }

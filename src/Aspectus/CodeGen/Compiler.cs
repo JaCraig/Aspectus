@@ -31,7 +31,7 @@ namespace Aspectus.CodeGen
         /// </summary>
         /// <param name="logger">Logging object</param>
         public Compiler(ILogger logger)
-            : base("AspectusGeneratedTypes", true, logger)
+            : base("AspectusGeneratedTypes", logger)
         {
         }
 
@@ -41,9 +41,8 @@ namespace Aspectus.CodeGen
         /// <param name="assemblyName">Assembly name</param>
         /// <param name="optimize">Optimize the assembly?</param>
         /// <param name="logger">Logging object</param>
-        public Compiler(string assemblyName, bool optimize, ILogger logger)
+        public Compiler(string assemblyName, ILogger logger)
             : base(string.IsNullOrEmpty(assemblyName) ? "AspectusGeneratedTypes" : assemblyName,
-                  true,
                   logger)
         {
         }
