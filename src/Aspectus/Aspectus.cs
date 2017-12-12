@@ -102,7 +102,7 @@ namespace Aspectus
         {
             if (!Classes.ContainsKey(baseType))
                 Setup(baseType);
-            if (!Classes.ContainsKey(baseType))
+            if (!Classes.ContainsKey(baseType) || Classes[baseType] == null)
                 return Activator.CreateInstance(baseType);
             var ReturnObject = Activator.CreateInstance(Classes[baseType]);
             if (Classes[baseType] != baseType)
