@@ -232,7 +232,7 @@ namespace Aspectus
         {
             assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, assembliesUsing
                                                     .SelectMany(x => x.GetReferencedAssemblies())
-                                                    .Select(x => Assembly.Load(x)).ToArray());
+                                                    .Select(Assembly.Load).ToArray());
             string[] Load = {
                 "mscorlib.dll",
                 "netstandard.dll"
