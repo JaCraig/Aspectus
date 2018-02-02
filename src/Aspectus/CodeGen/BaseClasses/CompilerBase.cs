@@ -67,7 +67,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <summary>
         /// Dictionary containing generated types and associates it with original type
         /// </summary>
-        public ICollection<Type> Classes { get; private set; }
+        public List<Type> Classes { get; private set; }
 
         /// <summary>
         /// Gets the assembly stream.

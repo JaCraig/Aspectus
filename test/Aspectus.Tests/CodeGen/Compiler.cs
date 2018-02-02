@@ -49,7 +49,7 @@ namespace Aspectus.Tests.CodeGen
             Logger.Information("CompilerTests.Creation");
             using (Compiler Test = new Compiler("Somewhere", Logger))
             {
-                Assert.Equal(0, Test.Classes.Count);
+                Assert.Empty(Test.Classes);
                 Assert.Equal("Somewhere", Test.AssemblyName);
             }
         }

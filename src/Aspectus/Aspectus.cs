@@ -169,7 +169,7 @@ namespace Aspectus
                 foreach (Type TempType in TempTypes)
                 {
                     Classes.AddOrUpdate(TempType,
-                        Types.FirstOrDefault(x => x.GetTypeInfo().BaseType == TempType),
+                        Types.FirstOrDefault(x => x.BaseType == TempType),
                         (x, y) => x);
                 }
             }
@@ -199,17 +199,17 @@ namespace Aspectus
             Type TempType = type;
             while (TempType != null)
             {
-                assembliesUsing.AddIfUnique(TempType.GetTypeInfo().Assembly);
-                TempType.GetTypeInfo().ImplementedInterfaces.ForEach(x => GetAssembliesSimple(x, assembliesUsing));
-                TempType.GetTypeInfo().DeclaredEvents.ForEach(x => GetAssembliesSimple(x.EventHandlerType, assembliesUsing));
-                TempType.GetTypeInfo().DeclaredFields.ForEach(x => GetAssembliesSimple(x.FieldType, assembliesUsing));
-                TempType.GetTypeInfo().DeclaredProperties.ForEach(x => GetAssembliesSimple(x.PropertyType, assembliesUsing));
-                TempType.GetTypeInfo().DeclaredMethods.ForEach(x =>
+                assembliesUsing.AddIfUnique(TempType.Assembly);
+                TempType.GetInterfaces().ForEach(x => GetAssembliesSimple(x, assembliesUsing));
+                TempType.GetEvents().ForEach(x => GetAssembliesSimple(x.EventHandlerType, assembliesUsing));
+                TempType.GetFields().ForEach(x => GetAssembliesSimple(x.FieldType, assembliesUsing));
+                TempType.GetProperties().ForEach(x => GetAssembliesSimple(x.PropertyType, assembliesUsing));
+                TempType.GetMethods().ForEach(x =>
                 {
                     GetAssembliesSimple(x.ReturnType, assembliesUsing);
                     x.GetParameters().ForEach(y => GetAssembliesSimple(y.ParameterType, assembliesUsing));
                 });
-                TempType = TempType.GetTypeInfo().BaseType;
+                TempType = TempType.BaseType;
                 if (TempType == typeof(object))
                     break;
             }
@@ -220,9 +220,9 @@ namespace Aspectus
             Type TempType = type;
             while (TempType != null)
             {
-                assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, TempType.GetTypeInfo().Assembly);
-                TempType.GetTypeInfo().ImplementedInterfaces.ForEach(x => GetAssembliesSimple(x, assembliesUsing));
-                TempType = TempType.GetTypeInfo().BaseType;
+                assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, TempType.Assembly);
+                TempType.GetInterfaces().ForEach(x => GetAssembliesSimple(x, assembliesUsing));
+                TempType = TempType.BaseType;
                 if (TempType == typeof(object))
                     break;
             }
@@ -262,7 +262,7 @@ namespace Aspectus
             enumerable = enumerable ?? new List<Type>();
             return enumerable.Where(x =>
             {
-                var TempTypeInfo = x.GetTypeInfo();
+                var TempTypeInfo = x;
                 return !Classes.ContainsKey(x)
                         && !TempTypeInfo.ContainsGenericParameters
                         && TempTypeInfo.IsClass
@@ -323,8 +323,9 @@ namespace Aspectus
             var MethodsAlreadyDone = new List<string>();
             while (TempType != null)
             {
-                foreach (PropertyInfo Property in TempType.GetTypeInfo().DeclaredProperties)
+                for (int i = 0, maxLength = TempType.GetProperties().Length; i < maxLength; i++)
                 {
+                    PropertyInfo Property = TempType.GetProperties()[i];
                     MethodInfo GetMethodInfo = Property.GetMethod;
                     MethodInfo SetMethodInfo = Property.SetMethod;
                     if (!MethodsAlreadyDone.Contains("get_" + Property.Name)
@@ -385,8 +386,10 @@ namespace Aspectus
                             MethodsAlreadyDone.Add(SetMethodInfo.Name);
                     }
                 }
-                foreach (MethodInfo Method in TempType.GetTypeInfo().DeclaredMethods)
+
+                for (int i = 0, maxLength = TempType.GetMethods().Length; i < maxLength; i++)
                 {
+                    MethodInfo Method = TempType.GetMethods()[i];
                     string MethodAttribute = "public";
                     if (!MethodsAlreadyDone.Contains(Method.Name)
                         && Method.IsVirtual
@@ -415,7 +418,8 @@ namespace Aspectus
                         MethodsAlreadyDone.Add(Method.Name);
                     }
                 }
-                TempType = TempType.GetTypeInfo().BaseType;
+
+                TempType = TempType.BaseType;
                 if (TempType == typeof(object))
                     break;
             }

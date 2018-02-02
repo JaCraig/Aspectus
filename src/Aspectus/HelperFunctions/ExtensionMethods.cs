@@ -28,25 +28,8 @@ namespace Aspectus.HelperFunctions
 {
     /// <summary>
     /// </summary>
-    public static class ExtensionMethods
+    internal static class ExtensionMethods
     {
-        /// <summary>
-        /// Adds a list of items to the collection
-        /// </summary>
-        /// <typeparam name="T">The type of the items in the collection</typeparam>
-        /// <param name="collection">Collection</param>
-        /// <param name="items">Items to add</param>
-        /// <returns>The collection with the added items</returns>
-        public static ICollection<T> Add<T>(this ICollection<T> collection, params T[] items)
-        {
-            if (collection == null)
-                return new List<T>();
-            if (items == null)
-                return collection;
-            items.ForEach(x => collection.Add(x));
-            return collection;
-        }
-
         /// <summary>
         /// Adds a list of items to the collection
         /// </summary>
@@ -59,7 +42,10 @@ namespace Aspectus.HelperFunctions
             collection = collection ?? new ConcurrentBag<T>();
             if (items == null)
                 return collection;
-            Parallel.ForEach(items, collection.Add);
+            foreach (var Item in items)
+            {
+                collection.Add(Item);
+            }
             return collection;
         }
 
@@ -78,14 +64,16 @@ namespace Aspectus.HelperFunctions
             if (items == null || items.Length == 0)
                 return true;
             bool ReturnValue = false;
-            foreach (T Item in items)
+            for (int i = 0, itemsLength = items.Length; i < itemsLength; i++)
             {
+                T Item = items[i];
                 if (predicate(Item))
                 {
                     collection.Add(Item);
                     ReturnValue = true;
                 }
             }
+
             return ReturnValue;
         }
 
