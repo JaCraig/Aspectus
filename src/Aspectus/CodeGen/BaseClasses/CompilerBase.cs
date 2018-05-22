@@ -62,7 +62,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <summary>
         /// Assembly name
         /// </summary>
-        public string AssemblyName { get; private set; }
+        public string AssemblyName { get; }
 
         /// <summary>
         /// Dictionary containing generated types and associates it with original type
@@ -83,25 +83,25 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <summary>
         /// Should this be optimized?
         /// </summary>
-        protected bool Optimize { get; private set; }
+        protected bool Optimize { get; }
 
         /// <summary>
         /// Gets or sets the assemblies.
         /// </summary>
         /// <value>The assemblies.</value>
-        private List<MetadataReference> Assemblies { get; set; }
+        private List<MetadataReference> Assemblies { get; }
 
         /// <summary>
         /// Gets or sets the code.
         /// </summary>
         /// <value>The code.</value>
-        private StringBuilder Code { get; set; }
+        private StringBuilder Code { get; }
 
         /// <summary>
         /// Gets or sets the usings.
         /// </summary>
         /// <value>The usings.</value>
-        private List<string> Usings { get; set; }
+        private List<string> Usings { get; }
 
         /// <summary>
         /// Compiles this instance.

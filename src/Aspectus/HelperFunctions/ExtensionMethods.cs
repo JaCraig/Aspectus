@@ -27,6 +27,7 @@ using System.Threading.Tasks;
 namespace Aspectus.HelperFunctions
 {
     /// <summary>
+    /// Extension methods
     /// </summary>
     internal static class ExtensionMethods
     {
@@ -89,7 +90,7 @@ namespace Aspectus.HelperFunctions
         {
             if (collection == null || predicate == null)
                 return false;
-            if (items == null || !items.Any())
+            if (items?.Any() != true)
                 return true;
             return collection.AddIf(predicate, items.ToArray());
         }
@@ -249,7 +250,7 @@ namespace Aspectus.HelperFunctions
                 if (objectType.Name.Contains("`"))
                 {
                     var GenericTypes = objectType.GetGenericArguments();
-                    Output.Append(objectType.Name.Remove(objectType.Name.IndexOf("`", StringComparison.OrdinalIgnoreCase)))
+                    Output.Append(objectType.Name, 0, objectType.Name.IndexOf("`", StringComparison.OrdinalIgnoreCase))
                         .Append("<");
                     string Seperator = "";
                     foreach (Type GenericType in GenericTypes)

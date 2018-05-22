@@ -71,7 +71,7 @@ namespace Aspectus
         /// <summary>
         /// Dictionary containing generated types and associates it with original type
         /// </summary>
-        private ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
+        private readonly ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
 
         /// <summary>
         /// Gets the system's compiler
@@ -237,7 +237,7 @@ namespace Aspectus
                 "mscorlib.dll",
                 "netstandard.dll"
             };
-            var ReturnList = assembliesUsing.ForEach(x => { return (MetadataReference)MetadataReference.CreateFromFile(x.Location); })
+            var ReturnList = assembliesUsing.ForEach(x => (MetadataReference)MetadataReference.CreateFromFile(x.Location))
                                   .ToList();
             foreach (var Directory in assembliesUsing.Select(x => new FileInfo(x.Location).DirectoryName).Distinct())
             {
@@ -330,10 +330,8 @@ namespace Aspectus
                     MethodInfo SetMethodInfo = Property.SetMethod;
                     if (!MethodsAlreadyDone.Contains("get_" + Property.Name)
                         && !MethodsAlreadyDone.Contains("set_" + Property.Name)
-                        && GetMethodInfo != null
-                        && GetMethodInfo.IsVirtual
-                        && SetMethodInfo != null
-                        && SetMethodInfo.IsPublic
+                        && GetMethodInfo?.IsVirtual == true
+                        && SetMethodInfo?.IsPublic == true
                         && !GetMethodInfo.IsFinal
                         && Property.GetIndexParameters().Length == 0)
                     {
@@ -358,8 +356,7 @@ namespace Aspectus
                         MethodsAlreadyDone.Add(SetMethodInfo.Name);
                     }
                     else if (!MethodsAlreadyDone.Contains("get_" + Property.Name)
-                        && GetMethodInfo != null
-                        && GetMethodInfo.IsVirtual
+                        && GetMethodInfo?.IsVirtual == true
                         && SetMethodInfo == null
                         && !GetMethodInfo.IsFinal
                         && Property.GetIndexParameters().Length == 0)
@@ -390,7 +387,7 @@ namespace Aspectus
                 for (int i = 0, maxLength = TempType.GetMethods().Length; i < maxLength; i++)
                 {
                     MethodInfo Method = TempType.GetMethods()[i];
-                    string MethodAttribute = "public";
+                    const string MethodAttribute = "public";
                     if (!MethodsAlreadyDone.Contains(Method.Name)
                         && Method.IsVirtual
                         && !Method.IsFinal
@@ -400,10 +397,7 @@ namespace Aspectus
                         && !Method.IsGenericMethod)
                     {
                         GetAssemblies(Method.ReturnType, assembliesUsing);
-                        Method.GetParameters().ForEach(x =>
-                        {
-                            GetAssemblies(x.ParameterType, assembliesUsing);
-                        });
+                        Method.GetParameters().ForEach(x => GetAssemblies(x.ParameterType, assembliesUsing));
                         string Static = Method.IsStatic ? "static " : "";
                         Builder.AppendLineFormat(@"
         {4} override {0} {1}({2})

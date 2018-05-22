@@ -30,7 +30,7 @@ namespace Aspectus.Tests.Aspects
             }
         }
 
-        private string[] Load =
+        private readonly string[] Load =
             {
             "mscorlib.dll",
 "mscorlib.ni.dll",
@@ -40,7 +40,7 @@ namespace Aspectus.Tests.Aspects
 "System.Runtime.dll"
         };
 
-        public ICollection<MetadataReference> AssembliesUsing { get; private set; }
+        public ICollection<MetadataReference> AssembliesUsing { get; }
 
         public ICollection<Type> InterfacesUsing => new Type[] { typeof(IExample) };
 

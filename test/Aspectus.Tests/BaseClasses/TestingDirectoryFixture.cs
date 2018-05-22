@@ -15,11 +15,14 @@ namespace Aspectus.Tests.BaseClasses
         public TestingDirectoryFixture()
         {
             if (Canister.Builder.Bootstrapper == null)
+            {
                 Canister.Builder.CreateContainer(new List<ServiceDescriptor>(),
-                    typeof(TestingDirectoryFixture).GetTypeInfo().Assembly,
-                    typeof(FileInfo).GetTypeInfo().Assembly)
-                    .RegisterAspectus()
-                    .Build();
+                   typeof(TestingDirectoryFixture).GetTypeInfo().Assembly,
+                   typeof(FileInfo).GetTypeInfo().Assembly)
+                   .RegisterAspectus()
+                   .Build();
+            }
+
             new DirectoryInfo(@".\Testing").Create();
             new DirectoryInfo(@".\App_Data").Create();
             new DirectoryInfo(@".\Logs").Create();
