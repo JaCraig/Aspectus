@@ -27,11 +27,19 @@ namespace Aspectus.CodeGen
     public class Compiler : CompilerBase
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Compiler"/> class.
+        /// </summary>
+        public Compiler()
+            : base("AspectusGeneratedTypes", Log.Logger)
+        {
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="logger">Logging object</param>
         public Compiler(ILogger logger)
-            : base("AspectusGeneratedTypes", logger)
+            : base("AspectusGeneratedTypes", logger ?? Log.Logger)
         {
         }
 
@@ -42,7 +50,7 @@ namespace Aspectus.CodeGen
         /// <param name="logger">Logging object</param>
         public Compiler(string assemblyName, ILogger logger)
             : base(string.IsNullOrEmpty(assemblyName) ? "AspectusGeneratedTypes" : assemblyName,
-                  logger)
+                  logger ?? Log.Logger)
         {
         }
 
