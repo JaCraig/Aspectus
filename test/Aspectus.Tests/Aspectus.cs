@@ -42,6 +42,24 @@ namespace Aspectus.Tests
         }
 
         [Fact]
+        public void TestAspectFromCanister()
+        {
+            Logger.Information("AspectusTests.TestAspectTestMultiple");
+            var Test = Canister.Builder.Bootstrapper.Resolve<Aspectus>();
+            Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
+            var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
+            Assert.NotNull(Item);
+            var ExampleItem = Item as IExample;
+            Assert.NotNull(ExampleItem);
+            Assert.Equal("BLAH", ExampleItem.MySecretData);
+            var Item2 = (AOPTestClass2)Test.Create(typeof(AOPTestClass2));
+            Assert.NotNull(Item2);
+            ExampleItem = Item2 as IExample;
+            Assert.NotNull(ExampleItem);
+            Assert.Equal("BLAH", ExampleItem.MySecretData);
+        }
+
+        [Fact]
         public void TestAspectTest()
         {
             Logger.Information("AspectusTests.TestAspectTest");

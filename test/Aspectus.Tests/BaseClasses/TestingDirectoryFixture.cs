@@ -3,7 +3,6 @@ using FileCurator;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using Xunit;
 
@@ -16,7 +15,7 @@ namespace Aspectus.Tests.BaseClasses
         {
             if (Canister.Builder.Bootstrapper == null)
             {
-                Canister.Builder.CreateContainer(new List<ServiceDescriptor>(),
+                Canister.Builder.CreateContainer(new ServiceCollection(),
                    typeof(TestingDirectoryFixture).GetTypeInfo().Assembly,
                    typeof(FileInfo).GetTypeInfo().Assembly)
                    .RegisterAspectus()
