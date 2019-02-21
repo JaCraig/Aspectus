@@ -170,7 +170,7 @@ namespace Aspectus
                 {
                     Classes.AddOrUpdate(TempType,
                         Types.FirstOrDefault(x => x.BaseType == TempType),
-                        (x, y) => x);
+                        (x, _) => x);
                 }
             }
             catch (Exception ex)
@@ -180,7 +180,7 @@ namespace Aspectus
                 {
                     Classes.AddOrUpdate(TempType,
                         TempType,
-                        (x, y) => x);
+                        (x, _) => x);
                 }
             }
         }

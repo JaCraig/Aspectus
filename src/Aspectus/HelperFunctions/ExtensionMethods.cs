@@ -55,8 +55,8 @@ namespace Aspectus.HelperFunctions
         /// </summary>
         /// <typeparam name="T">Collection type</typeparam>
         /// <param name="collection">Collection to add to</param>
-        /// <param name="items">Items to add to the collection</param>
         /// <param name="predicate">Predicate that an item needs to satisfy in order to be added</param>
+        /// <param name="items">Items to add to the collection</param>
         /// <returns>True if any are added, false otherwise</returns>
         public static bool AddIf<T>(this ICollection<T> collection, Predicate<T> predicate, params T[] items)
         {
@@ -83,8 +83,8 @@ namespace Aspectus.HelperFunctions
         /// </summary>
         /// <typeparam name="T">Collection type</typeparam>
         /// <param name="collection">Collection to add to</param>
-        /// <param name="items">Items to add to the collection</param>
         /// <param name="predicate">Predicate that an item needs to satisfy in order to be added</param>
+        /// <param name="items">Items to add to the collection</param>
         /// <returns>True if it is added, false otherwise</returns>
         public static bool AddIf<T>(this ICollection<T> collection, Predicate<T> predicate, IEnumerable<T> items)
         {
@@ -100,11 +100,11 @@ namespace Aspectus.HelperFunctions
         /// </summary>
         /// <typeparam name="T">Collection type</typeparam>
         /// <param name="collection">Collection to add to</param>
-        /// <param name="items">Items to add to the collection</param>
         /// <param name="predicate">
         /// Predicate used to determine if two values are equal. Return true if they are the same,
         /// false otherwise
         /// </param>
+        /// <param name="items">Items to add to the collection</param>
         /// <returns>True if it is added, false otherwise</returns>
         public static bool AddIfUnique<T>(this ICollection<T> collection, Func<T, T, bool> predicate, params T[] items)
         {
@@ -151,9 +151,9 @@ namespace Aspectus.HelperFunctions
         /// Does an AppendFormat and then an AppendLine on the StringBuilder
         /// </summary>
         /// <param name="builder">Builder object</param>
+        /// <param name="provider">Format provider (CultureInfo) to use</param>
         /// <param name="format">Format string</param>
         /// <param name="objects">Objects to format</param>
-        /// <param name="provider">Format provider (CultureInfo) to use</param>
         /// <returns>The StringBuilder passed in</returns>
         public static StringBuilder AppendLineFormat(this StringBuilder builder, IFormatProvider provider, string format, params object[] objects)
         {
