@@ -64,19 +64,19 @@ namespace Aspectus
         }
 
         /// <summary>
-        /// The list of aspects that are being used
-        /// </summary>
-        private readonly ConcurrentBag<IAspect> Aspects = new ConcurrentBag<IAspect>();
-
-        /// <summary>
         /// Dictionary containing generated types and associates it with original type
         /// </summary>
         private readonly ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
 
         /// <summary>
+        /// The list of aspects that are being used
+        /// </summary>
+        private ConcurrentBag<IAspect> Aspects { get; } = new ConcurrentBag<IAspect>();
+
+        /// <summary>
         /// Gets the system's compiler
         /// </summary>
-        protected static Compiler Compiler { get; private set; }
+        private Compiler Compiler { get; set; }
 
         /// <summary>
         /// Logging object
@@ -111,6 +111,18 @@ namespace Aspectus
         }
 
         /// <summary>
+        /// Cleans up items in this instance.
+        /// </summary>
+        public void FinalizeSetup()
+        {
+            if (Compiler != null)
+            {
+                Compiler.Dispose();
+                Compiler = null;
+            }
+        }
+
+        /// <summary>
         /// Sets up all types from the assembly that it can
         /// </summary>
         /// <param name="assemblies">Assembly to set up</param>
@@ -127,13 +139,14 @@ namespace Aspectus
         /// <param name="types">The types.</param>
         public void Setup(params Type[] types)
         {
+            if (Compiler == null)
+                return;
             IEnumerable<Type> TempTypes = FilterTypesToSetup(types);
             if (!TempTypes.Any())
                 return;
             var TempAssemblies = new List<Assembly>();
             GetAssemblies(typeof(Object), TempAssemblies);
             GetAssemblies(typeof(Enumerable), TempAssemblies);
-            //var AssembliesUsing = new List<MetadataReference>();
 
             var Usings = new List<string>
             {
@@ -194,6 +207,11 @@ namespace Aspectus
             return "AOP registered classes: " + Classes.Keys.ToString(x => x.Name) + "\r\n";
         }
 
+        /// <summary>
+        /// Gets the assemblies.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="assembliesUsing">The assemblies using.</param>
         private static void GetAssemblies(Type type, List<Assembly> assembliesUsing)
         {
             Type TempType = type;
@@ -215,6 +233,11 @@ namespace Aspectus
             }
         }
 
+        /// <summary>
+        /// Gets the assemblies simple.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="assembliesUsing">The assemblies using.</param>
         private static void GetAssembliesSimple(Type type, List<Assembly> assembliesUsing)
         {
             Type TempType = type;
@@ -228,6 +251,11 @@ namespace Aspectus
             }
         }
 
+        /// <summary>
+        /// Gets the final assemblies.
+        /// </summary>
+        /// <param name="assembliesUsing">The assemblies using.</param>
+        /// <returns>The final assemblies</returns>
         private static List<MetadataReference> GetFinalAssemblies(List<Assembly> assembliesUsing)
         {
             assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, assembliesUsing

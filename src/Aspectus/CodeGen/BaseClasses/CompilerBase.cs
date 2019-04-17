@@ -22,7 +22,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Text;
@@ -44,14 +43,8 @@ namespace Aspectus.CodeGen.BaseClasses
         {
             Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             AssemblyName = assemblyName;
-            var DebuggableAttribute = Assembly.GetEntryAssembly()
-                                                     .GetCustomAttributes()
-                                                     .OfType<DebuggableAttribute>()
-                                                     .SingleOrDefault();
-            var TempOptimize = DebuggableAttribute == null;
-            if (!TempOptimize)
-                TempOptimize = CheckJitProperty(DebuggableAttribute);
-            Optimize = TempOptimize;
+            var DebuggableAttribute = Assembly.GetEntryAssembly().GetCustomAttribute<DebuggableAttribute>();
+            Optimize = CheckJitProperty(DebuggableAttribute);
             Classes = new List<Type>();
             AssemblyStream = new MemoryStream();
             Code = new StringBuilder();
@@ -175,6 +168,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <param name="typeToCreate">Type to create</param>
         /// <param name="args">Args to pass to the constructor</param>
         /// <returns>The created object</returns>
+        /// <exception cref="ArgumentNullException">typeToCreate</exception>
         protected static T Create<T>(Type typeToCreate, params object[] args)
         {
             if (typeToCreate == null)
@@ -204,9 +198,10 @@ namespace Aspectus.CodeGen.BaseClasses
         /// </summary>
         /// <param name="debuggableAttribute">The debuggable attribute.</param>
         /// <returns>True if in Release mode, false otherwise</returns>
-        private bool CheckJitProperty(DebuggableAttribute debuggableAttribute)
+        private static bool CheckJitProperty(DebuggableAttribute debuggableAttribute)
         {
-            return !(bool)(debuggableAttribute.GetType().GetProperty("IsJITOptimizerDisabled").GetValue(debuggableAttribute) ?? true);
+            return debuggableAttribute != null
+                && !(bool)(debuggableAttribute.GetType().GetProperty("IsJITOptimizerDisabled").GetValue(debuggableAttribute) ?? true);
         }
     }
 }

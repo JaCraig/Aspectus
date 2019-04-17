@@ -42,9 +42,9 @@ namespace Aspectus.Tests.Aspects
 
         public ICollection<MetadataReference> AssembliesUsing { get; }
 
-        public ICollection<Type> InterfacesUsing => new Type[] { typeof(IExample) };
+        public ICollection<Type> InterfacesUsing { get; } = new Type[] { typeof(IExample) };
 
-        public ICollection<string> Usings => new string[] { };
+        public ICollection<string> Usings { get; } = Array.Empty<string>();
 
         public void Setup(object value)
         {

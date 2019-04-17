@@ -20,7 +20,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -159,7 +158,7 @@ namespace Aspectus.HelperFunctions
         {
             if (builder == null || string.IsNullOrEmpty(format))
                 return builder;
-            objects = objects ?? new object[0];
+            objects = objects ?? Array.Empty<object>();
             provider = provider ?? CultureInfo.InvariantCulture;
             return builder.AppendFormat(provider, format, objects).AppendLine();
         }
@@ -186,7 +185,7 @@ namespace Aspectus.HelperFunctions
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> list, Action<T> action)
         {
             if (list == null)
-                return new List<T>();
+                return Array.Empty<T>();
             if (action == null)
                 return list;
             foreach (T Item in list)
@@ -205,7 +204,7 @@ namespace Aspectus.HelperFunctions
         public static IEnumerable<R> ForEach<T, R>(this IEnumerable<T> list, Func<T, R> function)
         {
             if (list == null || function == null)
-                return new List<R>();
+                return Array.Empty<R>();
             var ReturnList = new List<R>(list.Count());
             foreach (T Item in list)
                 ReturnList.Add(function(Item));
@@ -222,7 +221,7 @@ namespace Aspectus.HelperFunctions
         public static IEnumerable<T> ForEachParallel<T>(this IEnumerable<T> list, Action<T> action)
         {
             if (list == null)
-                return new List<T>();
+                return Array.Empty<T>();
             if (action == null)
                 return list;
             Parallel.ForEach(list, action);
@@ -275,11 +274,9 @@ namespace Aspectus.HelperFunctions
         /// <returns>True if it does, false otherwise</returns>
         public static bool HasDefaultConstructor(this Type type)
         {
-            if (type == null)
-                return false;
-            return type.GetTypeInfo()
-                        .DeclaredConstructors
-                        .Any(x => x.GetParameters().Length == 0);
+            return type?
+                .GetConstructors()
+                .Any(x => x.GetParameters().Length == 0) == true;
         }
 
         /// <summary>
@@ -290,11 +287,12 @@ namespace Aspectus.HelperFunctions
         public static byte[] ReadAllBinary(this Stream input)
         {
             if (input == null)
-                return new byte[0];
+                return Array.Empty<byte>();
+
             if (input is MemoryStream TempInput)
                 return TempInput.ToArray();
-            byte[] Buffer = new byte[1024];
-            byte[] ReturnValue = null;
+
+            byte[] Buffer = new byte[4096];
             using (MemoryStream Temp = new MemoryStream())
             {
                 while (true)
@@ -302,13 +300,11 @@ namespace Aspectus.HelperFunctions
                     var Count = input.Read(Buffer, 0, Buffer.Length);
                     if (Count <= 0)
                     {
-                        ReturnValue = Temp.ToArray();
-                        break;
+                        return Temp.ToArray();
                     }
                     Temp.Write(Buffer, 0, Count);
                 }
             }
-            return ReturnValue;
         }
 
         /// <summary>
@@ -323,18 +319,14 @@ namespace Aspectus.HelperFunctions
         /// <returns>The string version of the list</returns>
         public static string ToString<T>(this IEnumerable<T> list, Func<T, string> itemOutput = null, string seperator = ",")
         {
-            if (list == null)
+            if (list?.Any() != true)
+            {
                 return "";
+            }
+
             seperator = seperator ?? "";
             itemOutput = itemOutput ?? (x => x.ToString());
-            var Builder = new StringBuilder();
-            string TempSeperator = "";
-            list.ForEach(x =>
-            {
-                Builder.Append(TempSeperator).Append(itemOutput(x));
-                TempSeperator = seperator;
-            });
-            return Builder.ToString();
+            return string.Join(seperator, list.Select(itemOutput));
         }
     }
 }
