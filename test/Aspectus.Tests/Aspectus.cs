@@ -73,6 +73,42 @@ namespace Aspectus.Tests
         }
 
         [Fact]
+        public void TestAspectTestAfterClean()
+        {
+            Logger.Information("AspectusTests.TestAspectTestAfterClean");
+            var Test = new Aspectus(new Compiler("TestAspectTestAfterClean", Logger), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), Logger);
+            Test.FinalizeSetup();
+            Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
+            var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
+            Assert.NotNull(Item);
+            var ExampleItem = Item as IExample;
+            Assert.Null(ExampleItem);
+            var Item2 = (AOPTestClass2)Test.Create(typeof(AOPTestClass2));
+            Assert.NotNull(Item2);
+            ExampleItem = Item2 as IExample;
+            Assert.Null(ExampleItem);
+        }
+
+        [Fact]
+        public void TestAspectTestBeforeClean()
+        {
+            Logger.Information("AspectusTests.TestAspectTestBeforeClean");
+            var Test = new Aspectus(new Compiler("TestAspectTestBeforeClean", Logger), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), Logger);
+            Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
+            Test.FinalizeSetup();
+            var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
+            Assert.NotNull(Item);
+            var ExampleItem = Item as IExample;
+            Assert.NotNull(ExampleItem);
+            Assert.Equal("BLAH", ExampleItem.MySecretData);
+            var Item2 = (AOPTestClass2)Test.Create(typeof(AOPTestClass2));
+            Assert.NotNull(Item2);
+            ExampleItem = Item2 as IExample;
+            Assert.NotNull(ExampleItem);
+            Assert.Equal("BLAH", ExampleItem.MySecretData);
+        }
+
+        [Fact]
         public void TestAspectTestMultiple()
         {
             Logger.Information("AspectusTests.TestAspectTestMultiple");

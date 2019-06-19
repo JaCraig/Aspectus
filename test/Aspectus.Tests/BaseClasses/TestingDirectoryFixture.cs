@@ -27,7 +27,7 @@ namespace Aspectus.Tests.BaseClasses
             new DirectoryInfo(@".\Logs").Create();
         }
 
-        public ILogger Logger => Canister.Builder.Bootstrapper.Resolve<ILogger>();
+        public static ILogger Logger => Canister.Builder.Bootstrapper.Resolve<ILogger>();
 
         public void Dispose()
         {
