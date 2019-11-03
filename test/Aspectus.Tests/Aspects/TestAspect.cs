@@ -52,29 +52,14 @@ namespace Aspectus.Tests.Aspects
                 ExampleValue.MySecretData = "BLAH";
         }
 
-        public string SetupDefaultConstructor(Type baseType)
-        {
-            return "";
-        }
+        public string SetupDefaultConstructor(Type baseType) => "";
 
-        public string SetupEndMethod(MethodInfo method, Type baseType, string returnValueName)
-        {
-            return "";
-        }
+        public string SetupEndMethod(MethodInfo method, Type baseType, string returnValueName) => "";
 
-        public string SetupExceptionMethod(MethodInfo method, Type baseType)
-        {
-            return "";
-        }
+        public string SetupExceptionMethod(MethodInfo method, Type baseType) => "";
 
-        public string SetupInterfaces(Type type)
-        {
-            return "public string MySecretData{get; set;}";
-        }
+        public string SetupInterfaces(Type type) => "public string MySecretData{get; set;}";
 
-        public string SetupStartMethod(MethodInfo method, Type baseType)
-        {
-            return "";
-        }
+        public string SetupStartMethod(MethodInfo method, Type baseType) => "";
     }
 }

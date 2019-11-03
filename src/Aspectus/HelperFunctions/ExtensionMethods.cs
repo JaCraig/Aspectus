@@ -63,10 +63,10 @@ namespace Aspectus.HelperFunctions
                 return false;
             if (items == null || items.Length == 0)
                 return true;
-            bool ReturnValue = false;
+            var ReturnValue = false;
             for (int i = 0, itemsLength = items.Length; i < itemsLength; i++)
             {
-                T Item = items[i];
+                var Item = items[i];
                 if (predicate(Item))
                 {
                     collection.Add(Item);
@@ -170,10 +170,7 @@ namespace Aspectus.HelperFunctions
         /// <param name="format">Format string</param>
         /// <param name="objects">Objects to format</param>
         /// <returns>The StringBuilder passed in</returns>
-        public static StringBuilder AppendLineFormat(this StringBuilder builder, string format, params object[] objects)
-        {
-            return builder.AppendLineFormat(CultureInfo.InvariantCulture, format, objects);
-        }
+        public static StringBuilder AppendLineFormat(this StringBuilder builder, string format, params object[] objects) => builder.AppendLineFormat(CultureInfo.InvariantCulture, format, objects);
 
         /// <summary>
         /// Does an action for each item in the IEnumerable
@@ -188,7 +185,7 @@ namespace Aspectus.HelperFunctions
                 return Array.Empty<T>();
             if (action == null)
                 return list;
-            foreach (T Item in list)
+            foreach (var Item in list)
                 action(Item);
             return list;
         }
@@ -206,7 +203,7 @@ namespace Aspectus.HelperFunctions
             if (list == null || function == null)
                 return Array.Empty<R>();
             var ReturnList = new List<R>(list.Count());
-            foreach (T Item in list)
+            foreach (var Item in list)
                 ReturnList.Add(function(Item));
             return ReturnList;
         }
@@ -251,8 +248,8 @@ namespace Aspectus.HelperFunctions
                     var GenericTypes = objectType.GetGenericArguments();
                     Output.Append(objectType.Name, 0, objectType.Name.IndexOf("`", StringComparison.OrdinalIgnoreCase))
                         .Append("<");
-                    string Seperator = "";
-                    foreach (Type GenericType in GenericTypes)
+                    var Seperator = "";
+                    foreach (var GenericType in GenericTypes)
                     {
                         Output.Append(Seperator).Append(GenericType.GetName());
                         Seperator = ",";
@@ -292,8 +289,8 @@ namespace Aspectus.HelperFunctions
             if (input is MemoryStream TempInput)
                 return TempInput.ToArray();
 
-            byte[] Buffer = new byte[4096];
-            using (MemoryStream Temp = new MemoryStream())
+            var Buffer = new byte[4096];
+            using (var Temp = new MemoryStream())
             {
                 while (true)
                 {

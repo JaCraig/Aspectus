@@ -107,7 +107,7 @@ namespace Aspectus.CodeGen.BaseClasses
                 .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, usings: Usings, optimizationLevel: Optimize ? OptimizationLevel.Release : OptimizationLevel.Debug))
                 .AddReferences(Assemblies)
                 .AddSyntaxTrees(new SyntaxTree[] { CSharpSyntaxTree.ParseText(Code.ToString()) });
-            using (MemoryStream TempStream = new MemoryStream())
+            using (var TempStream = new MemoryStream())
             {
                 var Result = CSharpCompiler.Emit(TempStream);
                 if (!Result.Success)
@@ -156,10 +156,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// Outputs basic information about the compiler as a string
         /// </summary>
         /// <returns>The string version of the compiler</returns>
-        public override string ToString()
-        {
-            return "Compiler: " + AssemblyName + "\r\n";
-        }
+        public override string ToString() => "Compiler: " + AssemblyName + "\r\n";
 
         /// <summary>
         /// Creates an object using the type specified

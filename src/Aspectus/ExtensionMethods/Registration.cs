@@ -15,11 +15,7 @@ limitations under the License.
 */
 
 using Canister.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Aspectus.ExtensionMethods
 {
@@ -33,9 +29,6 @@ namespace Aspectus.ExtensionMethods
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
         /// <returns>The bootstrapper</returns>
-        public static IBootstrapper RegisterAspectus(this IBootstrapper bootstrapper)
-        {
-            return bootstrapper.AddAssembly(typeof(Aspectus).GetTypeInfo().Assembly);
-        }
+        public static IBootstrapper RegisterAspectus(this IBootstrapper bootstrapper) => bootstrapper.AddAssembly(typeof(Aspectus).GetTypeInfo().Assembly);
     }
 }

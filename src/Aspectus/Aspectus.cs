@@ -88,10 +88,7 @@ namespace Aspectus
         /// </summary>
         /// <typeparam name="T">The base type</typeparam>
         /// <returns>Returns an object of the specified base type</returns>
-        public T Create<T>()
-        {
-            return (T)Create(typeof(T));
-        }
+        public T Create<T>() => (T)Create(typeof(T));
 
         /// <summary>
         /// Creates an object of the specified base type, registering the type if necessary
@@ -145,7 +142,7 @@ namespace Aspectus
             if (!TempTypes.Any())
                 return;
             var TempAssemblies = new List<Assembly>();
-            GetAssemblies(typeof(Object), TempAssemblies);
+            GetAssemblies(typeof(object), TempAssemblies);
             GetAssemblies(typeof(Enumerable), TempAssemblies);
 
             var Usings = new List<string>
@@ -163,13 +160,13 @@ namespace Aspectus
 
             var Builder = new StringBuilder();
 
-            foreach (Type TempType in TempTypes)
+            foreach (var TempType in TempTypes)
             {
                 Logger.Debug("Generating type for {Info:l}", TempType.GetName());
                 GetAssemblies(TempType, TempAssemblies);
 
-                string Namespace = "AspectusGeneratedTypes.C" + Guid.NewGuid().ToString("N");
-                string ClassName = TempType.Name + "Derived";
+                var Namespace = "AspectusGeneratedTypes.C" + Guid.NewGuid().ToString("N");
+                var ClassName = TempType.Name + "Derived";
                 Builder.AppendLine(Setup(TempType, Namespace, ClassName, Usings, InterfacesUsed, TempAssemblies));
             }
             try
@@ -179,7 +176,7 @@ namespace Aspectus
                 var Types = Compiler.Create(Builder.ToString(), Usings, MetadataReferences.ToArray())
                                                     .Compile()
                                                     .LoadAssembly();
-                foreach (Type TempType in TempTypes)
+                foreach (var TempType in TempTypes)
                 {
                     Classes.AddOrUpdate(TempType,
                         Types.FirstOrDefault(x => x.BaseType == TempType),
@@ -189,7 +186,7 @@ namespace Aspectus
             catch (Exception ex)
             {
                 Logger.Error(ex, "Error compiling code");
-                foreach (Type TempType in TempTypes)
+                foreach (var TempType in TempTypes)
                 {
                     Classes.AddOrUpdate(TempType,
                         TempType,
@@ -202,10 +199,7 @@ namespace Aspectus
         /// Outputs manager info as a string
         /// </summary>
         /// <returns>String version of the manager</returns>
-        public override string ToString()
-        {
-            return "AOP registered classes: " + Classes.Keys.ToString(x => x.Name) + "\r\n";
-        }
+        public override string ToString() => "AOP registered classes: " + Classes.Keys.ToString(x => x.Name) + "\r\n";
 
         /// <summary>
         /// Gets the assemblies.
@@ -214,7 +208,7 @@ namespace Aspectus
         /// <param name="assembliesUsing">The assemblies using.</param>
         private static void GetAssemblies(Type type, List<Assembly> assembliesUsing)
         {
-            Type TempType = type;
+            var TempType = type;
             while (TempType != null)
             {
                 assembliesUsing.AddIfUnique(TempType.Assembly);
@@ -240,7 +234,7 @@ namespace Aspectus
         /// <param name="assembliesUsing">The assemblies using.</param>
         private static void GetAssembliesSimple(Type type, List<Assembly> assembliesUsing)
         {
-            Type TempType = type;
+            var TempType = type;
             while (TempType != null)
             {
                 assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, TempType.Assembly);
@@ -347,15 +341,15 @@ namespace Aspectus
 
             Aspects.ForEach(x => Builder.AppendLine(x.SetupInterfaces(type)));
 
-            Type TempType = type;
+            var TempType = type;
             var MethodsAlreadyDone = new List<string>();
             while (TempType != null)
             {
                 for (int i = 0, maxLength = TempType.GetProperties().Length; i < maxLength; i++)
                 {
-                    PropertyInfo Property = TempType.GetProperties()[i];
-                    MethodInfo GetMethodInfo = Property.GetMethod;
-                    MethodInfo SetMethodInfo = Property.SetMethod;
+                    var Property = TempType.GetProperties()[i];
+                    var GetMethodInfo = Property.GetMethod;
+                    var SetMethodInfo = Property.SetMethod;
                     if (!MethodsAlreadyDone.Contains("get_" + Property.Name)
                         && !MethodsAlreadyDone.Contains("set_" + Property.Name)
                         && GetMethodInfo?.IsVirtual == true
@@ -414,7 +408,7 @@ namespace Aspectus
 
                 for (int i = 0, maxLength = TempType.GetMethods().Length; i < maxLength; i++)
                 {
-                    MethodInfo Method = TempType.GetMethods()[i];
+                    var Method = TempType.GetMethods()[i];
                     const string MethodAttribute = "public";
                     if (!MethodsAlreadyDone.Contains(Method.Name)
                         && Method.IsVirtual
@@ -426,7 +420,7 @@ namespace Aspectus
                     {
                         GetAssemblies(Method.ReturnType, assembliesUsing);
                         Method.GetParameters().ForEach(x => GetAssemblies(x.ParameterType, assembliesUsing));
-                        string Static = Method.IsStatic ? "static " : "";
+                        var Static = Method.IsStatic ? "static " : "";
                         Builder.AppendLineFormat(@"
         {4} override {0} {1}({2})
         {{
@@ -456,8 +450,8 @@ namespace Aspectus
                 return "";
             var Builder = new StringBuilder();
             var BaseMethodName = methodInfo.Name.Replace("get_", "").Replace("set_", "");
-            string ReturnValue = methodInfo.ReturnType != typeof(void) ? "FinalReturnValue" : "";
-            string BaseCall = "";
+            var ReturnValue = methodInfo.ReturnType != typeof(void) ? "FinalReturnValue" : "";
+            var BaseCall = "";
             if (isProperty)
                 BaseCall = string.IsNullOrEmpty(ReturnValue) ? "base." + BaseMethodName : ReturnValue + "=base." + BaseMethodName;
             else
