@@ -142,7 +142,7 @@ namespace Aspectus.CodeGen.BaseClasses
         public IEnumerable<Type> LoadAssembly()
         {
             AssemblyStream.Seek(0, SeekOrigin.Begin);
-#if NETSTANDARD2_0
+#if NETSTANDARD2_1
             var ResultingAssembly = AssemblyLoadContext.Default.LoadFromStream(AssemblyStream, null);
 #endif
 #if NET462
