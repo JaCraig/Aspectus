@@ -22,6 +22,7 @@ using Serilog;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -44,8 +45,8 @@ namespace Aspectus
         public Aspectus(Compiler compiler, IEnumerable<IAspect> aspects, IEnumerable<IAOPModule> modules, ILogger logger)
         {
             Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
-            aspects = aspects ?? new List<IAspect>();
-            modules = modules ?? new List<IAOPModule>();
+            aspects = aspects ?? Array.Empty<IAspect>();
+            modules = modules ?? Array.Empty<IAOPModule>();
             Compiler = compiler ?? new Compiler(Logger);
             if (Aspects.Count == 0)
                 Aspects.Add(aspects);
@@ -112,11 +113,8 @@ namespace Aspectus
         /// </summary>
         public void FinalizeSetup()
         {
-            if (Compiler != null)
-            {
-                Compiler.Dispose();
-                Compiler = null;
-            }
+            Compiler?.Dispose();
+            Compiler = null;
         }
 
         /// <summary>
@@ -156,7 +154,7 @@ namespace Aspectus
             Aspects.ForEach(x => Usings.AddIfUnique(x.Usings));
 
             var InterfacesUsed = new List<Type>();
-            Aspects.ForEach(x => InterfacesUsed.AddRange(x.InterfacesUsing ?? new List<Type>()));
+            Aspects.ForEach(x => InterfacesUsed.AddRange(x.InterfacesUsing ?? Array.Empty<Type>()));
 
             var Builder = new StringBuilder();
 
@@ -165,7 +163,7 @@ namespace Aspectus
                 Logger.Debug("Generating type for {Info:l}", TempType.GetName());
                 GetAssemblies(TempType, TempAssemblies);
 
-                var Namespace = "AspectusGeneratedTypes.C" + Guid.NewGuid().ToString("N");
+                var Namespace = "AspectusGeneratedTypes.C" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
                 var ClassName = TempType.Name + "Derived";
                 Builder.AppendLine(Setup(TempType, Namespace, ClassName, Usings, InterfacesUsed, TempAssemblies));
             }
@@ -281,7 +279,7 @@ namespace Aspectus
         /// <returns>The types that can be set up</returns>
         private Type[] FilterTypesToSetup(IEnumerable<Type> enumerable)
         {
-            enumerable = enumerable ?? new List<Type>();
+            enumerable = enumerable ?? Array.Empty<Type>();
             return enumerable.Where(x =>
             {
                 var TempTypeInfo = x;

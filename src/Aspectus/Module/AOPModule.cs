@@ -39,10 +39,10 @@ namespace Aspectus.Module
         {
             if (bootstrapper == null)
                 return;
-            bootstrapper.Register<Compiler>();
-            bootstrapper.RegisterAll<IAspect>();
-            bootstrapper.RegisterAll<IAOPModule>();
-            bootstrapper.Register<Aspectus>(ServiceLifetime.Singleton);
+            bootstrapper.Register<Compiler>()
+                .RegisterAll<IAspect>()
+                .RegisterAll<IAOPModule>()
+                .Register<Aspectus>(ServiceLifetime.Singleton);
         }
     }
 }

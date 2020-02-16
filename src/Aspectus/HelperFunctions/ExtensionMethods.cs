@@ -246,7 +246,7 @@ namespace Aspectus.HelperFunctions
                 if (objectType.Name.Contains("`"))
                 {
                     var GenericTypes = objectType.GetGenericArguments();
-                    Output.Append(objectType.Name, 0, objectType.Name.IndexOf("`", StringComparison.OrdinalIgnoreCase))
+                    Output.Append(objectType.Name, 0, objectType.Name.IndexOf("`", StringComparison.Ordinal))
                         .Append("<");
                     var Seperator = "";
                     foreach (var GenericType in GenericTypes)

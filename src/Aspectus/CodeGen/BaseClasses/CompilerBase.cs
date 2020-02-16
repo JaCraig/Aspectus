@@ -127,12 +127,25 @@ namespace Aspectus.CodeGen.BaseClasses
         /// </summary>
         public void Dispose()
         {
-            if (AssemblyStream != null)
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="managed">
+        /// <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release
+        /// only unmanaged resources.
+        /// </param>
+        protected virtual void Dispose(bool managed)
+        {
+            if (managed)
             {
-                AssemblyStream.Dispose();
+                AssemblyStream?.Dispose();
                 AssemblyStream = null;
+                Classes = new List<Type>();
             }
-            Classes = new List<Type>();
         }
 
         /// <summary>
