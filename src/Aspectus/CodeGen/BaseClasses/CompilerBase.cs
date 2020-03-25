@@ -132,35 +132,13 @@ namespace Aspectus.CodeGen.BaseClasses
         }
 
         /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="managed">
-        /// <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release
-        /// only unmanaged resources.
-        /// </param>
-        protected virtual void Dispose(bool managed)
-        {
-            if (managed)
-            {
-                AssemblyStream?.Dispose();
-                AssemblyStream = null;
-                Classes = new List<Type>();
-            }
-        }
-
-        /// <summary>
         /// Loads the assembly into memory.
         /// </summary>
         /// <returns>The types within the assembly</returns>
         public IEnumerable<Type> LoadAssembly()
         {
             AssemblyStream.Seek(0, SeekOrigin.Begin);
-#if NETSTANDARD2_1
             var ResultingAssembly = AssemblyLoadContext.Default.LoadFromStream(AssemblyStream, null);
-#endif
-#if NET462
-            var ResultingAssembly = AppDomain.CurrentDomain.Load(AssemblyStream.ReadAllBinary());
-#endif
             Classes.AddIfUnique((x, y) => x.FullName == y.FullName, ResultingAssembly.GetTypes());
             return Classes;
         }
@@ -201,6 +179,23 @@ namespace Aspectus.CodeGen.BaseClasses
             Usings.AddIfUnique(usings);
             Assemblies.AddIfUnique(references);
             return this;
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="managed">
+        /// <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release
+        /// only unmanaged resources.
+        /// </param>
+        protected virtual void Dispose(bool managed)
+        {
+            if (managed)
+            {
+                AssemblyStream?.Dispose();
+                AssemblyStream = null;
+                Classes = new List<Type>();
+            }
         }
 
         /// <summary>
