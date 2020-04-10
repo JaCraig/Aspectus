@@ -26,6 +26,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 
 namespace Aspectus
@@ -70,6 +71,11 @@ namespace Aspectus
         private readonly ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
 
         /// <summary>
+        /// The default constructors
+        /// </summary>
+        private readonly ConcurrentDictionary<Type, Func<object>> DefaultConstructors = new ConcurrentDictionary<Type, Func<object>>();
+
+        /// <summary>
         /// The list of aspects that are being used
         /// </summary>
         private ConcurrentBag<IAspect> Aspects { get; } = new ConcurrentBag<IAspect>();
@@ -89,20 +95,24 @@ namespace Aspectus
         /// </summary>
         /// <typeparam name="T">The base type</typeparam>
         /// <returns>Returns an object of the specified base type</returns>
-        public T Create<T>() => (T)Create(typeof(T));
+        public T Create<T>() => (T)Create(typeof(T))!;
 
         /// <summary>
         /// Creates an object of the specified base type, registering the type if necessary
         /// </summary>
         /// <param name="baseType">The base type</param>
         /// <returns>Returns an object of the specified base type</returns>
-        public object Create(Type baseType)
+        public object? Create(Type baseType)
         {
+            if (baseType is null)
+                return null;
             if (!Classes.ContainsKey(baseType))
                 Setup(baseType);
             if (!Classes.ContainsKey(baseType) || Classes[baseType] is null)
-                return Activator.CreateInstance(baseType);
-            var ReturnObject = Activator.CreateInstance(Classes[baseType]);
+                return GetInstance(baseType);
+            var ReturnObject = GetInstance(Classes[baseType]);
+            if (ReturnObject is null)
+                return ReturnObject;
             if (Classes[baseType] != baseType)
             {
                 foreach (var Aspect in Aspects)
@@ -146,7 +156,7 @@ namespace Aspectus
             {
                 for (var x = 0; x < types.Length; ++x)
                 {
-                    Classes.TryAdd(types[x], null!);
+                    Classes.AddOrUpdate(types[x], types[x], (y, __) => y);
                 }
                 return;
             }
@@ -304,6 +314,32 @@ namespace Aspectus
                         && !string.IsNullOrEmpty(x.Namespace);
             })
             .ToArray();
+        }
+
+        /// <summary>
+        /// Gets an instance of the object.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>The object.</returns>
+        private object? GetInstance(Type type)
+        {
+            if (DefaultConstructors.ContainsKey(type))
+                return DefaultConstructors[type]();
+            var Target = type.GetConstructor(Type.EmptyTypes);
+            if (Target is null)
+                return null;
+            var Dynamic = new DynamicMethod(string.Empty,
+                          type,
+                          Array.Empty<Type>(),
+                          Target.DeclaringType);
+            var iLGenerator = Dynamic.GetILGenerator();
+            iLGenerator.DeclareLocal(Target.DeclaringType);
+            iLGenerator.Emit(OpCodes.Newobj, Target);
+            iLGenerator.Emit(OpCodes.Ret);
+            var Result = (Func<object>)Dynamic.CreateDelegate(typeof(Func<object>));
+
+            DefaultConstructors.AddOrUpdate(type, Result, (_, func) => func);
+            return Result();
         }
 
         /// <summary>
