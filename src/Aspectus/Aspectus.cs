@@ -45,8 +45,8 @@ namespace Aspectus
         public Aspectus(Compiler compiler, IEnumerable<IAspect> aspects, IEnumerable<IAOPModule> modules, ILogger logger)
         {
             Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
-            aspects = aspects ?? Array.Empty<IAspect>();
-            modules = modules ?? Array.Empty<IAOPModule>();
+            aspects ??= Array.Empty<IAspect>();
+            modules ??= Array.Empty<IAOPModule>();
             Compiler = compiler ?? new Compiler(Logger);
             if (Aspects.Count == 0)
                 Aspects.Add(aspects);
@@ -77,7 +77,7 @@ namespace Aspectus
         /// <summary>
         /// Gets the system's compiler
         /// </summary>
-        private Compiler Compiler { get; set; }
+        private Compiler? Compiler { get; set; }
 
         /// <summary>
         /// Logging object
@@ -100,11 +100,16 @@ namespace Aspectus
         {
             if (!Classes.ContainsKey(baseType))
                 Setup(baseType);
-            if (!Classes.ContainsKey(baseType) || Classes[baseType] == null)
+            if (!Classes.ContainsKey(baseType) || Classes[baseType] is null)
                 return Activator.CreateInstance(baseType);
             var ReturnObject = Activator.CreateInstance(Classes[baseType]);
             if (Classes[baseType] != baseType)
-                Aspects.ForEach(x => x.Setup(ReturnObject));
+            {
+                foreach (var Aspect in Aspects)
+                {
+                    Aspect.Setup(ReturnObject);
+                }
+            }
             return ReturnObject;
         }
 
@@ -123,7 +128,7 @@ namespace Aspectus
         /// <param name="assemblies">Assembly to set up</param>
         public void Setup(params Assembly[] assemblies)
         {
-            if (assemblies == null || assemblies.Length == 0)
+            if (assemblies is null || assemblies.Length == 0)
                 return;
             Setup(FilterTypesToSetup(assemblies.SelectMany(x => x.ExportedTypes)));
         }
@@ -134,11 +139,17 @@ namespace Aspectus
         /// <param name="types">The types.</param>
         public void Setup(params Type[] types)
         {
-            if (Compiler == null)
+            if (Compiler is null)
                 return;
             IEnumerable<Type> TempTypes = FilterTypesToSetup(types);
             if (!TempTypes.Any())
+            {
+                for (var x = 0; x < types.Length; ++x)
+                {
+                    Classes.TryAdd(types[x], null!);
+                }
                 return;
+            }
             var TempAssemblies = new List<Assembly>();
             GetAssemblies(typeof(object), TempAssemblies);
             GetAssemblies(typeof(Enumerable), TempAssemblies);
@@ -279,7 +290,7 @@ namespace Aspectus
         /// <returns>The types that can be set up</returns>
         private Type[] FilterTypesToSetup(IEnumerable<Type> enumerable)
         {
-            enumerable = enumerable ?? Array.Empty<Type>();
+            enumerable ??= Array.Empty<Type>();
             return enumerable.Where(x =>
             {
                 var TempTypeInfo = x;
@@ -322,8 +333,8 @@ namespace Aspectus
 ", usings.ToString(x => "using " + x + ";", "\r\n"),
  namespaceUsing,
  className,
- type.FullName.Replace("+", "."),
- interfaces.Count > 0 ? "," : "", interfaces.ToString(x => x.FullName.Replace("+", ".")));
+ type.FullName.Replace("+", ".", StringComparison.Ordinal),
+ interfaces.Count > 0 ? "," : string.Empty, interfaces.ToString(x => x.FullName.Replace("+", ".", StringComparison.Ordinal)));
             if (type.HasDefaultConstructor())
             {
                 Builder.AppendLineFormat(@"
@@ -377,7 +388,7 @@ namespace Aspectus
                     }
                     else if (!MethodsAlreadyDone.Contains("get_" + Property.Name)
                         && GetMethodInfo?.IsVirtual == true
-                        && SetMethodInfo == null
+                        && SetMethodInfo is null
                         && !GetMethodInfo.IsFinal
                         && Property.GetIndexParameters().Length == 0)
                     {
@@ -418,7 +429,7 @@ namespace Aspectus
                     {
                         GetAssemblies(Method.ReturnType, assembliesUsing);
                         Method.GetParameters().ForEach(x => GetAssemblies(x.ParameterType, assembliesUsing));
-                        var Static = Method.IsStatic ? "static " : "";
+                        var Static = Method.IsStatic ? "static " : string.Empty;
                         Builder.AppendLineFormat(@"
         {4} override {0} {1}({2})
         {{
@@ -426,7 +437,7 @@ namespace Aspectus
         }}",
                                                     Static + Method.ReturnType.GetName(),
                                                     Method.Name,
-                                                    Method.GetParameters().ToString(x => (x.IsOut ? "out " : "") + x.ParameterType.GetName() + " " + x.Name),
+                                                    Method.GetParameters().ToString(x => (x.IsOut ? "out " : string.Empty) + x.ParameterType.GetName() + " " + x.Name),
                                                     SetupMethod(type, Method, false),
                                                     MethodAttribute);
                         MethodsAlreadyDone.Add(Method.Name);
@@ -444,12 +455,12 @@ namespace Aspectus
 
         private string SetupMethod(Type type, MethodInfo methodInfo, bool isProperty)
         {
-            if (methodInfo == null)
-                return "";
+            if (methodInfo is null)
+                return string.Empty;
             var Builder = new StringBuilder();
-            var BaseMethodName = methodInfo.Name.Replace("get_", "").Replace("set_", "");
-            var ReturnValue = methodInfo.ReturnType != typeof(void) ? "FinalReturnValue" : "";
-            var BaseCall = "";
+            var BaseMethodName = methodInfo.Name.Replace("get_", string.Empty, StringComparison.Ordinal).Replace("set_", string.Empty, StringComparison.Ordinal);
+            var ReturnValue = methodInfo.ReturnType != typeof(void) ? "FinalReturnValue" : string.Empty;
+            var BaseCall = string.Empty;
             if (isProperty)
                 BaseCall = string.IsNullOrEmpty(ReturnValue) ? "base." + BaseMethodName : ReturnValue + "=base." + BaseMethodName;
             else
@@ -461,7 +472,7 @@ namespace Aspectus
             }
             else
             {
-                BaseCall += Parameters.Length > 0 ? Parameters.ToString(x => (x.IsOut ? "out " : "") + x.Name) : "";
+                BaseCall += Parameters.Length > 0 ? Parameters.ToString(x => (x.IsOut ? "out " : string.Empty) + x.Name) : string.Empty;
                 BaseCall += ");\r\n";
             }
             Builder.AppendLineFormat(@"
@@ -478,11 +489,11 @@ namespace Aspectus
                     {5}
                     throw;
                 }}",
-                methodInfo.ReturnType != typeof(void) ? methodInfo.ReturnType.GetName() + " " + ReturnValue + ";" : "",
+                methodInfo.ReturnType != typeof(void) ? methodInfo.ReturnType.GetName() + " " + ReturnValue + ";" : string.Empty,
                 Aspects.ForEach(x => x.SetupStartMethod(methodInfo, type)).ToString(x => x, "\r\n"),
                 BaseCall,
                 Aspects.ForEach(x => x.SetupEndMethod(methodInfo, type, ReturnValue)).ToString(x => x, "\r\n"),
-                string.IsNullOrEmpty(ReturnValue) ? "" : "return " + ReturnValue + ";",
+                string.IsNullOrEmpty(ReturnValue) ? string.Empty : "return " + ReturnValue + ";",
                 Aspects.ForEach(x => x.SetupExceptionMethod(methodInfo, type)).ToString(x => x, "\r\n"));
             return Builder.ToString();
         }

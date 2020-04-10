@@ -37,9 +37,7 @@ namespace Aspectus.Module
         /// <param name="bootstrapper">Bootstrapper to register with</param>
         public void Load(IBootstrapper bootstrapper)
         {
-            if (bootstrapper == null)
-                return;
-            bootstrapper.Register<Compiler>()
+            bootstrapper?.Register<Compiler>()
                 .RegisterAll<IAspect>()
                 .RegisterAll<IAOPModule>()
                 .Register<Aspectus>(ServiceLifetime.Singleton);

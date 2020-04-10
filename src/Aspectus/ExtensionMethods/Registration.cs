@@ -29,11 +29,9 @@ namespace Aspectus.ExtensionMethods
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
         /// <returns>The bootstrapper</returns>
-        public static IBootstrapper RegisterAspectus(this IBootstrapper bootstrapper)
+        public static IBootstrapper? RegisterAspectus(this IBootstrapper? bootstrapper)
         {
-            if (bootstrapper == null)
-                return bootstrapper;
-            return bootstrapper.AddAssembly(typeof(Aspectus).GetTypeInfo().Assembly);
+            return bootstrapper?.AddAssembly(typeof(Aspectus).GetTypeInfo().Assembly);
         }
     }
 }

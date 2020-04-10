@@ -39,8 +39,8 @@ namespace Aspectus.HelperFunctions
         /// <returns>The collection with the added items</returns>
         public static ConcurrentBag<T> Add<T>(this ConcurrentBag<T> collection, IEnumerable<T> items)
         {
-            collection = collection ?? new ConcurrentBag<T>();
-            if (items == null)
+            collection ??= new ConcurrentBag<T>();
+            if (items is null)
                 return collection;
             foreach (var Item in items)
             {
@@ -59,9 +59,9 @@ namespace Aspectus.HelperFunctions
         /// <returns>True if any are added, false otherwise</returns>
         public static bool AddIf<T>(this ICollection<T> collection, Predicate<T> predicate, params T[] items)
         {
-            if (collection == null || predicate == null)
+            if (collection is null || predicate is null)
                 return false;
-            if (items == null || items.Length == 0)
+            if (items is null || items.Length == 0)
                 return true;
             var ReturnValue = false;
             for (int i = 0, itemsLength = items.Length; i < itemsLength; i++)
@@ -87,7 +87,7 @@ namespace Aspectus.HelperFunctions
         /// <returns>True if it is added, false otherwise</returns>
         public static bool AddIf<T>(this ICollection<T> collection, Predicate<T> predicate, IEnumerable<T> items)
         {
-            if (collection == null || predicate == null)
+            if (collection is null || predicate is null)
                 return false;
             if (items?.Any() != true)
                 return true;
@@ -107,9 +107,9 @@ namespace Aspectus.HelperFunctions
         /// <returns>True if it is added, false otherwise</returns>
         public static bool AddIfUnique<T>(this ICollection<T> collection, Func<T, T, bool> predicate, params T[] items)
         {
-            if (collection == null || predicate == null)
+            if (collection is null || predicate is null)
                 return false;
-            if (items == null)
+            if (items is null)
                 return true;
             return collection.AddIf(x => !collection.Any(y => predicate(x, y)), items);
         }
@@ -123,9 +123,9 @@ namespace Aspectus.HelperFunctions
         /// <returns>True if it is added, false otherwise</returns>
         public static bool AddIfUnique<T>(this ICollection<T> collection, IEnumerable<T> items)
         {
-            if (collection == null)
+            if (collection is null)
                 return false;
-            if (items == null)
+            if (items is null)
                 return true;
             return collection.AddIf(x => !collection.Contains(x), items);
         }
@@ -139,9 +139,9 @@ namespace Aspectus.HelperFunctions
         /// <returns>True if it is added, false otherwise</returns>
         public static bool AddIfUnique<T>(this ICollection<T> collection, params T[] items)
         {
-            if (collection == null)
+            if (collection is null)
                 return false;
-            if (items == null)
+            if (items is null)
                 return true;
             return collection.AddIf(x => !collection.Contains(x), items);
         }
@@ -154,12 +154,12 @@ namespace Aspectus.HelperFunctions
         /// <param name="format">Format string</param>
         /// <param name="objects">Objects to format</param>
         /// <returns>The StringBuilder passed in</returns>
-        public static StringBuilder AppendLineFormat(this StringBuilder builder, IFormatProvider provider, string format, params object[] objects)
+        public static StringBuilder? AppendLineFormat(this StringBuilder builder, IFormatProvider provider, string format, params object[] objects)
         {
-            if (builder == null || string.IsNullOrEmpty(format))
+            if (builder is null || string.IsNullOrEmpty(format))
                 return builder;
-            objects = objects ?? Array.Empty<object>();
-            provider = provider ?? CultureInfo.InvariantCulture;
+            objects ??= Array.Empty<object>();
+            provider ??= CultureInfo.InvariantCulture;
             return builder.AppendFormat(provider, format, objects).AppendLine();
         }
 
@@ -170,7 +170,7 @@ namespace Aspectus.HelperFunctions
         /// <param name="format">Format string</param>
         /// <param name="objects">Objects to format</param>
         /// <returns>The StringBuilder passed in</returns>
-        public static StringBuilder AppendLineFormat(this StringBuilder builder, string format, params object[] objects) => builder.AppendLineFormat(CultureInfo.InvariantCulture, format, objects);
+        public static StringBuilder? AppendLineFormat(this StringBuilder builder, string format, params object[] objects) => builder.AppendLineFormat(CultureInfo.InvariantCulture, format, objects);
 
         /// <summary>
         /// Does an action for each item in the IEnumerable
@@ -181,9 +181,9 @@ namespace Aspectus.HelperFunctions
         /// <returns>The original list</returns>
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> list, Action<T> action)
         {
-            if (list == null)
+            if (list is null)
                 return Array.Empty<T>();
-            if (action == null)
+            if (action is null)
                 return list;
             foreach (var Item in list)
                 action(Item);
@@ -200,7 +200,7 @@ namespace Aspectus.HelperFunctions
         /// <returns>The resulting list</returns>
         public static IEnumerable<R> ForEach<T, R>(this IEnumerable<T> list, Func<T, R> function)
         {
-            if (list == null || function == null)
+            if (list is null || function is null)
                 return Array.Empty<R>();
             var ReturnList = new List<R>(list.Count());
             foreach (var Item in list)
@@ -217,9 +217,9 @@ namespace Aspectus.HelperFunctions
         /// <returns>The original list</returns>
         public static IEnumerable<T> ForEachParallel<T>(this IEnumerable<T> list, Action<T> action)
         {
-            if (list == null)
+            if (list is null)
                 return Array.Empty<T>();
-            if (action == null)
+            if (action is null)
                 return list;
             Parallel.ForEach(list, action);
             return list;
@@ -232,8 +232,8 @@ namespace Aspectus.HelperFunctions
         /// <returns>string name of the type</returns>
         public static string GetName(this Type objectType)
         {
-            if (objectType == null)
-                return "";
+            if (objectType is null)
+                return string.Empty;
             var Output = new StringBuilder();
             if (objectType.Name == "Void")
             {
@@ -241,14 +241,14 @@ namespace Aspectus.HelperFunctions
             }
             else
             {
-                Output.Append(objectType.DeclaringType == null ? objectType.Namespace : objectType.DeclaringType.GetName())
+                Output.Append(objectType.DeclaringType is null ? objectType.Namespace : objectType.DeclaringType.GetName())
                     .Append(".");
-                if (objectType.Name.Contains("`"))
+                if (objectType.Name.Contains("`", StringComparison.Ordinal))
                 {
                     var GenericTypes = objectType.GetGenericArguments();
                     Output.Append(objectType.Name, 0, objectType.Name.IndexOf("`", StringComparison.Ordinal))
                         .Append("<");
-                    var Seperator = "";
+                    var Seperator = string.Empty;
                     foreach (var GenericType in GenericTypes)
                     {
                         Output.Append(Seperator).Append(GenericType.GetName());
@@ -261,7 +261,7 @@ namespace Aspectus.HelperFunctions
                     Output.Append(objectType.Name);
                 }
             }
-            return Output.ToString().Replace("&", "");
+            return Output.ToString().Replace("&", string.Empty, StringComparison.Ordinal);
         }
 
         /// <summary>
@@ -283,24 +283,21 @@ namespace Aspectus.HelperFunctions
         /// <returns>A byte array</returns>
         public static byte[] ReadAllBinary(this Stream input)
         {
-            if (input == null)
+            if (input is null)
                 return Array.Empty<byte>();
 
             if (input is MemoryStream TempInput)
                 return TempInput.ToArray();
-
-            var Buffer = new byte[4096];
-            using (var Temp = new MemoryStream())
+            var Buffer = new byte[input.Length];
+            using var Temp = new MemoryStream();
+            while (true)
             {
-                while (true)
+                var Count = input.Read(Buffer, 0, Buffer.Length);
+                if (Count <= 0)
                 {
-                    var Count = input.Read(Buffer, 0, Buffer.Length);
-                    if (Count <= 0)
-                    {
-                        return Temp.ToArray();
-                    }
-                    Temp.Write(Buffer, 0, Count);
+                    return Temp.ToArray();
                 }
+                Temp.Write(Buffer, 0, Count);
             }
         }
 
@@ -314,16 +311,27 @@ namespace Aspectus.HelperFunctions
         /// </param>
         /// <param name="seperator">Seperator to use between items (defaults to ,)</param>
         /// <returns>The string version of the list</returns>
-        public static string ToString<T>(this IEnumerable<T> list, Func<T, string> itemOutput = null, string seperator = ",")
+        public static string ToString<T>(this IEnumerable<T> list, Func<T, string>? itemOutput = null, string seperator = ",")
         {
             if (list?.Any() != true)
             {
-                return "";
+                return string.Empty;
             }
 
-            seperator = seperator ?? "";
-            itemOutput = itemOutput ?? (x => x.ToString());
+            seperator ??= string.Empty;
+            itemOutput ??= DefaultToStringConverter<T>;
             return string.Join(seperator, list.Select(itemOutput));
+        }
+
+        /// <summary>
+        /// Default to string converter.
+        /// </summary>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="value">The value.</param>
+        /// <returns>The value as a string</returns>
+        private static string DefaultToStringConverter<TValue>(TValue value)
+        {
+            return value?.ToString() ?? "";
         }
     }
 }

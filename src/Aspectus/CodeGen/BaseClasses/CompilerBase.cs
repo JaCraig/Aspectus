@@ -39,7 +39,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <param name="assemblyName">Assembly name to save the generated types as</param>
         /// <param name="logger">Logger object</param>
         /// <exception cref="ArgumentNullException">logger</exception>
-        protected CompilerBase(string assemblyName, ILogger logger = null)
+        protected CompilerBase(string assemblyName, ILogger? logger = null)
         {
             Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             AssemblyName = assemblyName;
@@ -66,7 +66,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// Gets the assembly stream.
         /// </summary>
         /// <value>The assembly stream.</value>
-        protected MemoryStream AssemblyStream { get; private set; }
+        protected MemoryStream? AssemblyStream { get; private set; }
 
         /// <summary>
         /// Logger object
@@ -116,7 +116,7 @@ namespace Aspectus.CodeGen.BaseClasses
                     throw new Exception(ErrorText);
                 }
                 var MiniAssembly = TempStream.ToArray();
-                AssemblyStream.Write(MiniAssembly, 0, MiniAssembly.Length);
+                AssemblyStream?.Write(MiniAssembly, 0, MiniAssembly.Length);
             }
             return this;
         }
@@ -137,7 +137,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <returns>The types within the assembly</returns>
         public IEnumerable<Type> LoadAssembly()
         {
-            AssemblyStream.Seek(0, SeekOrigin.Begin);
+            AssemblyStream?.Seek(0, SeekOrigin.Begin);
             var ResultingAssembly = AssemblyLoadContext.Default.LoadFromStream(AssemblyStream, null);
             Classes.AddIfUnique((x, y) => x.FullName == y.FullName, ResultingAssembly.GetTypes());
             return Classes;
@@ -159,7 +159,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <exception cref="ArgumentNullException">typeToCreate</exception>
         protected static T Create<T>(Type typeToCreate, params object[] args)
         {
-            if (typeToCreate == null)
+            if (typeToCreate is null)
                 throw new ArgumentNullException(nameof(typeToCreate));
             return (T)Activator.CreateInstance(typeToCreate, args);
         }
@@ -173,7 +173,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <returns>This</returns>
         protected CompilerBase Add(string code, IEnumerable<string> usings, params MetadataReference[] references)
         {
-            if (AssemblyStream == null)
+            if (AssemblyStream is null)
                 return this;
             Code.AppendLine(code);
             Usings.AddIfUnique(usings);
