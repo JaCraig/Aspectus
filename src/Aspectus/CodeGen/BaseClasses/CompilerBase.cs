@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using Aspectus.HelperFunctions;
+using Fast.Activator;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Serilog;
@@ -161,7 +162,7 @@ namespace Aspectus.CodeGen.BaseClasses
         {
             if (typeToCreate is null)
                 throw new ArgumentNullException(nameof(typeToCreate));
-            return (T)Activator.CreateInstance(typeToCreate, args);
+            return (T)FastActivator.CreateInstance(typeToCreate, args);
         }
 
         /// <summary>

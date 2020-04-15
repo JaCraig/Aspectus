@@ -17,6 +17,7 @@ limitations under the License.
 using Aspectus.CodeGen;
 using Aspectus.HelperFunctions;
 using Aspectus.Interfaces;
+using Fast.Activator;
 using Microsoft.CodeAnalysis;
 using Serilog;
 using System;
@@ -26,7 +27,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Reflection.Emit;
 using System.Text;
 
 namespace Aspectus
@@ -66,16 +66,6 @@ namespace Aspectus
         }
 
         /// <summary>
-        /// Dictionary containing generated types and associates it with original type
-        /// </summary>
-        private readonly ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
-
-        /// <summary>
-        /// The default constructors
-        /// </summary>
-        private readonly ConcurrentDictionary<Type, Func<object>> DefaultConstructors = new ConcurrentDictionary<Type, Func<object>>();
-
-        /// <summary>
         /// The list of aspects that are being used
         /// </summary>
         private ConcurrentBag<IAspect> Aspects { get; } = new ConcurrentBag<IAspect>();
@@ -89,6 +79,11 @@ namespace Aspectus
         /// Logging object
         /// </summary>
         private ILogger Logger { get; }
+
+        /// <summary>
+        /// Dictionary containing generated types and associates it with original type
+        /// </summary>
+        private readonly ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
 
         /// <summary>
         /// Creates an object of the specified base type, registering the type if necessary
@@ -323,23 +318,7 @@ namespace Aspectus
         /// <returns>The object.</returns>
         private object? GetInstance(Type type)
         {
-            if (DefaultConstructors.ContainsKey(type))
-                return DefaultConstructors[type]();
-            var Target = type.GetConstructor(Type.EmptyTypes);
-            if (Target is null)
-                return null;
-            var Dynamic = new DynamicMethod(string.Empty,
-                          type,
-                          Array.Empty<Type>(),
-                          Target.DeclaringType);
-            var iLGenerator = Dynamic.GetILGenerator();
-            iLGenerator.DeclareLocal(Target.DeclaringType);
-            iLGenerator.Emit(OpCodes.Newobj, Target);
-            iLGenerator.Emit(OpCodes.Ret);
-            var Result = (Func<object>)Dynamic.CreateDelegate(typeof(Func<object>));
-
-            DefaultConstructors.AddOrUpdate(type, Result, (_, func) => func);
-            return Result();
+            return FastActivator.CreateInstance(type);
         }
 
         /// <summary>
