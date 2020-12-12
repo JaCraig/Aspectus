@@ -49,7 +49,7 @@ namespace Aspectus
             aspects ??= Array.Empty<IAspect>();
             modules ??= Array.Empty<IAOPModule>();
             Compiler = compiler ?? new Compiler(Logger);
-            if (Aspects.Count == 0)
+            if (Aspects.IsEmpty)
                 Aspects.Add(aspects);
             modules.ForEachParallel(x => x.Setup(this));
         }
@@ -66,6 +66,11 @@ namespace Aspectus
         }
 
         /// <summary>
+        /// Dictionary containing generated types and associates it with original type
+        /// </summary>
+        private readonly ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
+
+        /// <summary>
         /// The list of aspects that are being used
         /// </summary>
         private ConcurrentBag<IAspect> Aspects { get; } = new ConcurrentBag<IAspect>();
@@ -79,11 +84,6 @@ namespace Aspectus
         /// Logging object
         /// </summary>
         private ILogger Logger { get; }
-
-        /// <summary>
-        /// Dictionary containing generated types and associates it with original type
-        /// </summary>
-        private readonly ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
 
         /// <summary>
         /// Creates an object of the specified base type, registering the type if necessary
@@ -289,6 +289,16 @@ namespace Aspectus
         }
 
         /// <summary>
+        /// Gets an instance of the object.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>The object.</returns>
+        private static object? GetInstance(Type type)
+        {
+            return FastActivator.CreateInstance(type);
+        }
+
+        /// <summary>
         /// Determines whether this instance can setup the specified types.
         /// </summary>
         /// <param name="enumerable">The list of types</param>
@@ -309,16 +319,6 @@ namespace Aspectus
                         && !string.IsNullOrEmpty(x.Namespace);
             })
             .ToArray();
-        }
-
-        /// <summary>
-        /// Gets an instance of the object.
-        /// </summary>
-        /// <param name="type">The type.</param>
-        /// <returns>The object.</returns>
-        private object? GetInstance(Type type)
-        {
-            return FastActivator.CreateInstance(type);
         }
 
         /// <summary>

@@ -35,7 +35,7 @@ namespace Aspectus.Module
         /// Loads the module
         /// </summary>
         /// <param name="bootstrapper">Bootstrapper to register with</param>
-        public void Load(IBootstrapper bootstrapper)
+        public void Load(IBootstrapper? bootstrapper)
         {
             bootstrapper?.Register<Compiler>()
                 .RegisterAll<IAspect>()

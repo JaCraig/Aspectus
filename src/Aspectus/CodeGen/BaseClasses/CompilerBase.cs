@@ -46,11 +46,7 @@ namespace Aspectus.CodeGen.BaseClasses
             AssemblyName = assemblyName;
             var DebuggableAttribute = Assembly.GetEntryAssembly().GetCustomAttribute<DebuggableAttribute>();
             Optimize = CheckJitProperty(DebuggableAttribute);
-            Classes = new List<Type>();
-            AssemblyStream = new MemoryStream();
             Code = new StringBuilder();
-            Usings = new List<string>();
-            Assemblies = new List<MetadataReference>();
         }
 
         /// <summary>
@@ -61,13 +57,13 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <summary>
         /// Dictionary containing generated types and associates it with original type
         /// </summary>
-        public List<Type> Classes { get; private set; }
+        public List<Type> Classes { get; private set; } = new List<Type>();
 
         /// <summary>
         /// Gets the assembly stream.
         /// </summary>
         /// <value>The assembly stream.</value>
-        protected MemoryStream? AssemblyStream { get; private set; }
+        protected MemoryStream? AssemblyStream { get; private set; } = new MemoryStream();
 
         /// <summary>
         /// Logger object
@@ -83,7 +79,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// Gets or sets the assemblies.
         /// </summary>
         /// <value>The assemblies.</value>
-        private List<MetadataReference> Assemblies { get; }
+        private List<MetadataReference> Assemblies { get; } = new List<MetadataReference>();
 
         /// <summary>
         /// Gets or sets the code.
@@ -95,7 +91,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// Gets or sets the usings.
         /// </summary>
         /// <value>The usings.</value>
-        private List<string> Usings { get; }
+        private List<string> Usings { get; } = new List<string>();
 
         /// <summary>
         /// Compiles this instance.
