@@ -34,6 +34,7 @@ namespace Aspectus.Tests.BaseClasses
             new DirectoryInfo(@".\Testing").Delete();
             new DirectoryInfo(@".\App_Data").Delete();
             new DirectoryInfo(@".\Logs").Delete();
+            GC.SuppressFinalize(this);
         }
     }
 }

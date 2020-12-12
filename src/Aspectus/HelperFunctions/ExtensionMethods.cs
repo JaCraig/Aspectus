@@ -242,19 +242,19 @@ namespace Aspectus.HelperFunctions
             else
             {
                 Output.Append(objectType.DeclaringType is null ? objectType.Namespace : objectType.DeclaringType.GetName())
-                    .Append(".");
+                    .Append('.');
                 if (objectType.Name.Contains("`", StringComparison.Ordinal))
                 {
                     var GenericTypes = objectType.GetGenericArguments();
                     Output.Append(objectType.Name, 0, objectType.Name.IndexOf("`", StringComparison.Ordinal))
-                        .Append("<");
+                        .Append('<');
                     var Seperator = string.Empty;
                     foreach (var GenericType in GenericTypes)
                     {
                         Output.Append(Seperator).Append(GenericType.GetName());
                         Seperator = ",";
                     }
-                    Output.Append(">");
+                    Output.Append('>');
                 }
                 else
                 {
