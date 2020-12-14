@@ -16,10 +16,10 @@ limitations under the License.
 
 using Microsoft.Extensions.ObjectPool;
 using System;
+using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -279,31 +279,6 @@ namespace Aspectus.HelperFunctions
             return type?
                 .GetConstructors()
                 .Any(x => x.GetParameters().Length == 0) == true;
-        }
-
-        /// <summary>
-        /// Takes all of the data in the stream and returns it as an array of bytes
-        /// </summary>
-        /// <param name="input">Input stream</param>
-        /// <returns>A byte array</returns>
-        public static byte[] ReadAllBinary(this Stream input)
-        {
-            if (input is null)
-                return Array.Empty<byte>();
-
-            if (input is MemoryStream TempInput)
-                return TempInput.ToArray();
-            var Buffer = new byte[input.Length];
-            using var Temp = new MemoryStream();
-            while (true)
-            {
-                var Count = input.Read(Buffer, 0, Buffer.Length);
-                if (Count <= 0)
-                {
-                    return Temp.ToArray();
-                }
-                Temp.Write(Buffer, 0, Count);
-            }
         }
 
         /// <summary>
