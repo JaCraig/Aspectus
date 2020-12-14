@@ -18,6 +18,7 @@ using Aspectus.HelperFunctions;
 using Fast.Activator;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.Extensions.ObjectPool;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -39,14 +40,16 @@ namespace Aspectus.CodeGen.BaseClasses
         /// </summary>
         /// <param name="assemblyName">Assembly name to save the generated types as</param>
         /// <param name="logger">Logger object</param>
+        /// <param name="objectPool">The object pool.</param>
         /// <exception cref="ArgumentNullException">logger</exception>
-        protected CompilerBase(string assemblyName, ILogger? logger = null)
+        protected CompilerBase(string assemblyName, ILogger? logger = null, ObjectPool<StringBuilder>? objectPool = null)
         {
             Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             AssemblyName = assemblyName;
             var DebuggableAttribute = Assembly.GetEntryAssembly().GetCustomAttribute<DebuggableAttribute>();
             Optimize = CheckJitProperty(DebuggableAttribute);
-            Code = new StringBuilder();
+            Code = objectPool?.Get() ?? new StringBuilder();
+            ObjectPool = objectPool;
         }
 
         /// <summary>
@@ -86,6 +89,12 @@ namespace Aspectus.CodeGen.BaseClasses
         /// </summary>
         /// <value>The code.</value>
         private StringBuilder Code { get; }
+
+        /// <summary>
+        /// Gets the object pool.
+        /// </summary>
+        /// <value>The object pool.</value>
+        private ObjectPool<StringBuilder>? ObjectPool { get; set; }
 
         /// <summary>
         /// Gets or sets the usings.
@@ -189,6 +198,8 @@ namespace Aspectus.CodeGen.BaseClasses
         {
             if (managed)
             {
+                ObjectPool?.Return(Code);
+                ObjectPool = null;
                 AssemblyStream?.Dispose();
                 AssemblyStream = null;
                 Classes = new List<Type>();

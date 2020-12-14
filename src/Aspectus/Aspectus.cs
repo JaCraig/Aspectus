@@ -19,6 +19,7 @@ using Aspectus.HelperFunctions;
 using Aspectus.Interfaces;
 using Fast.Activator;
 using Microsoft.CodeAnalysis;
+using Microsoft.Extensions.ObjectPool;
 using Serilog;
 using System;
 using System.Collections.Concurrent;
@@ -43,7 +44,9 @@ namespace Aspectus
         /// <param name="aspects">The aspects.</param>
         /// <param name="modules">The modules.</param>
         /// <param name="logger">Serilog based log object</param>
-        public Aspectus(Compiler compiler, IEnumerable<IAspect> aspects, IEnumerable<IAOPModule> modules, ILogger logger)
+        /// <param name="objectPool">The object pool.</param>
+        /// <exception cref="ArgumentNullException">logger</exception>
+        public Aspectus(Compiler compiler, IEnumerable<IAspect> aspects, IEnumerable<IAOPModule> modules, ILogger logger, ObjectPool<StringBuilder>? objectPool)
         {
             Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             aspects ??= Array.Empty<IAspect>();
@@ -52,6 +55,7 @@ namespace Aspectus
             if (Aspects.IsEmpty)
                 Aspects.Add(aspects);
             modules.ForEachParallel(x => x.Setup(this));
+            ObjectPool = objectPool;
         }
 
         /// <summary>
@@ -61,14 +65,9 @@ namespace Aspectus
         /// <param name="aspects">The aspects.</param>
         /// <param name="modules">The modules.</param>
         public Aspectus(Compiler compiler, IEnumerable<IAspect> aspects, IEnumerable<IAOPModule> modules)
-            : this(compiler, aspects, modules, Log.Logger ?? new LoggerConfiguration().CreateLogger())
+            : this(compiler, aspects, modules, Log.Logger ?? new LoggerConfiguration().CreateLogger(), null)
         {
         }
-
-        /// <summary>
-        /// Dictionary containing generated types and associates it with original type
-        /// </summary>
-        private readonly ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
 
         /// <summary>
         /// The list of aspects that are being used
@@ -84,6 +83,17 @@ namespace Aspectus
         /// Logging object
         /// </summary>
         private ILogger Logger { get; }
+
+        /// <summary>
+        /// Gets the object pool.
+        /// </summary>
+        /// <value>The object pool.</value>
+        private ObjectPool<StringBuilder>? ObjectPool { get; }
+
+        /// <summary>
+        /// Dictionary containing generated types and associates it with original type
+        /// </summary>
+        private readonly ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
 
         /// <summary>
         /// Creates an object of the specified base type, registering the type if necessary
@@ -172,11 +182,11 @@ namespace Aspectus
             var InterfacesUsed = new List<Type>();
             Aspects.ForEach(x => InterfacesUsed.AddRange(x.InterfacesUsing ?? Array.Empty<Type>()));
 
-            var Builder = new StringBuilder();
+            var Builder = ObjectPool?.Get() ?? new StringBuilder();
 
             foreach (var TempType in TempTypes)
             {
-                Logger.Debug("Generating type for {Info:l}", TempType.GetName());
+                Logger.Debug("Generating type for {Info:l}", TempType.GetName(ObjectPool));
                 GetAssemblies(TempType, TempAssemblies);
 
                 var Namespace = "AspectusGeneratedTypes.C" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -207,6 +217,7 @@ namespace Aspectus
                         (x, _) => x);
                 }
             }
+            ObjectPool?.Return(Builder);
         }
 
         /// <summary>
@@ -338,7 +349,7 @@ namespace Aspectus
             List<Type> interfaces,
             List<Assembly> assembliesUsing)
         {
-            var Builder = new StringBuilder();
+            var Builder = ObjectPool?.Get() ?? new StringBuilder();
             Builder.AppendLineFormat(@"namespace {1}
 {{
     {0}
@@ -394,7 +405,7 @@ namespace Aspectus
                 {3}
             }}
         }}",
-                                                    Property.PropertyType.GetName(),
+                                                    Property.PropertyType.GetName(ObjectPool),
                                                     Property.Name,
                                                     SetupMethod(type, GetMethodInfo, true),
                                                     SetupMethod(type, SetMethodInfo, true));
@@ -416,7 +427,7 @@ namespace Aspectus
                 {2}
             }}
         }}",
-                                                    Property.PropertyType.GetName(),
+                                                    Property.PropertyType.GetName(ObjectPool),
                                                     Property.Name,
                                                     SetupMethod(type, GetMethodInfo, true));
                         MethodsAlreadyDone.Add(GetMethodInfo.Name);
@@ -450,9 +461,9 @@ namespace Aspectus
         {{
             {3}
         }}",
-                                                    Static + Method.ReturnType.GetName(),
+                                                    Static + Method.ReturnType.GetName(ObjectPool),
                                                     Method.Name,
-                                                    Method.GetParameters().ToString(x => (x.IsOut ? "out " : string.Empty) + x.ParameterType.GetName() + " " + x.Name),
+                                                    Method.GetParameters().ToString(x => (x.IsOut ? "out " : string.Empty) + x.ParameterType.GetName(ObjectPool) + " " + x.Name),
                                                     SetupMethod(type, Method, false),
                                                     MethodAttribute);
                         MethodsAlreadyDone.Add(Method.Name);
@@ -465,14 +476,16 @@ namespace Aspectus
             }
             Builder.AppendLine(@"   }
 }");
-            return Builder.ToString();
+            var ReturnValue = Builder.ToString();
+            ObjectPool?.Return(Builder);
+            return ReturnValue;
         }
 
         private string SetupMethod(Type type, MethodInfo methodInfo, bool isProperty)
         {
             if (methodInfo is null)
                 return string.Empty;
-            var Builder = new StringBuilder();
+            var Builder = ObjectPool?.Get() ?? new StringBuilder();
             var BaseMethodName = methodInfo.Name.Replace("get_", string.Empty, StringComparison.Ordinal).Replace("set_", string.Empty, StringComparison.Ordinal);
             var ReturnValue = methodInfo.ReturnType != typeof(void) ? "FinalReturnValue" : string.Empty;
             var BaseCall = string.Empty;
@@ -504,13 +517,15 @@ namespace Aspectus
                     {5}
                     throw;
                 }}",
-                methodInfo.ReturnType != typeof(void) ? methodInfo.ReturnType.GetName() + " " + ReturnValue + ";" : string.Empty,
+                methodInfo.ReturnType != typeof(void) ? methodInfo.ReturnType.GetName(ObjectPool) + " " + ReturnValue + ";" : string.Empty,
                 Aspects.ForEach(x => x.SetupStartMethod(methodInfo, type)).ToString(x => x, "\r\n"),
                 BaseCall,
                 Aspects.ForEach(x => x.SetupEndMethod(methodInfo, type, ReturnValue)).ToString(x => x, "\r\n"),
                 string.IsNullOrEmpty(ReturnValue) ? string.Empty : "return " + ReturnValue + ";",
                 Aspects.ForEach(x => x.SetupExceptionMethod(methodInfo, type)).ToString(x => x, "\r\n"));
-            return Builder.ToString();
+            var ReturnVal = Builder.ToString();
+            ObjectPool?.Return(Builder);
+            return ReturnVal;
         }
     }
 }

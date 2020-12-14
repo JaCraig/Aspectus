@@ -18,6 +18,7 @@ using Aspectus.CodeGen;
 using Aspectus.Interfaces;
 using Canister.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.ObjectPool;
 
 namespace Aspectus.Module
 {
@@ -37,9 +38,11 @@ namespace Aspectus.Module
         /// <param name="bootstrapper">Bootstrapper to register with</param>
         public void Load(IBootstrapper? bootstrapper)
         {
+            var objectPoolProvider = new DefaultObjectPoolProvider();
             bootstrapper?.Register<Compiler>()
                 .RegisterAll<IAspect>()
                 .RegisterAll<IAOPModule>()
+                .Register(objectPoolProvider.CreateStringBuilderPool(), ServiceLifetime.Singleton)
                 .Register<Aspectus>(ServiceLifetime.Singleton);
         }
     }

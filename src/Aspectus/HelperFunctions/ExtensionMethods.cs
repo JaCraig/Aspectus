@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using Microsoft.Extensions.ObjectPool;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -229,19 +230,21 @@ namespace Aspectus.HelperFunctions
         /// Returns the type's name (Actual C# name, not the funky version from the Name property)
         /// </summary>
         /// <param name="objectType">Type to get the name of</param>
+        /// <param name="objectPool">The object pool.</param>
         /// <returns>string name of the type</returns>
-        public static string GetName(this Type objectType)
+        public static string GetName(this Type objectType, ObjectPool<StringBuilder>? objectPool)
         {
             if (objectType is null)
                 return string.Empty;
-            var Output = new StringBuilder();
+            var Output = objectPool?.Get() ?? new StringBuilder();
             if (objectType.Name == "Void")
             {
-                Output.Append("void");
+                objectPool?.Return(Output);
+                return "void";
             }
             else
             {
-                Output.Append(objectType.DeclaringType is null ? objectType.Namespace : objectType.DeclaringType.GetName())
+                Output.Append(objectType.DeclaringType is null ? objectType.Namespace : objectType.DeclaringType.GetName(objectPool))
                     .Append('.');
                 if (objectType.Name.Contains("`", StringComparison.Ordinal))
                 {
@@ -251,7 +254,7 @@ namespace Aspectus.HelperFunctions
                     var Seperator = string.Empty;
                     foreach (var GenericType in GenericTypes)
                     {
-                        Output.Append(Seperator).Append(GenericType.GetName());
+                        Output.Append(Seperator).Append(GenericType.GetName(objectPool));
                         Seperator = ",";
                     }
                     Output.Append('>');
@@ -261,7 +264,9 @@ namespace Aspectus.HelperFunctions
                     Output.Append(objectType.Name);
                 }
             }
-            return Output.ToString().Replace("&", string.Empty, StringComparison.Ordinal);
+            var ReturnValue = Output.ToString().Replace("&", string.Empty, StringComparison.Ordinal);
+            objectPool?.Return(Output);
+            return ReturnValue;
         }
 
         /// <summary>
@@ -331,7 +336,7 @@ namespace Aspectus.HelperFunctions
         /// <returns>The value as a string</returns>
         private static string DefaultToStringConverter<TValue>(TValue value)
         {
-            return value?.ToString() ?? "";
+            return value?.ToString() ?? string.Empty;
         }
     }
 }
