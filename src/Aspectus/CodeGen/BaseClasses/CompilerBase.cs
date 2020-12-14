@@ -19,7 +19,6 @@ using Fast.Activator;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.Extensions.ObjectPool;
-using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -39,12 +38,9 @@ namespace Aspectus.CodeGen.BaseClasses
         /// Constructor
         /// </summary>
         /// <param name="assemblyName">Assembly name to save the generated types as</param>
-        /// <param name="logger">Logger object</param>
         /// <param name="objectPool">The object pool.</param>
-        /// <exception cref="ArgumentNullException">logger</exception>
-        protected CompilerBase(string assemblyName, ILogger? logger = null, ObjectPool<StringBuilder>? objectPool = null)
+        protected CompilerBase(string assemblyName, ObjectPool<StringBuilder>? objectPool = null)
         {
-            Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             AssemblyName = assemblyName;
             var DebuggableAttribute = Assembly.GetEntryAssembly().GetCustomAttribute<DebuggableAttribute>();
             Optimize = CheckJitProperty(DebuggableAttribute);
@@ -67,11 +63,6 @@ namespace Aspectus.CodeGen.BaseClasses
         /// </summary>
         /// <value>The assembly stream.</value>
         protected MemoryStream? AssemblyStream { get; private set; } = new MemoryStream();
-
-        /// <summary>
-        /// Logger object
-        /// </summary>
-        protected ILogger Logger { get; }
 
         /// <summary>
         /// Should this be optimized?

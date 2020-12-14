@@ -17,7 +17,6 @@ limitations under the License.
 using Aspectus.CodeGen.BaseClasses;
 using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.ObjectPool;
-using Serilog;
 using System.Collections.Generic;
 using System.Text;
 
@@ -32,26 +31,16 @@ namespace Aspectus.CodeGen
         /// Initializes a new instance of the <see cref="Compiler"/> class.
         /// </summary>
         public Compiler()
-            : this("AspectusGeneratedTypes", Log.Logger, null)
-        {
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="logger">Logging object</param>
-        public Compiler(ILogger logger)
-            : this("AspectusGeneratedTypes", logger ?? Log.Logger, null)
+            : this("AspectusGeneratedTypes", null)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Compiler"/> class.
         /// </summary>
-        /// <param name="logger">The logger.</param>
         /// <param name="objectPool">The object pool.</param>
-        public Compiler(ILogger logger, ObjectPool<StringBuilder> objectPool)
-            : this("AspectusGeneratedTypes", logger ?? Log.Logger, objectPool)
+        public Compiler(ObjectPool<StringBuilder>? objectPool)
+            : this("AspectusGeneratedTypes", objectPool)
         {
         }
 
@@ -59,10 +48,8 @@ namespace Aspectus.CodeGen
         /// Constructor
         /// </summary>
         /// <param name="assemblyName">Assembly name</param>
-        /// <param name="logger">Logging object</param>
-        public Compiler(string assemblyName, ILogger logger)
+        public Compiler(string assemblyName)
             : this(string.IsNullOrEmpty(assemblyName) ? "AspectusGeneratedTypes" : assemblyName,
-                  logger ?? Log.Logger,
                   null)
         {
         }
@@ -71,11 +58,9 @@ namespace Aspectus.CodeGen
         /// Constructor
         /// </summary>
         /// <param name="assemblyName">Assembly name</param>
-        /// <param name="logger">Logging object</param>
         /// <param name="objectPool">The object pool.</param>
-        public Compiler(string assemblyName, ILogger logger, ObjectPool<StringBuilder>? objectPool)
+        public Compiler(string assemblyName, ObjectPool<StringBuilder>? objectPool)
             : base(string.IsNullOrEmpty(assemblyName) ? "AspectusGeneratedTypes" : assemblyName,
-                  logger ?? Log.Logger,
                   objectPool)
         {
         }

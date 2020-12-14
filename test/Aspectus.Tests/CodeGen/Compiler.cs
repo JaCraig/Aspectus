@@ -13,7 +13,7 @@ namespace Aspectus.Tests.CodeGen
         public void CreateMultipleTypes()
         {
             Logger.Information("CompilerTests.CreateMultipleTypes");
-            using var Test = new Compiler("CreateMultipleTypes", Logger);
+            using var Test = new Compiler("CreateMultipleTypes", ObjectPool);
             Test.Create("public class A{ public string Value1{get;set;}}", null, MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location));
             Test.Create("public class B{ public string Value1{get;set;}}", null, MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location));
             Test.Create("public class C{ public string Value1{get;set;}}", null, MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location));
@@ -31,7 +31,7 @@ namespace Aspectus.Tests.CodeGen
         public void CreateType()
         {
             Logger.Information("CompilerTests.CreateType");
-            using var Test = new Compiler("CreateType", Logger);
+            using var Test = new Compiler("CreateType", ObjectPool);
             Test.Create("public class A{ public string Value1{get;set;}}", null, MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location));
             var TempAssembly = Test.Compile().LoadAssembly();
             var Object = TempAssembly.FirstOrDefault(x => x.FullName == "A");
@@ -43,7 +43,7 @@ namespace Aspectus.Tests.CodeGen
         public void Creation()
         {
             Logger.Information("CompilerTests.Creation");
-            using var Test = new Compiler("Somewhere", Logger);
+            using var Test = new Compiler("Somewhere", ObjectPool);
             Assert.Empty(Test.Classes);
             Assert.Equal("Somewhere", Test.AssemblyName);
         }

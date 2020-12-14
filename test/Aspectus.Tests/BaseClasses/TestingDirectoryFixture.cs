@@ -1,21 +1,32 @@
 ﻿using Aspectus.ExtensionMethods;
 using FileCurator;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.ObjectPool;
 using Serilog;
 using System;
 using System.Reflection;
+using System.Text;
 using Xunit;
 
 namespace Aspectus.Tests.BaseClasses
 {
+    /// <summary>
+    /// Testing directory fixture
+    /// </summary>
+    /// <seealso cref="System.IDisposable"/>
     [Collection("DirectoryCollection")]
     public class TestingDirectoryFixture : IDisposable
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestingDirectoryFixture"/> class.
+        /// </summary>
         public TestingDirectoryFixture()
         {
             if (Canister.Builder.Bootstrapper == null)
             {
-                Canister.Builder.CreateContainer(new ServiceCollection(),
+                var services = new ServiceCollection();
+                services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
+                Canister.Builder.CreateContainer(services,
                    typeof(TestingDirectoryFixture).GetTypeInfo().Assembly,
                    typeof(FileInfo).GetTypeInfo().Assembly)
                    .RegisterAspectus()
@@ -27,8 +38,22 @@ namespace Aspectus.Tests.BaseClasses
             new DirectoryInfo(@".\Logs").Create();
         }
 
+        /// <summary>
+        /// Gets the logger.
+        /// </summary>
+        /// <value>The logger.</value>
         public static ILogger Logger => Canister.Builder.Bootstrapper.Resolve<ILogger>();
 
+        /// <summary>
+        /// Gets the object pool.
+        /// </summary>
+        /// <value>The object pool.</value>
+        public static ObjectPool<StringBuilder> ObjectPool => Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>();
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting
+        /// unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             new DirectoryInfo(@".\Testing").Delete();

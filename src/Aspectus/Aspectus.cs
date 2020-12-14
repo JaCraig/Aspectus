@@ -19,8 +19,8 @@ using Aspectus.HelperFunctions;
 using Aspectus.Interfaces;
 using Fast.Activator;
 using Microsoft.CodeAnalysis;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
-using Serilog;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -46,12 +46,12 @@ namespace Aspectus
         /// <param name="logger">Serilog based log object</param>
         /// <param name="objectPool">The object pool.</param>
         /// <exception cref="ArgumentNullException">logger</exception>
-        public Aspectus(Compiler compiler, IEnumerable<IAspect> aspects, IEnumerable<IAOPModule> modules, ILogger logger, ObjectPool<StringBuilder>? objectPool)
+        public Aspectus(Compiler compiler, IEnumerable<IAspect> aspects, IEnumerable<IAOPModule> modules, ILogger<Aspectus>? logger, ObjectPool<StringBuilder>? objectPool)
         {
-            Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
+            Logger = logger;
             aspects ??= Array.Empty<IAspect>();
             modules ??= Array.Empty<IAOPModule>();
-            Compiler = compiler ?? new Compiler(Logger);
+            Compiler = compiler ?? new Compiler(objectPool);
             if (Aspects.IsEmpty)
                 Aspects.Add(aspects);
             modules.ForEachParallel(x => x.Setup(this));
@@ -65,7 +65,7 @@ namespace Aspectus
         /// <param name="aspects">The aspects.</param>
         /// <param name="modules">The modules.</param>
         public Aspectus(Compiler compiler, IEnumerable<IAspect> aspects, IEnumerable<IAOPModule> modules)
-            : this(compiler, aspects, modules, Log.Logger ?? new LoggerConfiguration().CreateLogger(), null)
+            : this(compiler, aspects, modules, null, null)
         {
         }
 
@@ -82,7 +82,7 @@ namespace Aspectus
         /// <summary>
         /// Logging object
         /// </summary>
-        private ILogger Logger { get; }
+        private ILogger? Logger { get; }
 
         /// <summary>
         /// Gets the object pool.
@@ -186,7 +186,7 @@ namespace Aspectus
 
             foreach (var TempType in TempTypes)
             {
-                Logger.Debug("Generating type for {Info:l}", TempType.GetName(ObjectPool));
+                Logger?.LogDebug("Generating type for {0}", TempType.GetName(ObjectPool));
                 GetAssemblies(TempType, TempAssemblies);
 
                 var Namespace = "AspectusGeneratedTypes.C" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -209,7 +209,7 @@ namespace Aspectus
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error compiling code");
+                Logger?.LogError(ex, "Error compiling code");
                 foreach (var TempType in TempTypes)
                 {
                     Classes.AddOrUpdate(TempType,
