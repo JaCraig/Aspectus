@@ -9,9 +9,7 @@ Aspectus is an AOP library that allows you to inject cross cutting concerns in a
 
 Aspectus relies on [Canister](https://github.com/JaCraig/Canister) in order to hook itself up. In order for this to work, you must do the following at startup:
 
-    Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
-                    .RegisterAspectus()
-                    .Build();
+    services.AddCanisterModules(configure => configure.RegisterAspectus());
 					
 The RegisterAspectus function is an extension method that registers it with the IoC container. When this is done, Aspectus is ready to use.
 
