@@ -1,5 +1,4 @@
-﻿using Aspectus.ExtensionMethods;
-using FileCurator;
+﻿using FileCurator;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
 using Serilog;
@@ -26,11 +25,9 @@ namespace Aspectus.Tests.BaseClasses
             {
                 var services = new ServiceCollection();
                 services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
-                Canister.Builder.CreateContainer(services,
-                   typeof(TestingDirectoryFixture).GetTypeInfo().Assembly,
+                services.AddCanisterModules(configure => configure.AddAssembly(typeof(TestingDirectoryFixture).GetTypeInfo().Assembly,
                    typeof(FileInfo).GetTypeInfo().Assembly)
-                   .RegisterAspectus()
-                   .Build();
+                   .RegisterAspectus());
             }
 
             new DirectoryInfo(@".\Testing").Create();

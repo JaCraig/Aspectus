@@ -17,7 +17,7 @@ limitations under the License.
 using Canister.Interfaces;
 using System.Reflection;
 
-namespace Aspectus.ExtensionMethods
+namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
     /// Registration extension methods
@@ -29,9 +29,9 @@ namespace Aspectus.ExtensionMethods
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
         /// <returns>The bootstrapper</returns>
-        public static IBootstrapper? RegisterAspectus(this IBootstrapper? bootstrapper)
+        public static ICanisterConfiguration? RegisterAspectus(this ICanisterConfiguration? bootstrapper)
         {
-            return bootstrapper?.AddAssembly(typeof(Aspectus).GetTypeInfo().Assembly);
+            return bootstrapper?.AddAssembly(typeof(Aspectus.Aspectus).GetTypeInfo().Assembly);
         }
     }
 }
