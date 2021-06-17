@@ -19,7 +19,6 @@ using Aspectus.HelperFunctions;
 using Aspectus.Interfaces;
 using Fast.Activator;
 using Microsoft.CodeAnalysis;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using System;
@@ -57,7 +56,6 @@ namespace Aspectus
                 Aspects.Add(aspects);
             modules.ForEachParallel(x => x.Setup(this));
             ObjectPool = objectPool;
-            _instance = this;
         }
 
         /// <summary>
@@ -69,45 +67,12 @@ namespace Aspectus
         public Aspectus(Compiler compiler, IEnumerable<IAspect> aspects, IEnumerable<IAOPModule> modules)
             : this(compiler, aspects, modules, null, null)
         {
-            _instance = this;
         }
 
         /// <summary>
-        /// Gets the instance.
+        /// Dictionary containing generated types and associates it with original type
         /// </summary>
-        /// <value>The instance.</value>
-        public static Aspectus? Instance
-        {
-            get
-            {
-                if (!(_instance is null))
-                    return _instance;
-                if (Canister.Builder.Bootstrapper is null)
-                {
-                    lock (InstanceLockObject)
-                    {
-                        if (Canister.Builder.Bootstrapper is null)
-                        {
-                            new ServiceCollection().AddCanisterModules();
-                        }
-                    }
-                }
-                for (var x = 0; x < 1000; ++x)
-                {
-                    try
-                    {
-                        _instance = Canister.Builder.Bootstrapper?.Resolve<Aspectus>();
-                        break;
-                    }
-                    catch { }
-                }
-                return _instance;
-            }
-            set
-            {
-                _instance = value;
-            }
-        }
+        private readonly ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
 
         /// <summary>
         /// The list of aspects that are being used
@@ -129,21 +94,6 @@ namespace Aspectus
         /// </summary>
         /// <value>The object pool.</value>
         private ObjectPool<StringBuilder>? ObjectPool { get; }
-
-        /// <summary>
-        /// The instance lock object
-        /// </summary>
-        private static readonly object InstanceLockObject = new object();
-
-        /// <summary>
-        /// The instance
-        /// </summary>
-        private static Aspectus? _instance;
-
-        /// <summary>
-        /// Dictionary containing generated types and associates it with original type
-        /// </summary>
-        private readonly ConcurrentDictionary<Type, Type> Classes = new ConcurrentDictionary<Type, Type>();
 
         /// <summary>
         /// Creates an object of the specified base type, registering the type if necessary
