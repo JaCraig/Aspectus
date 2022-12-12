@@ -19,17 +19,16 @@ namespace Aspectus.Tests.Modules
         /// Loads the module using the bootstrapper
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
-        public void Load(IBootstrapper bootstrapper)
+        public void Load(IServiceCollection bootstrapper)
         {
             if (bootstrapper == null)
                 return;
-            bootstrapper.Register<ILogger>(new LoggerConfiguration()
+            bootstrapper.AddSingleton<ILogger>(_ => new LoggerConfiguration()
                                             .WriteTo
                                             .File("Log.txt")
                                             .MinimumLevel
                                             .Debug()
-                                            .CreateLogger(),
-                                        ServiceLifetime.Singleton);
+                                            .CreateLogger());
         }
     }
 }

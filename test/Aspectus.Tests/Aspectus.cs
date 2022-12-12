@@ -2,6 +2,7 @@
 using Aspectus.Interfaces;
 using Aspectus.Tests.Aspects;
 using Aspectus.Tests.BaseClasses;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace Aspectus.Tests
         public void Create()
         {
             Logger.Information("AspectusTests.Create");
-            var Test = new Aspectus(new Compiler(ObjectPool), new List<IAspect>(), new List<IAOPModule>(), Canister.Builder.Bootstrapper.Resolve<ILogger<Aspectus>>(), ObjectPool);
+            var Test = new Aspectus(new Compiler(ObjectPool), new List<IAspect>(), new List<IAOPModule>(), GetServiceProvider().GetService<ILogger<Aspectus>>(), ObjectPool);
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
             Assert.NotNull(Item);
         }
@@ -46,7 +47,7 @@ namespace Aspectus.Tests
         public void TestAspectFromCanister()
         {
             Logger.Information("AspectusTests.TestAspectTestMultiple");
-            var Test = Canister.Builder.Bootstrapper.Resolve<Aspectus>();
+            var Test = GetServiceProvider().GetService<Aspectus>();
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
             Assert.NotNull(Item);
@@ -64,7 +65,7 @@ namespace Aspectus.Tests
         public void TestAspectTest()
         {
             Logger.Information("AspectusTests.TestAspectTest");
-            var Test = new Aspectus(new Compiler("TestAspectTest", ObjectPool), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), Canister.Builder.Bootstrapper.Resolve<ILogger<Aspectus>>(), ObjectPool);
+            var Test = new Aspectus(new Compiler("TestAspectTest", ObjectPool), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), GetServiceProvider().GetService<ILogger<Aspectus>>(), ObjectPool);
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
             Assert.NotNull(Item);
@@ -77,7 +78,7 @@ namespace Aspectus.Tests
         public void TestAspectTestAfterClean()
         {
             Logger.Information("AspectusTests.TestAspectTestAfterClean");
-            var Test = new Aspectus(new Compiler("TestAspectTestAfterClean", ObjectPool), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), Canister.Builder.Bootstrapper.Resolve<ILogger<Aspectus>>(), ObjectPool);
+            var Test = new Aspectus(new Compiler("TestAspectTestAfterClean", ObjectPool), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), GetServiceProvider().GetService<ILogger<Aspectus>>(), ObjectPool);
             Test.FinalizeSetup();
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
@@ -94,7 +95,7 @@ namespace Aspectus.Tests
         public void TestAspectTestBeforeClean()
         {
             Logger.Information("AspectusTests.TestAspectTestBeforeClean");
-            var Test = new Aspectus(new Compiler("TestAspectTestBeforeClean", ObjectPool), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), Canister.Builder.Bootstrapper.Resolve<ILogger<Aspectus>>(), ObjectPool);
+            var Test = new Aspectus(new Compiler("TestAspectTestBeforeClean", ObjectPool), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), GetServiceProvider().GetService<ILogger<Aspectus>>(), ObjectPool);
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             Test.FinalizeSetup();
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
@@ -113,7 +114,7 @@ namespace Aspectus.Tests
         public void TestAspectTestMultiple()
         {
             Logger.Information("AspectusTests.TestAspectTestMultiple");
-            var Test = new Aspectus(new Compiler("TestAspectTestMultiple", ObjectPool), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), Canister.Builder.Bootstrapper.Resolve<ILogger<Aspectus>>(), ObjectPool);
+            var Test = new Aspectus(new Compiler("TestAspectTestMultiple", ObjectPool), new[] { new TestAspect() }.ToList(), new List<IAOPModule>(), GetServiceProvider().GetService<ILogger<Aspectus>>(), ObjectPool);
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
             Assert.NotNull(Item);

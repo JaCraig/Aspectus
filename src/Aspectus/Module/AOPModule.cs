@@ -36,14 +36,14 @@ namespace Aspectus.Module
         /// Loads the module
         /// </summary>
         /// <param name="bootstrapper">Bootstrapper to register with</param>
-        public void Load(IBootstrapper? bootstrapper)
+        public void Load(IServiceCollection? bootstrapper)
         {
             var objectPoolProvider = new DefaultObjectPoolProvider();
-            bootstrapper?.Register<Compiler>()
-                .RegisterAll<IAspect>()
-                .RegisterAll<IAOPModule>()
-                .Register(objectPoolProvider.CreateStringBuilderPool(), ServiceLifetime.Singleton)
-                .Register<Aspectus>(ServiceLifetime.Singleton);
+            bootstrapper?.AddTransient<Compiler>()
+                .AddAllTransient<IAspect>()
+                .AddAllTransient<IAOPModule>()
+                .AddSingleton(_ => objectPoolProvider.CreateStringBuilderPool())
+                .AddSingleton<Aspectus>();
         }
     }
 }

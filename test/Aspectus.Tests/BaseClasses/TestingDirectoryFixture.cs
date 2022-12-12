@@ -1,5 +1,4 @@
-﻿using FileCurator;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
 using Serilog;
 using System;
@@ -21,31 +20,29 @@ namespace Aspectus.Tests.BaseClasses
         /// </summary>
         public TestingDirectoryFixture()
         {
-            if (Canister.Builder.Bootstrapper == null)
-            {
-                var services = new ServiceCollection();
-                services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
-                services.AddCanisterModules(configure => configure.AddAssembly(typeof(TestingDirectoryFixture).GetTypeInfo().Assembly,
-                   typeof(FileInfo).GetTypeInfo().Assembly)
-                   .RegisterAspectus());
-            }
-
-            new DirectoryInfo(@".\Testing").Create();
-            new DirectoryInfo(@".\App_Data").Create();
-            new DirectoryInfo(@".\Logs").Create();
         }
 
         /// <summary>
         /// Gets the logger.
         /// </summary>
         /// <value>The logger.</value>
-        public static ILogger Logger => Canister.Builder.Bootstrapper.Resolve<ILogger>();
+        public static ILogger Logger => GetServiceProvider().GetService<ILogger>();
 
         /// <summary>
         /// Gets the object pool.
         /// </summary>
         /// <value>The object pool.</value>
-        public static ObjectPool<StringBuilder> ObjectPool => Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>();
+        public static ObjectPool<StringBuilder> ObjectPool => GetServiceProvider().GetService<ObjectPool<StringBuilder>>();
+
+        /// <summary>
+        /// The service lock
+        /// </summary>
+        protected static object ServiceLock = new();
+
+        /// <summary>
+        /// The service provider
+        /// </summary>
+        protected static IServiceProvider ServiceProvider;
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting
@@ -53,10 +50,28 @@ namespace Aspectus.Tests.BaseClasses
         /// </summary>
         public void Dispose()
         {
-            new DirectoryInfo(@".\Testing").Delete();
-            new DirectoryInfo(@".\App_Data").Delete();
-            new DirectoryInfo(@".\Logs").Delete();
             GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Gets the service provider.
+        /// </summary>
+        /// <returns></returns>
+        protected static IServiceProvider GetServiceProvider()
+        {
+            if (ServiceProvider is not null)
+                return ServiceProvider;
+            lock (ServiceLock)
+            {
+                if (ServiceProvider is not null)
+                    return ServiceProvider;
+                var services = new ServiceCollection();
+                services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
+                services.AddCanisterModules(configure => configure.AddAssembly(typeof(TestingDirectoryFixture).GetTypeInfo().Assembly)
+                   .RegisterAspectus());
+                ServiceProvider = services.BuildServiceProvider();
+                return ServiceProvider;
+            }
         }
     }
 }
