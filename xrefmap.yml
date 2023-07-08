@@ -1,0 +1,589 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Aspectus
+  name: Aspectus
+  href: api/Aspectus.html
+  commentId: N:Aspectus
+  fullName: Aspectus
+  nameWithType: Aspectus
+- uid: Aspectus.Aspectus
+  name: Aspectus
+  href: api/Aspectus.Aspectus.html
+  commentId: T:Aspectus.Aspectus
+  fullName: Aspectus.Aspectus
+  nameWithType: Aspectus
+- uid: Aspectus.Aspectus.#ctor(Aspectus.CodeGen.Compiler,System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAspect},System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAOPModule},Microsoft.Extensions.Logging.ILogger{Aspectus.Aspectus},Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
+  name: Aspectus(Compiler, IEnumerable<IAspect>, IEnumerable<IAOPModule>, ILogger<Aspectus>?, ObjectPool<StringBuilder>?)
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus__ctor_Aspectus_CodeGen_Compiler_System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAspect__System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAOPModule__Microsoft_Extensions_Logging_ILogger_Aspectus_Aspectus__Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__
+  commentId: M:Aspectus.Aspectus.#ctor(Aspectus.CodeGen.Compiler,System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAspect},System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAOPModule},Microsoft.Extensions.Logging.ILogger{Aspectus.Aspectus},Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
+  name.vb: New(Compiler, IEnumerable(Of IAspect), IEnumerable(Of IAOPModule), ILogger(Of Aspectus), ObjectPool(Of StringBuilder))
+  fullName: Aspectus.Aspectus.Aspectus(Aspectus.CodeGen.Compiler, System.Collections.Generic.IEnumerable<Aspectus.Interfaces.IAspect>, System.Collections.Generic.IEnumerable<Aspectus.Interfaces.IAOPModule>, Microsoft.Extensions.Logging.ILogger<Aspectus.Aspectus>?, Microsoft.Extensions.ObjectPool.ObjectPool<System.Text.StringBuilder>?)
+  fullName.vb: Aspectus.Aspectus.New(Aspectus.CodeGen.Compiler, System.Collections.Generic.IEnumerable(Of Aspectus.Interfaces.IAspect), System.Collections.Generic.IEnumerable(Of Aspectus.Interfaces.IAOPModule), Microsoft.Extensions.Logging.ILogger(Of Aspectus.Aspectus), Microsoft.Extensions.ObjectPool.ObjectPool(Of System.Text.StringBuilder))
+  nameWithType: Aspectus.Aspectus(Compiler, IEnumerable<IAspect>, IEnumerable<IAOPModule>, ILogger<Aspectus>?, ObjectPool<StringBuilder>?)
+  nameWithType.vb: Aspectus.New(Compiler, IEnumerable(Of IAspect), IEnumerable(Of IAOPModule), ILogger(Of Aspectus), ObjectPool(Of StringBuilder))
+- uid: Aspectus.Aspectus.#ctor(Aspectus.CodeGen.Compiler,System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAspect},System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAOPModule})
+  name: Aspectus(Compiler, IEnumerable<IAspect>, IEnumerable<IAOPModule>)
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus__ctor_Aspectus_CodeGen_Compiler_System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAspect__System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAOPModule__
+  commentId: M:Aspectus.Aspectus.#ctor(Aspectus.CodeGen.Compiler,System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAspect},System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAOPModule})
+  name.vb: New(Compiler, IEnumerable(Of IAspect), IEnumerable(Of IAOPModule))
+  fullName: Aspectus.Aspectus.Aspectus(Aspectus.CodeGen.Compiler, System.Collections.Generic.IEnumerable<Aspectus.Interfaces.IAspect>, System.Collections.Generic.IEnumerable<Aspectus.Interfaces.IAOPModule>)
+  fullName.vb: Aspectus.Aspectus.New(Aspectus.CodeGen.Compiler, System.Collections.Generic.IEnumerable(Of Aspectus.Interfaces.IAspect), System.Collections.Generic.IEnumerable(Of Aspectus.Interfaces.IAOPModule))
+  nameWithType: Aspectus.Aspectus(Compiler, IEnumerable<IAspect>, IEnumerable<IAOPModule>)
+  nameWithType.vb: Aspectus.New(Compiler, IEnumerable(Of IAspect), IEnumerable(Of IAOPModule))
+- uid: Aspectus.Aspectus.#ctor*
+  name: Aspectus
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus__ctor_
+  commentId: Overload:Aspectus.Aspectus.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aspectus.Aspectus.Aspectus
+  fullName.vb: Aspectus.Aspectus.New
+  nameWithType: Aspectus.Aspectus
+  nameWithType.vb: Aspectus.New
+- uid: Aspectus.Aspectus.Create(System.Type)
+  name: Create(Type)
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus_Create_System_Type_
+  commentId: M:Aspectus.Aspectus.Create(System.Type)
+  fullName: Aspectus.Aspectus.Create(System.Type)
+  nameWithType: Aspectus.Create(Type)
+- uid: Aspectus.Aspectus.Create*
+  name: Create
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus_Create_
+  commentId: Overload:Aspectus.Aspectus.Create
+  isSpec: "True"
+  fullName: Aspectus.Aspectus.Create
+  nameWithType: Aspectus.Create
+- uid: Aspectus.Aspectus.Create``1
+  name: Create<T>()
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus_Create__1
+  commentId: M:Aspectus.Aspectus.Create``1
+  name.vb: Create(Of T)()
+  fullName: Aspectus.Aspectus.Create<T>()
+  fullName.vb: Aspectus.Aspectus.Create(Of T)()
+  nameWithType: Aspectus.Create<T>()
+  nameWithType.vb: Aspectus.Create(Of T)()
+- uid: Aspectus.Aspectus.FinalizeSetup
+  name: FinalizeSetup()
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus_FinalizeSetup
+  commentId: M:Aspectus.Aspectus.FinalizeSetup
+  fullName: Aspectus.Aspectus.FinalizeSetup()
+  nameWithType: Aspectus.FinalizeSetup()
+- uid: Aspectus.Aspectus.FinalizeSetup*
+  name: FinalizeSetup
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus_FinalizeSetup_
+  commentId: Overload:Aspectus.Aspectus.FinalizeSetup
+  isSpec: "True"
+  fullName: Aspectus.Aspectus.FinalizeSetup
+  nameWithType: Aspectus.FinalizeSetup
+- uid: Aspectus.Aspectus.Setup(System.Reflection.Assembly[])
+  name: Setup(params Assembly[])
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus_Setup_System_Reflection_Assembly___
+  commentId: M:Aspectus.Aspectus.Setup(System.Reflection.Assembly[])
+  name.vb: Setup(ParamArray Assembly())
+  fullName: Aspectus.Aspectus.Setup(params System.Reflection.Assembly[])
+  fullName.vb: Aspectus.Aspectus.Setup(ParamArray System.Reflection.Assembly())
+  nameWithType: Aspectus.Setup(params Assembly[])
+  nameWithType.vb: Aspectus.Setup(ParamArray Assembly())
+- uid: Aspectus.Aspectus.Setup(System.Type[])
+  name: Setup(params Type[])
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus_Setup_System_Type___
+  commentId: M:Aspectus.Aspectus.Setup(System.Type[])
+  name.vb: Setup(ParamArray Type())
+  fullName: Aspectus.Aspectus.Setup(params System.Type[])
+  fullName.vb: Aspectus.Aspectus.Setup(ParamArray System.Type())
+  nameWithType: Aspectus.Setup(params Type[])
+  nameWithType.vb: Aspectus.Setup(ParamArray Type())
+- uid: Aspectus.Aspectus.Setup*
+  name: Setup
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus_Setup_
+  commentId: Overload:Aspectus.Aspectus.Setup
+  isSpec: "True"
+  fullName: Aspectus.Aspectus.Setup
+  nameWithType: Aspectus.Setup
+- uid: Aspectus.Aspectus.ToString
+  name: ToString()
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus_ToString
+  commentId: M:Aspectus.Aspectus.ToString
+  fullName: Aspectus.Aspectus.ToString()
+  nameWithType: Aspectus.ToString()
+- uid: Aspectus.Aspectus.ToString*
+  name: ToString
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus_ToString_
+  commentId: Overload:Aspectus.Aspectus.ToString
+  isSpec: "True"
+  fullName: Aspectus.Aspectus.ToString
+  nameWithType: Aspectus.ToString
+- uid: Aspectus.CodeGen
+  name: Aspectus.CodeGen
+  href: api/Aspectus.CodeGen.html
+  commentId: N:Aspectus.CodeGen
+  fullName: Aspectus.CodeGen
+  nameWithType: Aspectus.CodeGen
+- uid: Aspectus.CodeGen.BaseClasses
+  name: Aspectus.CodeGen.BaseClasses
+  href: api/Aspectus.CodeGen.BaseClasses.html
+  commentId: N:Aspectus.CodeGen.BaseClasses
+  fullName: Aspectus.CodeGen.BaseClasses
+  nameWithType: Aspectus.CodeGen.BaseClasses
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase
+  name: CompilerBase
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html
+  commentId: T:Aspectus.CodeGen.BaseClasses.CompilerBase
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase
+  nameWithType: CompilerBase
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.#ctor(System.String,Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
+  name: CompilerBase(string, ObjectPool<StringBuilder>?)
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase__ctor_System_String_Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__
+  commentId: M:Aspectus.CodeGen.BaseClasses.CompilerBase.#ctor(System.String,Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
+  name.vb: New(String, ObjectPool(Of StringBuilder))
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.CompilerBase(string, Microsoft.Extensions.ObjectPool.ObjectPool<System.Text.StringBuilder>?)
+  fullName.vb: Aspectus.CodeGen.BaseClasses.CompilerBase.New(String, Microsoft.Extensions.ObjectPool.ObjectPool(Of System.Text.StringBuilder))
+  nameWithType: CompilerBase.CompilerBase(string, ObjectPool<StringBuilder>?)
+  nameWithType.vb: CompilerBase.New(String, ObjectPool(Of StringBuilder))
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.#ctor*
+  name: CompilerBase
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase__ctor_
+  commentId: Overload:Aspectus.CodeGen.BaseClasses.CompilerBase.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.CompilerBase
+  fullName.vb: Aspectus.CodeGen.BaseClasses.CompilerBase.New
+  nameWithType: CompilerBase.CompilerBase
+  nameWithType.vb: CompilerBase.New
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.Add(System.String,System.Collections.Generic.IEnumerable{System.String},Microsoft.CodeAnalysis.MetadataReference[])
+  name: Add(string, IEnumerable<string>, params MetadataReference[])
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_Add_System_String_System_Collections_Generic_IEnumerable_System_String__Microsoft_CodeAnalysis_MetadataReference___
+  commentId: M:Aspectus.CodeGen.BaseClasses.CompilerBase.Add(System.String,System.Collections.Generic.IEnumerable{System.String},Microsoft.CodeAnalysis.MetadataReference[])
+  name.vb: Add(String, IEnumerable(Of String), ParamArray MetadataReference())
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.Add(string, System.Collections.Generic.IEnumerable<string>, params Microsoft.CodeAnalysis.MetadataReference[])
+  fullName.vb: Aspectus.CodeGen.BaseClasses.CompilerBase.Add(String, System.Collections.Generic.IEnumerable(Of String), ParamArray Microsoft.CodeAnalysis.MetadataReference())
+  nameWithType: CompilerBase.Add(string, IEnumerable<string>, params MetadataReference[])
+  nameWithType.vb: CompilerBase.Add(String, IEnumerable(Of String), ParamArray MetadataReference())
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.Add*
+  name: Add
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_Add_
+  commentId: Overload:Aspectus.CodeGen.BaseClasses.CompilerBase.Add
+  isSpec: "True"
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.Add
+  nameWithType: CompilerBase.Add
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.AssemblyName
+  name: AssemblyName
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_AssemblyName
+  commentId: P:Aspectus.CodeGen.BaseClasses.CompilerBase.AssemblyName
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.AssemblyName
+  nameWithType: CompilerBase.AssemblyName
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.AssemblyName*
+  name: AssemblyName
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_AssemblyName_
+  commentId: Overload:Aspectus.CodeGen.BaseClasses.CompilerBase.AssemblyName
+  isSpec: "True"
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.AssemblyName
+  nameWithType: CompilerBase.AssemblyName
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.AssemblyStream
+  name: AssemblyStream
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_AssemblyStream
+  commentId: P:Aspectus.CodeGen.BaseClasses.CompilerBase.AssemblyStream
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.AssemblyStream
+  nameWithType: CompilerBase.AssemblyStream
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.AssemblyStream*
+  name: AssemblyStream
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_AssemblyStream_
+  commentId: Overload:Aspectus.CodeGen.BaseClasses.CompilerBase.AssemblyStream
+  isSpec: "True"
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.AssemblyStream
+  nameWithType: CompilerBase.AssemblyStream
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.Classes
+  name: Classes
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_Classes
+  commentId: P:Aspectus.CodeGen.BaseClasses.CompilerBase.Classes
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.Classes
+  nameWithType: CompilerBase.Classes
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.Classes*
+  name: Classes
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_Classes_
+  commentId: Overload:Aspectus.CodeGen.BaseClasses.CompilerBase.Classes
+  isSpec: "True"
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.Classes
+  nameWithType: CompilerBase.Classes
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.Compile
+  name: Compile()
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_Compile
+  commentId: M:Aspectus.CodeGen.BaseClasses.CompilerBase.Compile
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.Compile()
+  nameWithType: CompilerBase.Compile()
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.Compile*
+  name: Compile
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_Compile_
+  commentId: Overload:Aspectus.CodeGen.BaseClasses.CompilerBase.Compile
+  isSpec: "True"
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.Compile
+  nameWithType: CompilerBase.Compile
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.Create*
+  name: Create
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_Create_
+  commentId: Overload:Aspectus.CodeGen.BaseClasses.CompilerBase.Create
+  isSpec: "True"
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.Create
+  nameWithType: CompilerBase.Create
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.Create``1(System.Type,System.Object[])
+  name: Create<T>(Type, params object[])
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_Create__1_System_Type_System_Object___
+  commentId: M:Aspectus.CodeGen.BaseClasses.CompilerBase.Create``1(System.Type,System.Object[])
+  name.vb: Create(Of T)(Type, ParamArray Object())
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.Create<T>(System.Type, params object[])
+  fullName.vb: Aspectus.CodeGen.BaseClasses.CompilerBase.Create(Of T)(System.Type, ParamArray Object())
+  nameWithType: CompilerBase.Create<T>(Type, params object[])
+  nameWithType.vb: CompilerBase.Create(Of T)(Type, ParamArray Object())
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.Dispose
+  name: Dispose()
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_Dispose
+  commentId: M:Aspectus.CodeGen.BaseClasses.CompilerBase.Dispose
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.Dispose()
+  nameWithType: CompilerBase.Dispose()
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.Dispose(System.Boolean)
+  name: Dispose(bool)
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_Dispose_System_Boolean_
+  commentId: M:Aspectus.CodeGen.BaseClasses.CompilerBase.Dispose(System.Boolean)
+  name.vb: Dispose(Boolean)
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.Dispose(bool)
+  fullName.vb: Aspectus.CodeGen.BaseClasses.CompilerBase.Dispose(Boolean)
+  nameWithType: CompilerBase.Dispose(bool)
+  nameWithType.vb: CompilerBase.Dispose(Boolean)
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.Dispose*
+  name: Dispose
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_Dispose_
+  commentId: Overload:Aspectus.CodeGen.BaseClasses.CompilerBase.Dispose
+  isSpec: "True"
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.Dispose
+  nameWithType: CompilerBase.Dispose
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.LoadAssembly
+  name: LoadAssembly()
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_LoadAssembly
+  commentId: M:Aspectus.CodeGen.BaseClasses.CompilerBase.LoadAssembly
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.LoadAssembly()
+  nameWithType: CompilerBase.LoadAssembly()
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.LoadAssembly*
+  name: LoadAssembly
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_LoadAssembly_
+  commentId: Overload:Aspectus.CodeGen.BaseClasses.CompilerBase.LoadAssembly
+  isSpec: "True"
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.LoadAssembly
+  nameWithType: CompilerBase.LoadAssembly
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.Optimize
+  name: Optimize
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_Optimize
+  commentId: P:Aspectus.CodeGen.BaseClasses.CompilerBase.Optimize
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.Optimize
+  nameWithType: CompilerBase.Optimize
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.Optimize*
+  name: Optimize
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_Optimize_
+  commentId: Overload:Aspectus.CodeGen.BaseClasses.CompilerBase.Optimize
+  isSpec: "True"
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.Optimize
+  nameWithType: CompilerBase.Optimize
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.ToString
+  name: ToString()
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_ToString
+  commentId: M:Aspectus.CodeGen.BaseClasses.CompilerBase.ToString
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.ToString()
+  nameWithType: CompilerBase.ToString()
+- uid: Aspectus.CodeGen.BaseClasses.CompilerBase.ToString*
+  name: ToString
+  href: api/Aspectus.CodeGen.BaseClasses.CompilerBase.html#Aspectus_CodeGen_BaseClasses_CompilerBase_ToString_
+  commentId: Overload:Aspectus.CodeGen.BaseClasses.CompilerBase.ToString
+  isSpec: "True"
+  fullName: Aspectus.CodeGen.BaseClasses.CompilerBase.ToString
+  nameWithType: CompilerBase.ToString
+- uid: Aspectus.CodeGen.Compiler
+  name: Compiler
+  href: api/Aspectus.CodeGen.Compiler.html
+  commentId: T:Aspectus.CodeGen.Compiler
+  fullName: Aspectus.CodeGen.Compiler
+  nameWithType: Compiler
+- uid: Aspectus.CodeGen.Compiler.#ctor
+  name: Compiler()
+  href: api/Aspectus.CodeGen.Compiler.html#Aspectus_CodeGen_Compiler__ctor
+  commentId: M:Aspectus.CodeGen.Compiler.#ctor
+  name.vb: New()
+  fullName: Aspectus.CodeGen.Compiler.Compiler()
+  fullName.vb: Aspectus.CodeGen.Compiler.New()
+  nameWithType: Compiler.Compiler()
+  nameWithType.vb: Compiler.New()
+- uid: Aspectus.CodeGen.Compiler.#ctor(Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
+  name: Compiler(ObjectPool<StringBuilder>?)
+  href: api/Aspectus.CodeGen.Compiler.html#Aspectus_CodeGen_Compiler__ctor_Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__
+  commentId: M:Aspectus.CodeGen.Compiler.#ctor(Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
+  name.vb: New(ObjectPool(Of StringBuilder))
+  fullName: Aspectus.CodeGen.Compiler.Compiler(Microsoft.Extensions.ObjectPool.ObjectPool<System.Text.StringBuilder>?)
+  fullName.vb: Aspectus.CodeGen.Compiler.New(Microsoft.Extensions.ObjectPool.ObjectPool(Of System.Text.StringBuilder))
+  nameWithType: Compiler.Compiler(ObjectPool<StringBuilder>?)
+  nameWithType.vb: Compiler.New(ObjectPool(Of StringBuilder))
+- uid: Aspectus.CodeGen.Compiler.#ctor(System.String,Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
+  name: Compiler(string, ObjectPool<StringBuilder>?)
+  href: api/Aspectus.CodeGen.Compiler.html#Aspectus_CodeGen_Compiler__ctor_System_String_Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__
+  commentId: M:Aspectus.CodeGen.Compiler.#ctor(System.String,Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
+  name.vb: New(String, ObjectPool(Of StringBuilder))
+  fullName: Aspectus.CodeGen.Compiler.Compiler(string, Microsoft.Extensions.ObjectPool.ObjectPool<System.Text.StringBuilder>?)
+  fullName.vb: Aspectus.CodeGen.Compiler.New(String, Microsoft.Extensions.ObjectPool.ObjectPool(Of System.Text.StringBuilder))
+  nameWithType: Compiler.Compiler(string, ObjectPool<StringBuilder>?)
+  nameWithType.vb: Compiler.New(String, ObjectPool(Of StringBuilder))
+- uid: Aspectus.CodeGen.Compiler.#ctor(System.String)
+  name: Compiler(string)
+  href: api/Aspectus.CodeGen.Compiler.html#Aspectus_CodeGen_Compiler__ctor_System_String_
+  commentId: M:Aspectus.CodeGen.Compiler.#ctor(System.String)
+  name.vb: New(String)
+  fullName: Aspectus.CodeGen.Compiler.Compiler(string)
+  fullName.vb: Aspectus.CodeGen.Compiler.New(String)
+  nameWithType: Compiler.Compiler(string)
+  nameWithType.vb: Compiler.New(String)
+- uid: Aspectus.CodeGen.Compiler.#ctor*
+  name: Compiler
+  href: api/Aspectus.CodeGen.Compiler.html#Aspectus_CodeGen_Compiler__ctor_
+  commentId: Overload:Aspectus.CodeGen.Compiler.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aspectus.CodeGen.Compiler.Compiler
+  fullName.vb: Aspectus.CodeGen.Compiler.New
+  nameWithType: Compiler.Compiler
+  nameWithType.vb: Compiler.New
+- uid: Aspectus.CodeGen.Compiler.Create(System.String,System.Collections.Generic.IEnumerable{System.String},Microsoft.CodeAnalysis.MetadataReference[])
+  name: Create(string, IEnumerable<string>, params MetadataReference[])
+  href: api/Aspectus.CodeGen.Compiler.html#Aspectus_CodeGen_Compiler_Create_System_String_System_Collections_Generic_IEnumerable_System_String__Microsoft_CodeAnalysis_MetadataReference___
+  commentId: M:Aspectus.CodeGen.Compiler.Create(System.String,System.Collections.Generic.IEnumerable{System.String},Microsoft.CodeAnalysis.MetadataReference[])
+  name.vb: Create(String, IEnumerable(Of String), ParamArray MetadataReference())
+  fullName: Aspectus.CodeGen.Compiler.Create(string, System.Collections.Generic.IEnumerable<string>, params Microsoft.CodeAnalysis.MetadataReference[])
+  fullName.vb: Aspectus.CodeGen.Compiler.Create(String, System.Collections.Generic.IEnumerable(Of String), ParamArray Microsoft.CodeAnalysis.MetadataReference())
+  nameWithType: Compiler.Create(string, IEnumerable<string>, params MetadataReference[])
+  nameWithType.vb: Compiler.Create(String, IEnumerable(Of String), ParamArray MetadataReference())
+- uid: Aspectus.CodeGen.Compiler.Create*
+  name: Create
+  href: api/Aspectus.CodeGen.Compiler.html#Aspectus_CodeGen_Compiler_Create_
+  commentId: Overload:Aspectus.CodeGen.Compiler.Create
+  isSpec: "True"
+  fullName: Aspectus.CodeGen.Compiler.Create
+  nameWithType: Compiler.Create
+- uid: Aspectus.Interfaces
+  name: Aspectus.Interfaces
+  href: api/Aspectus.Interfaces.html
+  commentId: N:Aspectus.Interfaces
+  fullName: Aspectus.Interfaces
+  nameWithType: Aspectus.Interfaces
+- uid: Aspectus.Interfaces.IAOPModule
+  name: IAOPModule
+  href: api/Aspectus.Interfaces.IAOPModule.html
+  commentId: T:Aspectus.Interfaces.IAOPModule
+  fullName: Aspectus.Interfaces.IAOPModule
+  nameWithType: IAOPModule
+- uid: Aspectus.Interfaces.IAOPModule.Setup(Aspectus.Aspectus)
+  name: Setup(Aspectus)
+  href: api/Aspectus.Interfaces.IAOPModule.html#Aspectus_Interfaces_IAOPModule_Setup_Aspectus_Aspectus_
+  commentId: M:Aspectus.Interfaces.IAOPModule.Setup(Aspectus.Aspectus)
+  fullName: Aspectus.Interfaces.IAOPModule.Setup(Aspectus.Aspectus)
+  nameWithType: IAOPModule.Setup(Aspectus)
+- uid: Aspectus.Interfaces.IAOPModule.Setup*
+  name: Setup
+  href: api/Aspectus.Interfaces.IAOPModule.html#Aspectus_Interfaces_IAOPModule_Setup_
+  commentId: Overload:Aspectus.Interfaces.IAOPModule.Setup
+  isSpec: "True"
+  fullName: Aspectus.Interfaces.IAOPModule.Setup
+  nameWithType: IAOPModule.Setup
+- uid: Aspectus.Interfaces.IAspect
+  name: IAspect
+  href: api/Aspectus.Interfaces.IAspect.html
+  commentId: T:Aspectus.Interfaces.IAspect
+  fullName: Aspectus.Interfaces.IAspect
+  nameWithType: IAspect
+- uid: Aspectus.Interfaces.IAspect.AssembliesUsing
+  name: AssembliesUsing
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_AssembliesUsing
+  commentId: P:Aspectus.Interfaces.IAspect.AssembliesUsing
+  fullName: Aspectus.Interfaces.IAspect.AssembliesUsing
+  nameWithType: IAspect.AssembliesUsing
+- uid: Aspectus.Interfaces.IAspect.AssembliesUsing*
+  name: AssembliesUsing
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_AssembliesUsing_
+  commentId: Overload:Aspectus.Interfaces.IAspect.AssembliesUsing
+  isSpec: "True"
+  fullName: Aspectus.Interfaces.IAspect.AssembliesUsing
+  nameWithType: IAspect.AssembliesUsing
+- uid: Aspectus.Interfaces.IAspect.InterfacesUsing
+  name: InterfacesUsing
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_InterfacesUsing
+  commentId: P:Aspectus.Interfaces.IAspect.InterfacesUsing
+  fullName: Aspectus.Interfaces.IAspect.InterfacesUsing
+  nameWithType: IAspect.InterfacesUsing
+- uid: Aspectus.Interfaces.IAspect.InterfacesUsing*
+  name: InterfacesUsing
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_InterfacesUsing_
+  commentId: Overload:Aspectus.Interfaces.IAspect.InterfacesUsing
+  isSpec: "True"
+  fullName: Aspectus.Interfaces.IAspect.InterfacesUsing
+  nameWithType: IAspect.InterfacesUsing
+- uid: Aspectus.Interfaces.IAspect.Setup(System.Object)
+  name: Setup(object)
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_Setup_System_Object_
+  commentId: M:Aspectus.Interfaces.IAspect.Setup(System.Object)
+  name.vb: Setup(Object)
+  fullName: Aspectus.Interfaces.IAspect.Setup(object)
+  fullName.vb: Aspectus.Interfaces.IAspect.Setup(Object)
+  nameWithType: IAspect.Setup(object)
+  nameWithType.vb: IAspect.Setup(Object)
+- uid: Aspectus.Interfaces.IAspect.Setup*
+  name: Setup
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_Setup_
+  commentId: Overload:Aspectus.Interfaces.IAspect.Setup
+  isSpec: "True"
+  fullName: Aspectus.Interfaces.IAspect.Setup
+  nameWithType: IAspect.Setup
+- uid: Aspectus.Interfaces.IAspect.SetupDefaultConstructor(System.Type)
+  name: SetupDefaultConstructor(Type)
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_SetupDefaultConstructor_System_Type_
+  commentId: M:Aspectus.Interfaces.IAspect.SetupDefaultConstructor(System.Type)
+  fullName: Aspectus.Interfaces.IAspect.SetupDefaultConstructor(System.Type)
+  nameWithType: IAspect.SetupDefaultConstructor(Type)
+- uid: Aspectus.Interfaces.IAspect.SetupDefaultConstructor*
+  name: SetupDefaultConstructor
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_SetupDefaultConstructor_
+  commentId: Overload:Aspectus.Interfaces.IAspect.SetupDefaultConstructor
+  isSpec: "True"
+  fullName: Aspectus.Interfaces.IAspect.SetupDefaultConstructor
+  nameWithType: IAspect.SetupDefaultConstructor
+- uid: Aspectus.Interfaces.IAspect.SetupEndMethod(System.Reflection.MethodInfo,System.Type,System.String)
+  name: SetupEndMethod(MethodInfo, Type, string)
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_SetupEndMethod_System_Reflection_MethodInfo_System_Type_System_String_
+  commentId: M:Aspectus.Interfaces.IAspect.SetupEndMethod(System.Reflection.MethodInfo,System.Type,System.String)
+  name.vb: SetupEndMethod(MethodInfo, Type, String)
+  fullName: Aspectus.Interfaces.IAspect.SetupEndMethod(System.Reflection.MethodInfo, System.Type, string)
+  fullName.vb: Aspectus.Interfaces.IAspect.SetupEndMethod(System.Reflection.MethodInfo, System.Type, String)
+  nameWithType: IAspect.SetupEndMethod(MethodInfo, Type, string)
+  nameWithType.vb: IAspect.SetupEndMethod(MethodInfo, Type, String)
+- uid: Aspectus.Interfaces.IAspect.SetupEndMethod*
+  name: SetupEndMethod
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_SetupEndMethod_
+  commentId: Overload:Aspectus.Interfaces.IAspect.SetupEndMethod
+  isSpec: "True"
+  fullName: Aspectus.Interfaces.IAspect.SetupEndMethod
+  nameWithType: IAspect.SetupEndMethod
+- uid: Aspectus.Interfaces.IAspect.SetupExceptionMethod(System.Reflection.MethodInfo,System.Type)
+  name: SetupExceptionMethod(MethodInfo, Type)
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_SetupExceptionMethod_System_Reflection_MethodInfo_System_Type_
+  commentId: M:Aspectus.Interfaces.IAspect.SetupExceptionMethod(System.Reflection.MethodInfo,System.Type)
+  fullName: Aspectus.Interfaces.IAspect.SetupExceptionMethod(System.Reflection.MethodInfo, System.Type)
+  nameWithType: IAspect.SetupExceptionMethod(MethodInfo, Type)
+- uid: Aspectus.Interfaces.IAspect.SetupExceptionMethod*
+  name: SetupExceptionMethod
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_SetupExceptionMethod_
+  commentId: Overload:Aspectus.Interfaces.IAspect.SetupExceptionMethod
+  isSpec: "True"
+  fullName: Aspectus.Interfaces.IAspect.SetupExceptionMethod
+  nameWithType: IAspect.SetupExceptionMethod
+- uid: Aspectus.Interfaces.IAspect.SetupInterfaces(System.Type)
+  name: SetupInterfaces(Type)
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_SetupInterfaces_System_Type_
+  commentId: M:Aspectus.Interfaces.IAspect.SetupInterfaces(System.Type)
+  fullName: Aspectus.Interfaces.IAspect.SetupInterfaces(System.Type)
+  nameWithType: IAspect.SetupInterfaces(Type)
+- uid: Aspectus.Interfaces.IAspect.SetupInterfaces*
+  name: SetupInterfaces
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_SetupInterfaces_
+  commentId: Overload:Aspectus.Interfaces.IAspect.SetupInterfaces
+  isSpec: "True"
+  fullName: Aspectus.Interfaces.IAspect.SetupInterfaces
+  nameWithType: IAspect.SetupInterfaces
+- uid: Aspectus.Interfaces.IAspect.SetupStartMethod(System.Reflection.MethodInfo,System.Type)
+  name: SetupStartMethod(MethodInfo, Type)
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_SetupStartMethod_System_Reflection_MethodInfo_System_Type_
+  commentId: M:Aspectus.Interfaces.IAspect.SetupStartMethod(System.Reflection.MethodInfo,System.Type)
+  fullName: Aspectus.Interfaces.IAspect.SetupStartMethod(System.Reflection.MethodInfo, System.Type)
+  nameWithType: IAspect.SetupStartMethod(MethodInfo, Type)
+- uid: Aspectus.Interfaces.IAspect.SetupStartMethod*
+  name: SetupStartMethod
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_SetupStartMethod_
+  commentId: Overload:Aspectus.Interfaces.IAspect.SetupStartMethod
+  isSpec: "True"
+  fullName: Aspectus.Interfaces.IAspect.SetupStartMethod
+  nameWithType: IAspect.SetupStartMethod
+- uid: Aspectus.Interfaces.IAspect.Usings
+  name: Usings
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_Usings
+  commentId: P:Aspectus.Interfaces.IAspect.Usings
+  fullName: Aspectus.Interfaces.IAspect.Usings
+  nameWithType: IAspect.Usings
+- uid: Aspectus.Interfaces.IAspect.Usings*
+  name: Usings
+  href: api/Aspectus.Interfaces.IAspect.html#Aspectus_Interfaces_IAspect_Usings_
+  commentId: Overload:Aspectus.Interfaces.IAspect.Usings
+  isSpec: "True"
+  fullName: Aspectus.Interfaces.IAspect.Usings
+  nameWithType: IAspect.Usings
+- uid: Aspectus.Module
+  name: Aspectus.Module
+  href: api/Aspectus.Module.html
+  commentId: N:Aspectus.Module
+  fullName: Aspectus.Module
+  nameWithType: Aspectus.Module
+- uid: Aspectus.Module.AOPModule
+  name: AOPModule
+  href: api/Aspectus.Module.AOPModule.html
+  commentId: T:Aspectus.Module.AOPModule
+  fullName: Aspectus.Module.AOPModule
+  nameWithType: AOPModule
+- uid: Aspectus.Module.AOPModule.Load(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name: Load(IServiceCollection?)
+  href: api/Aspectus.Module.AOPModule.html#Aspectus_Module_AOPModule_Load_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  commentId: M:Aspectus.Module.AOPModule.Load(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name.vb: Load(IServiceCollection)
+  fullName: Aspectus.Module.AOPModule.Load(Microsoft.Extensions.DependencyInjection.IServiceCollection?)
+  fullName.vb: Aspectus.Module.AOPModule.Load(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  nameWithType: AOPModule.Load(IServiceCollection?)
+  nameWithType.vb: AOPModule.Load(IServiceCollection)
+- uid: Aspectus.Module.AOPModule.Load*
+  name: Load
+  href: api/Aspectus.Module.AOPModule.html#Aspectus_Module_AOPModule_Load_
+  commentId: Overload:Aspectus.Module.AOPModule.Load
+  isSpec: "True"
+  fullName: Aspectus.Module.AOPModule.Load
+  nameWithType: AOPModule.Load
+- uid: Aspectus.Module.AOPModule.Order
+  name: Order
+  href: api/Aspectus.Module.AOPModule.html#Aspectus_Module_AOPModule_Order
+  commentId: P:Aspectus.Module.AOPModule.Order
+  fullName: Aspectus.Module.AOPModule.Order
+  nameWithType: AOPModule.Order
+- uid: Aspectus.Module.AOPModule.Order*
+  name: Order
+  href: api/Aspectus.Module.AOPModule.html#Aspectus_Module_AOPModule_Order_
+  commentId: Overload:Aspectus.Module.AOPModule.Order
+  isSpec: "True"
+  fullName: Aspectus.Module.AOPModule.Order
+  nameWithType: AOPModule.Order
+- uid: Microsoft.Extensions.DependencyInjection
+  name: Microsoft.Extensions.DependencyInjection
+  href: api/Microsoft.Extensions.DependencyInjection.html
+  commentId: N:Microsoft.Extensions.DependencyInjection
+  fullName: Microsoft.Extensions.DependencyInjection
+  nameWithType: Microsoft.Extensions.DependencyInjection
+- uid: Microsoft.Extensions.DependencyInjection.Registration
+  name: Registration
+  href: api/Microsoft.Extensions.DependencyInjection.Registration.html
+  commentId: T:Microsoft.Extensions.DependencyInjection.Registration
+  fullName: Microsoft.Extensions.DependencyInjection.Registration
+  nameWithType: Registration
+- uid: Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus(Canister.Interfaces.ICanisterConfiguration)
+  name: RegisterAspectus(ICanisterConfiguration?)
+  href: api/Microsoft.Extensions.DependencyInjection.Registration.html#Microsoft_Extensions_DependencyInjection_Registration_RegisterAspectus_Canister_Interfaces_ICanisterConfiguration_
+  commentId: M:Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus(Canister.Interfaces.ICanisterConfiguration)
+  name.vb: RegisterAspectus(ICanisterConfiguration)
+  fullName: Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus(Canister.Interfaces.ICanisterConfiguration?)
+  fullName.vb: Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus(Canister.Interfaces.ICanisterConfiguration)
+  nameWithType: Registration.RegisterAspectus(ICanisterConfiguration?)
+  nameWithType.vb: Registration.RegisterAspectus(ICanisterConfiguration)
+- uid: Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus*
+  name: RegisterAspectus
+  href: api/Microsoft.Extensions.DependencyInjection.Registration.html#Microsoft_Extensions_DependencyInjection_Registration_RegisterAspectus_
+  commentId: Overload:Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus
+  isSpec: "True"
+  fullName: Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus
+  nameWithType: Registration.RegisterAspectus

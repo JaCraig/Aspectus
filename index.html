@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Aspectus | Aspectus API Reference </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Aspectus | Aspectus API Reference ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="styles/config.css">
+      <link rel="stylesheet" href="styles/discord.css">
+      <link rel="stylesheet" href="styles/singulink.css">
+      <link rel="stylesheet" href="styles/main.css">
+      <meta property="docfx:navrel" content="toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="index.html">
+              <img src="images/icon.png" alt="Aspectus" class="logomark">
+              <span class="brand-title">Aspectus</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="index.html">
+                          <img src="images/icon.png" alt="Aspectus" class="logomark">
+                          <span class="brand-title">Aspectus</span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+                </div>
+                <div class="footer">
+  <strong><a href='https://github.com/JaCraig/Aspectus'>Open in Github</a></strong>
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/JaCraig/Aspectus/blob/master/docfx_project/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="">
+<h1 id="aspectus">Aspectus</h1>
+
+<p>Aspectus is an advanced Aspect-Oriented Programming (AOP) library that simplifies the injection of cross-cutting concerns into your codebase. It empowers you to write clean and maintainable code by separating cross-cutting concerns from the core logic of your application.</p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Easy Integration</strong>: Aspectus seamlessly integrates with your project by registering with the IoC (Inversion of Control) container during startup.</li>
+<li><strong>Code Generation</strong>: Leveraging Roslyn, Aspectus generates code dynamically, allowing you to write expressive C# code for implementing aspects.</li>
+<li><strong>Flexible Aspect Customization</strong>: Implement the <code>IAspect</code> interface to define custom logic for constructors, methods, and exception handling.</li>
+<li><strong>AOP Modules</strong>: Aspectus supports modules, enabling you to consolidate and load setup code efficiently.</li>
+<li><strong>NuGet Package</strong>: Install Aspectus easily through NuGet, simplifying the setup process for your projects.</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>To install Aspectus, use the NuGet package manager:</p>
+<pre><code>Install-Package Aspectus
+</code></pre>
+<h2 id="getting-started">Getting Started</h2>
+<p>Follow these steps to start using Aspectus in your project:</p>
+<ol>
+<li><p>Register Aspectus with your IoC container during startup. Example code for ASP.NET Core:</p>
+<pre><code class="lang-csharp">services.AddCanisterModules();
+</code></pre>
+</li>
+<li><p>Implement aspects by creating classes that inherit from the <code>IAspect</code> interface. Customize aspects based on your specific requirements, such as constructor setups, method injections, and exception handling.</p>
+<pre><code class="lang-csharp">public class TestAspect : IAspect
+{
+    // Implement your aspect logic here
+}
+</code></pre>
+</li>
+<li><p>Utilize Aspectus to create instances of types with injected aspects.</p>
+<pre><code class="lang-csharp">var aspectus = Canister.Builder.Bootstrapper.Resolve&lt;Aspectus&gt;();
+var item = aspectus.Create&lt;YourClass&gt;();
+// Use and enjoy your enhanced object
+</code></pre>
+</li>
+</ol>
+<p>For a more detailed guide on using Aspectus, including advanced scenarios and AOP modules, refer to the <a href="https://jacraig.github.io/Aspectus">Aspectus Documentation</a>.</p>
+<h2 id="build-process">Build Process</h2>
+<p>To build Aspectus from source, ensure you have the following:</p>
+<ul>
+<li>Visual Studio 2022</li>
+<li>.Net 6</li>
+</ul>
+<p>Simply clone the repository and open the solution in Visual Studio.</p>
+<h2 id="contributing">Contributing</h2>
+<p>Contributions are welcome! To contribute to Aspectus, please follow these steps:</p>
+<ol>
+<li>Fork the repository.</li>
+<li>Create your feature branch: <code>git checkout -b feature/YourFeature</code>.</li>
+<li>Commit your changes: <code>git commit -am 'Add YourFeature'</code>.</li>
+<li>Push to the branch: <code>git push origin feature/YourFeature</code>.</li>
+<li>Submit a pull request.</li>
+</ol>
+<p>Please ensure your code follows the existing coding style and includes appropriate tests. Additionally, make sure to update the documentation as needed.</p>
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>&#169; James Craig. All rights reserved.</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="styles/docfx.js"></script>
+        <script type="text/javascript" src="styles/main.js"></script>
+        <script type="text/javascript" src="styles/singulink.js"></script>    </body>
+</html>

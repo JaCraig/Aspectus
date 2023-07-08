@@ -1,0 +1,542 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Interface IAspect
+ | Aspectus API Reference </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Interface IAspect
+ | Aspectus API Reference ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/discord.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../images/icon.png" alt="Aspectus" class="logomark">
+              <span class="brand-title">Aspectus</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../images/icon.png" alt="Aspectus" class="logomark">
+                          <span class="brand-title">Aspectus</span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  <strong><a href='https://github.com/JaCraig/Aspectus'>Open in Github</a></strong>
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Interfaces_IAspect.md&amp;value=---%0Auid%3A%20Aspectus.Interfaces.IAspect%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="Aspectus.Interfaces.IAspect">
+
+
+
+  <h1 id="Aspectus_Interfaces_IAspect" data-uid="Aspectus.Interfaces.IAspect" class="text-break">Interface IAspect
+</h1>
+  <div class="markdown level0 summary"><p>Aspect interface</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Aspectus.html">Aspectus</a>.<a class="xref" href="Aspectus.Interfaces.html">Interfaces</a></h6>
+  <h6><strong>Assembly</strong>: Aspectus.dll</h6>
+  <h5 id="Aspectus_Interfaces_IAspect_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IAspect</code></pre>
+  </div>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Interfaces_IAspect_AssembliesUsing.md&amp;value=---%0Auid%3A%20Aspectus.Interfaces.IAspect.AssembliesUsing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Interfaces/IAspect.cs/#L32">View Source</a>
+  </span>
+  <a id="Aspectus_Interfaces_IAspect_AssembliesUsing_" data-uid="Aspectus.Interfaces.IAspect.AssembliesUsing*"></a>
+  <h4 id="Aspectus_Interfaces_IAspect_AssembliesUsing" data-uid="Aspectus.Interfaces.IAspect.AssembliesUsing">AssembliesUsing</h4>
+  <div class="markdown level1 summary"><p>Set of assemblies that the aspect requires</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ICollection&lt;MetadataReference&gt; AssembliesUsing { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.metadatareference">MetadataReference</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Interfaces_IAspect_InterfacesUsing.md&amp;value=---%0Auid%3A%20Aspectus.Interfaces.IAspect.InterfacesUsing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Interfaces/IAspect.cs/#L37">View Source</a>
+  </span>
+  <a id="Aspectus_Interfaces_IAspect_InterfacesUsing_" data-uid="Aspectus.Interfaces.IAspect.InterfacesUsing*"></a>
+  <h4 id="Aspectus_Interfaces_IAspect_InterfacesUsing" data-uid="Aspectus.Interfaces.IAspect.InterfacesUsing">InterfacesUsing</h4>
+  <div class="markdown level1 summary"><p>List of interfaces that need to be injected by this aspect</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ICollection&lt;Type&gt; InterfacesUsing { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Interfaces_IAspect_Usings.md&amp;value=---%0Auid%3A%20Aspectus.Interfaces.IAspect.Usings%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Interfaces/IAspect.cs/#L42">View Source</a>
+  </span>
+  <a id="Aspectus_Interfaces_IAspect_Usings_" data-uid="Aspectus.Interfaces.IAspect.Usings*"></a>
+  <h4 id="Aspectus_Interfaces_IAspect_Usings" data-uid="Aspectus.Interfaces.IAspect.Usings">Usings</h4>
+  <div class="markdown level1 summary"><p>Using statements that the aspect requires</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ICollection&lt;string&gt; Usings { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Interfaces_IAspect_Setup_System_Object_.md&amp;value=---%0Auid%3A%20Aspectus.Interfaces.IAspect.Setup(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Interfaces/IAspect.cs/#L48">View Source</a>
+  </span>
+  <a id="Aspectus_Interfaces_IAspect_Setup_" data-uid="Aspectus.Interfaces.IAspect.Setup*"></a>
+  <h4 id="Aspectus_Interfaces_IAspect_Setup_System_Object_" data-uid="Aspectus.Interfaces.IAspect.Setup(System.Object)">Setup(object)</h4>
+  <div class="markdown level1 summary"><p>Used to hook into the object once it has been created</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Setup(object value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Object created by the system</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Interfaces_IAspect_SetupDefaultConstructor_System_Type_.md&amp;value=---%0Auid%3A%20Aspectus.Interfaces.IAspect.SetupDefaultConstructor(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Interfaces/IAspect.cs/#L55">View Source</a>
+  </span>
+  <a id="Aspectus_Interfaces_IAspect_SetupDefaultConstructor_" data-uid="Aspectus.Interfaces.IAspect.SetupDefaultConstructor*"></a>
+  <h4 id="Aspectus_Interfaces_IAspect_SetupDefaultConstructor_System_Type_" data-uid="Aspectus.Interfaces.IAspect.SetupDefaultConstructor(System.Type)">SetupDefaultConstructor(Type)</h4>
+  <div class="markdown level1 summary"><p>Used to insert code into the default constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string SetupDefaultConstructor(Type baseType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">baseType</span></td>
+        <td><p>Base type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>The code to insert</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Interfaces_IAspect_SetupEndMethod_System_Reflection_MethodInfo_System_Type_System_String_.md&amp;value=---%0Auid%3A%20Aspectus.Interfaces.IAspect.SetupEndMethod(System.Reflection.MethodInfo%2CSystem.Type%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Interfaces/IAspect.cs/#L64">View Source</a>
+  </span>
+  <a id="Aspectus_Interfaces_IAspect_SetupEndMethod_" data-uid="Aspectus.Interfaces.IAspect.SetupEndMethod*"></a>
+  <h4 id="Aspectus_Interfaces_IAspect_SetupEndMethod_System_Reflection_MethodInfo_System_Type_System_String_" data-uid="Aspectus.Interfaces.IAspect.SetupEndMethod(System.Reflection.MethodInfo,System.Type,System.String)">SetupEndMethod(MethodInfo, Type, string)</h4>
+  <div class="markdown level1 summary"><p>Used to insert code at the end of the method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string SetupEndMethod(MethodInfo method, Type baseType, string returnValueName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a></td>
+        <td><span class="parametername">method</span></td>
+        <td><p>Overridding Method</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">baseType</span></td>
+        <td><p>Base type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">returnValueName</span></td>
+        <td><p>Local holder for the value returned by the function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>The code to insert</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Interfaces_IAspect_SetupExceptionMethod_System_Reflection_MethodInfo_System_Type_.md&amp;value=---%0Auid%3A%20Aspectus.Interfaces.IAspect.SetupExceptionMethod(System.Reflection.MethodInfo%2CSystem.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Interfaces/IAspect.cs/#L72">View Source</a>
+  </span>
+  <a id="Aspectus_Interfaces_IAspect_SetupExceptionMethod_" data-uid="Aspectus.Interfaces.IAspect.SetupExceptionMethod*"></a>
+  <h4 id="Aspectus_Interfaces_IAspect_SetupExceptionMethod_System_Reflection_MethodInfo_System_Type_" data-uid="Aspectus.Interfaces.IAspect.SetupExceptionMethod(System.Reflection.MethodInfo,System.Type)">SetupExceptionMethod(MethodInfo, Type)</h4>
+  <div class="markdown level1 summary"><p>Used to insert code within the catch portion of the try/catch portion of the method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string SetupExceptionMethod(MethodInfo method, Type baseType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a></td>
+        <td><span class="parametername">method</span></td>
+        <td><p>Overridding Method</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">baseType</span></td>
+        <td><p>Base type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>The code to insert</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Interfaces_IAspect_SetupInterfaces_System_Type_.md&amp;value=---%0Auid%3A%20Aspectus.Interfaces.IAspect.SetupInterfaces(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Interfaces/IAspect.cs/#L79">View Source</a>
+  </span>
+  <a id="Aspectus_Interfaces_IAspect_SetupInterfaces_" data-uid="Aspectus.Interfaces.IAspect.SetupInterfaces*"></a>
+  <h4 id="Aspectus_Interfaces_IAspect_SetupInterfaces_System_Type_" data-uid="Aspectus.Interfaces.IAspect.SetupInterfaces(System.Type)">SetupInterfaces(Type)</h4>
+  <div class="markdown level1 summary"><p>Used to set up any interfaces, extra fields, methods, etc. prior to overridding any methods.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string SetupInterfaces(Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type of the object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>The code to insert</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Interfaces_IAspect_SetupStartMethod_System_Reflection_MethodInfo_System_Type_.md&amp;value=---%0Auid%3A%20Aspectus.Interfaces.IAspect.SetupStartMethod(System.Reflection.MethodInfo%2CSystem.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Interfaces/IAspect.cs/#L87">View Source</a>
+  </span>
+  <a id="Aspectus_Interfaces_IAspect_SetupStartMethod_" data-uid="Aspectus.Interfaces.IAspect.SetupStartMethod*"></a>
+  <h4 id="Aspectus_Interfaces_IAspect_SetupStartMethod_System_Reflection_MethodInfo_System_Type_" data-uid="Aspectus.Interfaces.IAspect.SetupStartMethod(System.Reflection.MethodInfo,System.Type)">SetupStartMethod(MethodInfo, Type)</h4>
+  <div class="markdown level1 summary"><p>Used to insert code at the beginning of the method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string SetupStartMethod(MethodInfo method, Type baseType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a></td>
+        <td><span class="parametername">method</span></td>
+        <td><p>Overridding Method</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">baseType</span></td>
+        <td><p>Base type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>The code to insert</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>&#169; James Craig. All rights reserved.</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>
