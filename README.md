@@ -25,7 +25,7 @@ Follow these steps to start using Aspectus in your project:
 1. Register Aspectus with your IoC container during startup. Example code for ASP.NET Core:
 
    ```csharp
-   services.AddCanisterModules();
+   ServiceProvider? ServiceProvider = new ServiceCollection().AddCanisterModules()?.BuildServiceProvider();
    ```
 
 2. Implement aspects by creating classes that inherit from the `IAspect` interface. Customize aspects based on your specific requirements, such as constructor setups, method injections, and exception handling.
@@ -40,7 +40,7 @@ Follow these steps to start using Aspectus in your project:
 3. Utilize Aspectus to create instances of types with injected aspects.
 
    ```csharp
-   var aspectus = Canister.Builder.Bootstrapper.Resolve<Aspectus>();
+   var aspectus = ServiceProvider.GetRequiredService<Aspectus>();
    aspectus.Setup(typeof(YourClass));
    var item = aspectus.Create<YourClass>();
    // Use and enjoy your enhanced object
