@@ -41,11 +41,12 @@ Follow these steps to start using Aspectus in your project:
 
    ```csharp
    var aspectus = Canister.Builder.Bootstrapper.Resolve<Aspectus>();
+   aspectus.Setup(typeof(YourClass));
    var item = aspectus.Create<YourClass>();
    // Use and enjoy your enhanced object
    ```
 
-For a more detailed guide on using Aspectus, including advanced scenarios and AOP modules, refer to the [Aspectus Documentation](https://jacraig.github.io/Aspectus).
+For a more detailed guide on using Aspectus, including advanced scenarios and AOP modules, refer to the [Aspectus Documentation](https://jacraig.github.io/Aspectus/articles/intro.html).
 
 ## Build Process
 
