@@ -123,12 +123,13 @@
 </li>
 <li><p>Utilize Aspectus to create instances of types with injected aspects.</p>
 <pre><code class="lang-csharp">var aspectus = Canister.Builder.Bootstrapper.Resolve&lt;Aspectus&gt;();
+aspectus.Setup(typeof(YourClass));
 var item = aspectus.Create&lt;YourClass&gt;();
 // Use and enjoy your enhanced object
 </code></pre>
 </li>
 </ol>
-<p>For a more detailed guide on using Aspectus, including advanced scenarios and AOP modules, refer to the <a href="https://jacraig.github.io/Aspectus">Aspectus Documentation</a>.</p>
+<p>For a more detailed guide on using Aspectus, including advanced scenarios and AOP modules, refer to the <a href="https://jacraig.github.io/Aspectus/articles/intro.html">Aspectus Documentation</a>.</p>
 <h2 id="build-process">Build Process</h2>
 <p>To build Aspectus from source, ensure you have the following:</p>
 <ul>
