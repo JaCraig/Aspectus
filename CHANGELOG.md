@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.2"></a>
+## [5.0.2](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.2) (2023-7-8)
+
+### Bug Fixes
+
+* update to documentation ([6128ae0](https://www.github.com/JaCraig/Aspectus/commit/6128ae00e744c716ffd60a72819fb93fe0f5b762))
+
 <a name="5.0.1"></a>
 ## [5.0.1](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.1) (2023-7-8)
 
