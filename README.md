@@ -1,5 +1,7 @@
 # Aspectus
 
+[![.NET Publish](https://github.com/JaCraig/Aspectus/actions/workflows/dotnet-publish.yml/badge.svg)](https://github.com/JaCraig/Aspectus/actions/workflows/dotnet-publish.yml)
+
 Aspectus is an advanced Aspect-Oriented Programming (AOP) library that simplifies the injection of cross-cutting concerns into your codebase. It empowers you to write clean and maintainable code by separating cross-cutting concerns from the core logic of your application.
 
 ## Key Features
