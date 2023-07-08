@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29709.97
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5245E965-0654-4D72-84FA-331D8C631DCD}"
 EndProject
@@ -15,6 +15,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspectus", "src\Aspectus\Aspectus.csproj", "{6B0DA394-A846-4780-BE6E-0DC83251F9F2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspectus.Tests", "test\Aspectus.Tests\Aspectus.Tests.csproj", "{828C4111-F602-4B17-BD2F-51DC69F808E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspectus.Example", "Aspectus.Example\Aspectus.Example.csproj", "{E537EF2A-C510-4000-B72E-3EF3C5A7815A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,10 @@ Global
 		{828C4111-F602-4B17-BD2F-51DC69F808E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{828C4111-F602-4B17-BD2F-51DC69F808E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{828C4111-F602-4B17-BD2F-51DC69F808E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E537EF2A-C510-4000-B72E-3EF3C5A7815A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E537EF2A-C510-4000-B72E-3EF3C5A7815A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E537EF2A-C510-4000-B72E-3EF3C5A7815A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E537EF2A-C510-4000-B72E-3EF3C5A7815A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,6 +4,9 @@
 # Output
 
 ```
-I was created
-I was created with a string: Hello World
+
+0
+0
+Test
+BLAH
 ```
