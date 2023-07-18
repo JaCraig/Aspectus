@@ -77,7 +77,7 @@ internal class Program
 
         // Adding to the list works as normal.
         Object.D.Add("Test");
-        Console.WriteLine(Object.D.First());
+        Console.WriteLine(Object.D[0]);
 
         // However our aspect has added a new property and interface to the class and we can access it.
         Console.WriteLine((Object as IExample)?.MySecretData);
@@ -102,7 +102,7 @@ public class TestAspect : IAspect
             };
         foreach (FileInfo? DLL in new FileInfo(typeof(object).GetTypeInfo().Assembly.Location).Directory
                                                     .EnumerateFiles("*.dll")
-                                                    .Where(x => Load.Contains(x.Name)))
+                                                    .Where(x => _Load.Contains(x.Name)))
         {
             PortableExecutableReference TempAssembly = MetadataReference.CreateFromFile(DLL.FullName);
             AssembliesUsing.Add(TempAssembly);
@@ -127,7 +127,7 @@ public class TestAspect : IAspect
     /// <summary>
     /// The DLLs we want to load and use.
     /// </summary>
-    private readonly string[] Load =
+    private readonly string[] _Load =
         {
             "mscorlib.dll",
 "mscorlib.ni.dll",
