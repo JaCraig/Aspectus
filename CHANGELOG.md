@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.7"></a>
+## [5.0.7](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.7) (2023-8-7)
+
+### Bug Fixes
+
+* bump the dependencies group with 2 updates ([b0b43ff](https://www.github.com/JaCraig/Aspectus/commit/b0b43ffbf5a6bead9088d4528bd870fb5d270d78))
+
+### Other
+
+* Merge pull request #6 from JaCraig/dependabot/github_actions/dependencies-0717129e0a ([d9a021d](https://www.github.com/JaCraig/Aspectus/commit/d9a021d91067d6d74a75221da65e5c7a3585b4b5))
+* Merge pull request #7 from JaCraig/dependabot/nuget/dependencies-850e8a41eb ([eee45ad](https://www.github.com/JaCraig/Aspectus/commit/eee45adbea4391e5b4597d93bd69bd77167d54f9))
+* bump the dependencies group with 2 updates ([f74aadd](https://www.github.com/JaCraig/Aspectus/commit/f74aaddedb7292f542943f10479e9eda2d2fddd8))
+* Small code cleanup ([bc4de71](https://www.github.com/JaCraig/Aspectus/commit/bc4de71ddf8b42fd1c0954e2461a22022506a5f6))
+* Update dependabot.yml ([552601c](https://www.github.com/JaCraig/Aspectus/commit/552601ce6e81daaf6418871516a4690c71d081bb))
+* update editorconfig ([350ef64](https://www.github.com/JaCraig/Aspectus/commit/350ef64989f10770004bd6498ef513bd78a9801b))
+* Updating dependabot ([d634fe3](https://www.github.com/JaCraig/Aspectus/commit/d634fe3eec9b0d20574dc64ff315b81c5ee08642))
+
 <a name="5.0.6"></a>
 ## [5.0.6](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.6) (2023-7-13)
 
