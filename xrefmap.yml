@@ -13,15 +13,6 @@ references:
   commentId: T:Aspectus.Aspectus
   fullName: Aspectus.Aspectus
   nameWithType: Aspectus
-- uid: Aspectus.Aspectus.#ctor(Aspectus.CodeGen.Compiler,System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAspect},System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAOPModule},Microsoft.Extensions.Logging.ILogger{Aspectus.Aspectus},Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
-  name: Aspectus(Compiler, IEnumerable<IAspect>, IEnumerable<IAOPModule>, ILogger<Aspectus>?, ObjectPool<StringBuilder>?)
-  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus__ctor_Aspectus_CodeGen_Compiler_System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAspect__System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAOPModule__Microsoft_Extensions_Logging_ILogger_Aspectus_Aspectus__Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__
-  commentId: M:Aspectus.Aspectus.#ctor(Aspectus.CodeGen.Compiler,System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAspect},System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAOPModule},Microsoft.Extensions.Logging.ILogger{Aspectus.Aspectus},Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
-  name.vb: New(Compiler, IEnumerable(Of IAspect), IEnumerable(Of IAOPModule), ILogger(Of Aspectus), ObjectPool(Of StringBuilder))
-  fullName: Aspectus.Aspectus.Aspectus(Aspectus.CodeGen.Compiler, System.Collections.Generic.IEnumerable<Aspectus.Interfaces.IAspect>, System.Collections.Generic.IEnumerable<Aspectus.Interfaces.IAOPModule>, Microsoft.Extensions.Logging.ILogger<Aspectus.Aspectus>?, Microsoft.Extensions.ObjectPool.ObjectPool<System.Text.StringBuilder>?)
-  fullName.vb: Aspectus.Aspectus.New(Aspectus.CodeGen.Compiler, System.Collections.Generic.IEnumerable(Of Aspectus.Interfaces.IAspect), System.Collections.Generic.IEnumerable(Of Aspectus.Interfaces.IAOPModule), Microsoft.Extensions.Logging.ILogger(Of Aspectus.Aspectus), Microsoft.Extensions.ObjectPool.ObjectPool(Of System.Text.StringBuilder))
-  nameWithType: Aspectus.Aspectus(Compiler, IEnumerable<IAspect>, IEnumerable<IAOPModule>, ILogger<Aspectus>?, ObjectPool<StringBuilder>?)
-  nameWithType.vb: Aspectus.New(Compiler, IEnumerable(Of IAspect), IEnumerable(Of IAOPModule), ILogger(Of Aspectus), ObjectPool(Of StringBuilder))
 - uid: Aspectus.Aspectus.#ctor(Aspectus.CodeGen.Compiler,System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAspect},System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAOPModule})
   name: Aspectus(Compiler, IEnumerable<IAspect>, IEnumerable<IAOPModule>)
   href: api/Aspectus.Aspectus.html#Aspectus_Aspectus__ctor_Aspectus_CodeGen_Compiler_System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAspect__System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAOPModule__
@@ -31,6 +22,15 @@ references:
   fullName.vb: Aspectus.Aspectus.New(Aspectus.CodeGen.Compiler, System.Collections.Generic.IEnumerable(Of Aspectus.Interfaces.IAspect), System.Collections.Generic.IEnumerable(Of Aspectus.Interfaces.IAOPModule))
   nameWithType: Aspectus.Aspectus(Compiler, IEnumerable<IAspect>, IEnumerable<IAOPModule>)
   nameWithType.vb: Aspectus.New(Compiler, IEnumerable(Of IAspect), IEnumerable(Of IAOPModule))
+- uid: Aspectus.Aspectus.#ctor(Aspectus.CodeGen.Compiler,System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAspect},System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAOPModule},Microsoft.Extensions.Logging.ILogger{Aspectus.Aspectus},Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
+  name: Aspectus(Compiler, IEnumerable<IAspect>, IEnumerable<IAOPModule>, ILogger<Aspectus>?, ObjectPool<StringBuilder>?)
+  href: api/Aspectus.Aspectus.html#Aspectus_Aspectus__ctor_Aspectus_CodeGen_Compiler_System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAspect__System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAOPModule__Microsoft_Extensions_Logging_ILogger_Aspectus_Aspectus__Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__
+  commentId: M:Aspectus.Aspectus.#ctor(Aspectus.CodeGen.Compiler,System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAspect},System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAOPModule},Microsoft.Extensions.Logging.ILogger{Aspectus.Aspectus},Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
+  name.vb: New(Compiler, IEnumerable(Of IAspect), IEnumerable(Of IAOPModule), ILogger(Of Aspectus), ObjectPool(Of StringBuilder))
+  fullName: Aspectus.Aspectus.Aspectus(Aspectus.CodeGen.Compiler, System.Collections.Generic.IEnumerable<Aspectus.Interfaces.IAspect>, System.Collections.Generic.IEnumerable<Aspectus.Interfaces.IAOPModule>, Microsoft.Extensions.Logging.ILogger<Aspectus.Aspectus>?, Microsoft.Extensions.ObjectPool.ObjectPool<System.Text.StringBuilder>?)
+  fullName.vb: Aspectus.Aspectus.New(Aspectus.CodeGen.Compiler, System.Collections.Generic.IEnumerable(Of Aspectus.Interfaces.IAspect), System.Collections.Generic.IEnumerable(Of Aspectus.Interfaces.IAOPModule), Microsoft.Extensions.Logging.ILogger(Of Aspectus.Aspectus), Microsoft.Extensions.ObjectPool.ObjectPool(Of System.Text.StringBuilder))
+  nameWithType: Aspectus.Aspectus(Compiler, IEnumerable<IAspect>, IEnumerable<IAOPModule>, ILogger<Aspectus>?, ObjectPool<StringBuilder>?)
+  nameWithType.vb: Aspectus.New(Compiler, IEnumerable(Of IAspect), IEnumerable(Of IAOPModule), ILogger(Of Aspectus), ObjectPool(Of StringBuilder))
 - uid: Aspectus.Aspectus.#ctor*
   name: Aspectus
   href: api/Aspectus.Aspectus.html#Aspectus_Aspectus__ctor_
@@ -320,15 +320,6 @@ references:
   fullName.vb: Aspectus.CodeGen.Compiler.New(Microsoft.Extensions.ObjectPool.ObjectPool(Of System.Text.StringBuilder))
   nameWithType: Compiler.Compiler(ObjectPool<StringBuilder>?)
   nameWithType.vb: Compiler.New(ObjectPool(Of StringBuilder))
-- uid: Aspectus.CodeGen.Compiler.#ctor(System.String,Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
-  name: Compiler(string, ObjectPool<StringBuilder>?)
-  href: api/Aspectus.CodeGen.Compiler.html#Aspectus_CodeGen_Compiler__ctor_System_String_Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__
-  commentId: M:Aspectus.CodeGen.Compiler.#ctor(System.String,Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
-  name.vb: New(String, ObjectPool(Of StringBuilder))
-  fullName: Aspectus.CodeGen.Compiler.Compiler(string, Microsoft.Extensions.ObjectPool.ObjectPool<System.Text.StringBuilder>?)
-  fullName.vb: Aspectus.CodeGen.Compiler.New(String, Microsoft.Extensions.ObjectPool.ObjectPool(Of System.Text.StringBuilder))
-  nameWithType: Compiler.Compiler(string, ObjectPool<StringBuilder>?)
-  nameWithType.vb: Compiler.New(String, ObjectPool(Of StringBuilder))
 - uid: Aspectus.CodeGen.Compiler.#ctor(System.String)
   name: Compiler(string)
   href: api/Aspectus.CodeGen.Compiler.html#Aspectus_CodeGen_Compiler__ctor_System_String_
@@ -338,6 +329,15 @@ references:
   fullName.vb: Aspectus.CodeGen.Compiler.New(String)
   nameWithType: Compiler.Compiler(string)
   nameWithType.vb: Compiler.New(String)
+- uid: Aspectus.CodeGen.Compiler.#ctor(System.String,Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
+  name: Compiler(string, ObjectPool<StringBuilder>?)
+  href: api/Aspectus.CodeGen.Compiler.html#Aspectus_CodeGen_Compiler__ctor_System_String_Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__
+  commentId: M:Aspectus.CodeGen.Compiler.#ctor(System.String,Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})
+  name.vb: New(String, ObjectPool(Of StringBuilder))
+  fullName: Aspectus.CodeGen.Compiler.Compiler(string, Microsoft.Extensions.ObjectPool.ObjectPool<System.Text.StringBuilder>?)
+  fullName.vb: Aspectus.CodeGen.Compiler.New(String, Microsoft.Extensions.ObjectPool.ObjectPool(Of System.Text.StringBuilder))
+  nameWithType: Compiler.Compiler(string, ObjectPool<StringBuilder>?)
+  nameWithType.vb: Compiler.New(String, ObjectPool(Of StringBuilder))
 - uid: Aspectus.CodeGen.Compiler.#ctor*
   name: Compiler
   href: api/Aspectus.CodeGen.Compiler.html#Aspectus_CodeGen_Compiler__ctor_

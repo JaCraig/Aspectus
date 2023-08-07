@@ -24,16 +24,6 @@
     "title": "Namespace Aspectus.CodeGen | Aspectus API Reference",
     "keywords": "Namespace Aspectus.CodeGen Classes Compiler Compiler"
   },
-  "api/Aspectus.html": {
-    "href": "api/Aspectus.html",
-    "title": "Namespace Aspectus | Aspectus API Reference",
-    "keywords": "Namespace Aspectus Classes Aspectus AOP interface manager"
-  },
-  "api/Aspectus.Interfaces.html": {
-    "href": "api/Aspectus.Interfaces.html",
-    "title": "Namespace Aspectus.Interfaces | Aspectus API Reference",
-    "keywords": "Namespace Aspectus.Interfaces Interfaces IAOPModule AOP module interface IAspect Aspect interface"
-  },
   "api/Aspectus.Interfaces.IAOPModule.html": {
     "href": "api/Aspectus.Interfaces.IAOPModule.html",
     "title": "Interface IAOPModule | Aspectus API Reference",
@@ -43,6 +33,11 @@
     "href": "api/Aspectus.Interfaces.IAspect.html",
     "title": "Interface IAspect | Aspectus API Reference",
     "keywords": "Interface IAspect Aspect interface Namespace: Aspectus.Interfaces Assembly: Aspectus.dll Syntax public interface IAspect Properties | Improve this Doc View Source AssembliesUsing Set of assemblies that the aspect requires Declaration ICollection<MetadataReference> AssembliesUsing { get; } Property Value Type Description ICollection<MetadataReference> | Improve this Doc View Source InterfacesUsing List of interfaces that need to be injected by this aspect Declaration ICollection<Type> InterfacesUsing { get; } Property Value Type Description ICollection<Type> | Improve this Doc View Source Usings Using statements that the aspect requires Declaration ICollection<string> Usings { get; } Property Value Type Description ICollection<string> Methods | Improve this Doc View Source Setup(object) Used to hook into the object once it has been created Declaration void Setup(object value) Parameters Type Name Description object value Object created by the system | Improve this Doc View Source SetupDefaultConstructor(Type) Used to insert code into the default constructor Declaration string SetupDefaultConstructor(Type baseType) Parameters Type Name Description Type baseType Base type Returns Type Description string The code to insert | Improve this Doc View Source SetupEndMethod(MethodInfo, Type, string) Used to insert code at the end of the method Declaration string SetupEndMethod(MethodInfo method, Type baseType, string returnValueName) Parameters Type Name Description MethodInfo method Overridding Method Type baseType Base type string returnValueName Local holder for the value returned by the function Returns Type Description string The code to insert | Improve this Doc View Source SetupExceptionMethod(MethodInfo, Type) Used to insert code within the catch portion of the try/catch portion of the method Declaration string SetupExceptionMethod(MethodInfo method, Type baseType) Parameters Type Name Description MethodInfo method Overridding Method Type baseType Base type Returns Type Description string The code to insert | Improve this Doc View Source SetupInterfaces(Type) Used to set up any interfaces, extra fields, methods, etc. prior to overridding any methods. Declaration string SetupInterfaces(Type type) Parameters Type Name Description Type type Type of the object Returns Type Description string The code to insert | Improve this Doc View Source SetupStartMethod(MethodInfo, Type) Used to insert code at the beginning of the method Declaration string SetupStartMethod(MethodInfo method, Type baseType) Parameters Type Name Description MethodInfo method Overridding Method Type baseType Base type Returns Type Description string The code to insert"
+  },
+  "api/Aspectus.Interfaces.html": {
+    "href": "api/Aspectus.Interfaces.html",
+    "title": "Namespace Aspectus.Interfaces | Aspectus API Reference",
+    "keywords": "Namespace Aspectus.Interfaces Interfaces IAOPModule AOP module interface IAspect Aspect interface"
   },
   "api/Aspectus.Module.AOPModule.html": {
     "href": "api/Aspectus.Module.AOPModule.html",
@@ -54,20 +49,25 @@
     "title": "Namespace Aspectus.Module | Aspectus API Reference",
     "keywords": "Namespace Aspectus.Module Classes AOPModule AOP module"
   },
-  "api/index.html": {
-    "href": "api/index.html",
-    "title": "Welcome | Aspectus API Reference",
-    "keywords": "Welcome Welcome to the API browser."
+  "api/Aspectus.html": {
+    "href": "api/Aspectus.html",
+    "title": "Namespace Aspectus | Aspectus API Reference",
+    "keywords": "Namespace Aspectus Classes Aspectus AOP interface manager"
+  },
+  "api/Microsoft.Extensions.DependencyInjection.Registration.html": {
+    "href": "api/Microsoft.Extensions.DependencyInjection.Registration.html",
+    "title": "Class Registration | Aspectus API Reference",
+    "keywords": "Class Registration Registration extension methods Inheritance object Registration Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Microsoft.Extensions.DependencyInjection Assembly: Aspectus.dll Syntax public static class Registration Methods | Improve this Doc View Source RegisterAspectus(ICanisterConfiguration?) Registers the aspectus library with the bootstrapper. Declaration public static ICanisterConfiguration? RegisterAspectus(this ICanisterConfiguration? bootstrapper) Parameters Type Name Description ICanisterConfiguration bootstrapper The bootstrapper. Returns Type Description ICanisterConfiguration The bootstrapper"
   },
   "api/Microsoft.Extensions.DependencyInjection.html": {
     "href": "api/Microsoft.Extensions.DependencyInjection.html",
     "title": "Namespace Microsoft.Extensions.DependencyInjection | Aspectus API Reference",
     "keywords": "Namespace Microsoft.Extensions.DependencyInjection Classes Registration Registration extension methods"
   },
-  "api/Microsoft.Extensions.DependencyInjection.Registration.html": {
-    "href": "api/Microsoft.Extensions.DependencyInjection.Registration.html",
-    "title": "Class Registration | Aspectus API Reference",
-    "keywords": "Class Registration Registration extension methods Inheritance object Registration Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Microsoft.Extensions.DependencyInjection Assembly: Aspectus.dll Syntax public static class Registration Methods | Improve this Doc View Source RegisterAspectus(ICanisterConfiguration?) Registers the aspectus library with the bootstrapper. Declaration public static ICanisterConfiguration? RegisterAspectus(this ICanisterConfiguration? bootstrapper) Parameters Type Name Description ICanisterConfiguration bootstrapper The bootstrapper. Returns Type Description ICanisterConfiguration The bootstrapper"
+  "api/index.html": {
+    "href": "api/index.html",
+    "title": "Welcome | Aspectus API Reference",
+    "keywords": "Welcome Welcome to the API browser."
   },
   "articles/intro.html": {
     "href": "articles/intro.html",
