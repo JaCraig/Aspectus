@@ -1,118 +1,128 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <head>
+    <meta charset="utf-8">
       <title>Class Aspectus
  | Aspectus API Reference </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class Aspectus
  | Aspectus API Reference ">
-      <meta name="generator" content="docfx ">
-  
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
-      <link rel="stylesheet" href="../styles/config.css">
-      <link rel="stylesheet" href="../styles/discord.css">
-      <link rel="stylesheet" href="../styles/singulink.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.json">
-      <meta property="docfx:tocrel" content="toc.json">
-  
-  <meta property="docfx:rel" content="../">
-  <meta property="docfx:newtab" content="true">
-    </head>
-    <body>
-        <div class="top-navbar">
-            <a class="burger-icon" onclick="toggleMenu()">
-                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
-            </a>
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Aspectus.md&amp;value=---%0Auid%3A%20Aspectus.Aspectus%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
 
 
-            <a class="brand" href="../index.html">
-              <img src="../images/icon.png" alt="Aspectus" class="logomark">
-              <span class="brand-title">Aspectus</span>
-            </a>        </div>
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/icon.png" alt="Aspectus">
+            Aspectus
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-        <div class="body-content">
-            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
 
-            <nav id="sidebar" role="navigation">
-                <div class="sidebar">
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-                    <div>
-                      <div class="mobile-hide">
+          <nav id="breadcrumb"></nav>
+        </div>
 
-                        <a class="brand" href="../index.html">
-                          <img src="../images/icon.png" alt="Aspectus" class="logomark">
-                          <span class="brand-title">Aspectus</span>
-                        </a>                      </div>
-
-                      <div class="sidesearch">
-                        <form id="search" role="search" class="search">
-                            <i class="bi bi-search search-icon"></i>
-                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
-                        </form>
-                      </div>
-
-                      <div id="navbar">
-                      </div>
-                    </div>                    <div class="sidebar-item-separator"></div>
-
-                        <div id="sidetoggle">
-                          <div id="sidetoc"></div>
-                        </div>
-                </div>
-                <div class="footer">
-  <strong><a href='https://github.com/JaCraig/Aspectus'>Open in Github</a></strong>
-  
-                </div>            </nav>
-
-            <main class="main-panel">
-
-                <div id="search-results" style="display: none;">
-                  <h1 class="search-list">Search Results for <span></span></h1>
-                  <div class="sr-items">
-                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
-                  </div>
-                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
-                </div>
- 
-
-                <div role="main" class="hide-when-search">
-
-                        <div class="subnav navbar navbar-default">
-                          <div class="container hide-when-search" id="breadcrumb">
-                            <ul class="breadcrumb">
-                              <li></li>
-                            </ul>
-                          </div>
-                        </div>
-
-                         <div id="contribution">
-                               <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Aspectus.md&amp;value=---%0Auid%3A%20Aspectus.Aspectus%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
-                         </div>
-
-                    <article class="content wrap" id="_content" data-uid="Aspectus.Aspectus">
+        <article data-uid="Aspectus.Aspectus">
 
 
 
-  <h1 id="Aspectus_Aspectus" data-uid="Aspectus.Aspectus" class="text-break">Class Aspectus
-</h1>
-  <div class="markdown level0 summary"><p>AOP interface manager</p>
-</div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">Aspectus</span></div>
+  <h1 id="Aspectus_Aspectus" data-uid="Aspectus.Aspectus" class="text-break">
+    Class Aspectus
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Aspectus.html">Aspectus</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Aspectus.dll</dd></dl>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
+
+  <div class="markdown summary"><p>AOP interface manager</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Aspectus</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">Aspectus</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -131,373 +141,338 @@
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Aspectus.html">Aspectus</a></h6>
-  <h6><strong>Assembly</strong>: Aspectus.dll</h6>
-  <h5 id="Aspectus_Aspectus_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Aspectus</code></pre>
-  </div>
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Aspectus__ctor_Aspectus_CodeGen_Compiler_System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAspect__System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAOPModule__.md&amp;value=---%0Auid%3A%20Aspectus.Aspectus.%23ctor(Aspectus.CodeGen.Compiler%2CSystem.Collections.Generic.IEnumerable%7BAspectus.Interfaces.IAspect%7D%2CSystem.Collections.Generic.IEnumerable%7BAspectus.Interfaces.IAOPModule%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L67">View Source</a>
-  </span>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
   <a id="Aspectus_Aspectus__ctor_" data-uid="Aspectus.Aspectus.#ctor*"></a>
-  <h4 id="Aspectus_Aspectus__ctor_Aspectus_CodeGen_Compiler_System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAspect__System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAOPModule__" data-uid="Aspectus.Aspectus.#ctor(Aspectus.CodeGen.Compiler,System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAspect},System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAOPModule})">Aspectus(Compiler, IEnumerable&lt;IAspect&gt;, IEnumerable&lt;IAOPModule&gt;)</h4>
+
+  <h3 id="Aspectus_Aspectus__ctor_Aspectus_CodeGen_Compiler_System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAspect__System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAOPModule__" data-uid="Aspectus.Aspectus.#ctor(Aspectus.CodeGen.Compiler,System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAspect},System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAOPModule})">
+  Aspectus(Compiler, IEnumerable&lt;IAspect&gt;, IEnumerable&lt;IAOPModule&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aspectus.Aspectus.html">Aspectus</a> class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Aspectus(Compiler compiler, IEnumerable&lt;IAspect&gt; aspects, IEnumerable&lt;IAOPModule&gt; modules)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Aspectus.CodeGen.Compiler.html">Compiler</a></td>
-        <td><span class="parametername">compiler</span></td>
-        <td><p>The compiler.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aspectus.Interfaces.IAspect.html">IAspect</a>&gt;</td>
-        <td><span class="parametername">aspects</span></td>
-        <td><p>The aspects.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aspectus.Interfaces.IAOPModule.html">IAOPModule</a>&gt;</td>
-        <td><span class="parametername">modules</span></td>
-        <td><p>The modules.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Aspectus__ctor_Aspectus_CodeGen_Compiler_System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAspect__System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAOPModule__Microsoft_Extensions_Logging_ILogger_Aspectus_Aspectus__Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__.md&amp;value=---%0Auid%3A%20Aspectus.Aspectus.%23ctor(Aspectus.CodeGen.Compiler%2CSystem.Collections.Generic.IEnumerable%7BAspectus.Interfaces.IAspect%7D%2CSystem.Collections.Generic.IEnumerable%7BAspectus.Interfaces.IAOPModule%7D%2CMicrosoft.Extensions.Logging.ILogger%7BAspectus.Aspectus%7D%2CMicrosoft.Extensions.ObjectPool.ObjectPool%7BSystem.Text.StringBuilder%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L49">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>compiler</code> <a class="xref" href="Aspectus.CodeGen.Compiler.html">Compiler</a></dt>
+    <dd><p>The compiler.</p>
+</dd>
+    <dt><code>aspects</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aspectus.Interfaces.IAspect.html">IAspect</a>&gt;</dt>
+    <dd><p>The aspects.</p>
+</dd>
+    <dt><code>modules</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aspectus.Interfaces.IAOPModule.html">IAOPModule</a>&gt;</dt>
+    <dd><p>The modules.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="Aspectus_Aspectus__ctor_" data-uid="Aspectus.Aspectus.#ctor*"></a>
-  <h4 id="Aspectus_Aspectus__ctor_Aspectus_CodeGen_Compiler_System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAspect__System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAOPModule__Microsoft_Extensions_Logging_ILogger_Aspectus_Aspectus__Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__" data-uid="Aspectus.Aspectus.#ctor(Aspectus.CodeGen.Compiler,System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAspect},System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAOPModule},Microsoft.Extensions.Logging.ILogger{Aspectus.Aspectus},Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})">Aspectus(Compiler, IEnumerable&lt;IAspect&gt;, IEnumerable&lt;IAOPModule&gt;, ILogger&lt;Aspectus&gt;?, ObjectPool&lt;StringBuilder&gt;?)</h4>
+
+  <h3 id="Aspectus_Aspectus__ctor_Aspectus_CodeGen_Compiler_System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAspect__System_Collections_Generic_IEnumerable_Aspectus_Interfaces_IAOPModule__Microsoft_Extensions_Logging_ILogger_Aspectus_Aspectus__Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__" data-uid="Aspectus.Aspectus.#ctor(Aspectus.CodeGen.Compiler,System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAspect},System.Collections.Generic.IEnumerable{Aspectus.Interfaces.IAOPModule},Microsoft.Extensions.Logging.ILogger{Aspectus.Aspectus},Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder})">
+  Aspectus(Compiler, IEnumerable&lt;IAspect&gt;, IEnumerable&lt;IAOPModule&gt;, ILogger&lt;Aspectus&gt;?, ObjectPool&lt;StringBuilder&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aspectus.Aspectus.html">Aspectus</a> class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Aspectus(Compiler compiler, IEnumerable&lt;IAspect&gt; aspects, IEnumerable&lt;IAOPModule&gt; modules, ILogger&lt;Aspectus&gt;? logger, ObjectPool&lt;StringBuilder&gt;? objectPool)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Aspectus.CodeGen.Compiler.html">Compiler</a></td>
-        <td><span class="parametername">compiler</span></td>
-        <td><p>The compiler.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aspectus.Interfaces.IAspect.html">IAspect</a>&gt;</td>
-        <td><span class="parametername">aspects</span></td>
-        <td><p>The aspects.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aspectus.Interfaces.IAOPModule.html">IAOPModule</a>&gt;</td>
-        <td><span class="parametername">modules</span></td>
-        <td><p>The modules.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="Aspectus.Aspectus.html">Aspectus</a>&gt;</td>
-        <td><span class="parametername">logger</span></td>
-        <td><p>Serilog based log object</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.objectpool.objectpool-1">ObjectPool</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a>&gt;</td>
-        <td><span class="parametername">objectPool</span></td>
-        <td><p>The object pool.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>logger</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Aspectus_Create_System_Type_.md&amp;value=---%0Auid%3A%20Aspectus.Aspectus.Create(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L110">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>compiler</code> <a class="xref" href="Aspectus.CodeGen.Compiler.html">Compiler</a></dt>
+    <dd><p>The compiler.</p>
+</dd>
+    <dt><code>aspects</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aspectus.Interfaces.IAspect.html">IAspect</a>&gt;</dt>
+    <dd><p>The aspects.</p>
+</dd>
+    <dt><code>modules</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aspectus.Interfaces.IAOPModule.html">IAOPModule</a>&gt;</dt>
+    <dd><p>The modules.</p>
+</dd>
+    <dt><code>logger</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="Aspectus.Aspectus.html">Aspectus</a>&gt;</dt>
+    <dd><p>Serilog based log object</p>
+</dd>
+    <dt><code>objectPool</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.objectpool.objectpool-1">ObjectPool</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a>&gt;</dt>
+    <dd><p>The object pool.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>logger</p>
+</dd>
+  </dl>
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
   <a id="Aspectus_Aspectus_Create_" data-uid="Aspectus.Aspectus.Create*"></a>
-  <h4 id="Aspectus_Aspectus_Create_System_Type_" data-uid="Aspectus.Aspectus.Create(System.Type)">Create(Type)</h4>
+
+  <h3 id="Aspectus_Aspectus_Create_System_Type_" data-uid="Aspectus.Aspectus.Create(System.Type)">
+  Create(Type)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Creates an object of the specified base type, registering the type if necessary</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public object? Create(Type baseType)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
-        <td><span class="parametername">baseType</span></td>
-        <td><p>The base type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
-        <td><p>Returns an object of the specified base type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Aspectus_Create__1.md&amp;value=---%0Auid%3A%20Aspectus.Aspectus.Create%60%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L103">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>baseType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>The base type</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>Returns an object of the specified base type</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="Aspectus_Aspectus_Create_" data-uid="Aspectus.Aspectus.Create*"></a>
-  <h4 id="Aspectus_Aspectus_Create__1" data-uid="Aspectus.Aspectus.Create``1">Create&lt;T&gt;()</h4>
+
+  <h3 id="Aspectus_Aspectus_Create__1" data-uid="Aspectus.Aspectus.Create``1">
+  Create&lt;T&gt;()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Creates an object of the specified base type, registering the type if necessary</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public T Create&lt;T&gt;()</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>Returns an object of the specified base type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>The base type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Aspectus_FinalizeSetup.md&amp;value=---%0Auid%3A%20Aspectus.Aspectus.FinalizeSetup%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L134">View Source</a>
-  </span>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>Returns an object of the specified base type</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The base type</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <a id="Aspectus_Aspectus_FinalizeSetup_" data-uid="Aspectus.Aspectus.FinalizeSetup*"></a>
-  <h4 id="Aspectus_Aspectus_FinalizeSetup" data-uid="Aspectus.Aspectus.FinalizeSetup">FinalizeSetup()</h4>
+
+  <h3 id="Aspectus_Aspectus_FinalizeSetup" data-uid="Aspectus.Aspectus.FinalizeSetup">
+  FinalizeSetup()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Cleans up items in this instance.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void FinalizeSetup()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Aspectus_Setup_System_Reflection_Assembly___.md&amp;value=---%0Auid%3A%20Aspectus.Aspectus.Setup(System.Reflection.Assembly%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L144">View Source</a>
-  </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="Aspectus_Aspectus_Setup_" data-uid="Aspectus.Aspectus.Setup*"></a>
-  <h4 id="Aspectus_Aspectus_Setup_System_Reflection_Assembly___" data-uid="Aspectus.Aspectus.Setup(System.Reflection.Assembly[])">Setup(params Assembly[])</h4>
+
+  <h3 id="Aspectus_Aspectus_Setup_System_Reflection_Assembly___" data-uid="Aspectus.Aspectus.Setup(System.Reflection.Assembly[])">
+  Setup(params Assembly[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L144"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Sets up all types from the assembly that it can</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Setup(params Assembly[] assemblies)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a>[]</td>
-        <td><span class="parametername">assemblies</span></td>
-        <td><p>Assembly to set up</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Aspectus_Setup_System_Type___.md&amp;value=---%0Auid%3A%20Aspectus.Aspectus.Setup(System.Type%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L155">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assemblies</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a>[]</dt>
+    <dd><p>Assembly to set up</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="Aspectus_Aspectus_Setup_" data-uid="Aspectus.Aspectus.Setup*"></a>
-  <h4 id="Aspectus_Aspectus_Setup_System_Type___" data-uid="Aspectus.Aspectus.Setup(System.Type[])">Setup(params Type[])</h4>
+
+  <h3 id="Aspectus_Aspectus_Setup_System_Type___" data-uid="Aspectus.Aspectus.Setup(System.Type[])">
+  Setup(params Type[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Sets up a type so it can be used in the system later</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Setup(params Type[] types)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>[]</td>
-        <td><span class="parametername">types</span></td>
-        <td><p>The types.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Aspectus/new/master/apiSpec/new?filename=Aspectus_Aspectus_ToString.md&amp;value=---%0Auid%3A%20Aspectus.Aspectus.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L227">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>types</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>[]</dt>
+    <dd><p>The types.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="Aspectus_Aspectus_ToString_" data-uid="Aspectus.Aspectus.ToString*"></a>
-  <h4 id="Aspectus_Aspectus_ToString" data-uid="Aspectus.Aspectus.ToString">ToString()</h4>
+
+  <h3 id="Aspectus_Aspectus_ToString" data-uid="Aspectus.Aspectus.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L227"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Outputs manager info as a string</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>String version of the manager</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a></div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>String version of the manager</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
-                </div>
 
-                <div class="copyright-footer">
-                    <span>&#169; James Craig. All rights reserved.</span>
-                </div>
-            </main>
+        <div class="contribution d-print-none">
+          <a href="https://github.com/JaCraig/Aspectus/blob/master/src/Aspectus/Aspectus.cs/#L38" class="edit-link">Edit this page</a>
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
-        <script type="text/javascript" src="../styles/url.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
-        <script type="text/javascript" src="../styles/docfx.js"></script>
-        <script type="text/javascript" src="../styles/main.js"></script>
-        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <strong><a href='https://github.com/JaCraig/Aspectus'>Open in Github</a></strong>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
