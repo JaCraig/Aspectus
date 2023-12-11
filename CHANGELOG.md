@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.28"></a>
+## [5.0.28](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.28) (2023-12-11)
+
+### Bug Fixes
+
+* bump the dependencies group with 1 update ([fa3b070](https://www.github.com/JaCraig/Aspectus/commit/fa3b07089ea4ec1a4c64d0f01778c6d1285efa05))
+
+### Other
+
+* Merge pull request #38 from JaCraig/dependabot/github_actions/dependencies-9d15ffb50c ([fcac0da](https://www.github.com/JaCraig/Aspectus/commit/fcac0da0f06773bb0a53d3751c681869bbd0cc5a))
+* Merge pull request #39 from JaCraig/dependabot/nuget/test/Aspectus.Tests/dependencies-9380cae661 ([1327ef6](https://www.github.com/JaCraig/Aspectus/commit/1327ef610f57ab15297e378161727d9dc7feb341))
+* Merge pull request #40 from JaCraig/dependabot/nuget/dependencies-24b5a6751e ([0f85e01](https://www.github.com/JaCraig/Aspectus/commit/0f85e018bbd918eb42ead4ad7786cef0ce7eb37f))
+* bump the dependencies group ([4e7d7a7](https://www.github.com/JaCraig/Aspectus/commit/4e7d7a7870ad0633622ec8a0b8c3abd6651e1a26))
+* bump the dependencies group with 1 update ([8a5a0bf](https://www.github.com/JaCraig/Aspectus/commit/8a5a0bfee0b5e53d6c428c31168b9eef10f5d066))
+* fixing the docfx documentation ([b40d35f](https://www.github.com/JaCraig/Aspectus/commit/b40d35fb72b6da87d6519c00f34202e5deaef2f9))
+
 <a name="5.0.27"></a>
 ## [5.0.27](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.27) (2023-11-22)
 
