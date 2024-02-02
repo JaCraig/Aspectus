@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.32"></a>
+## [5.0.32](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.32) (2024-02-02)
+
+### Bug Fixes
+
+* bump the dependencies group with 1 update ([e10a672](https://www.github.com/JaCraig/Aspectus/commit/e10a672de6b01df3ba056bf29d2d3b9a21764b5a))
+
+### Other
+
+* Merge pull request #51 from JaCraig/dependabot/nuget/dependencies-6be31571d5 ([ae205ce](https://www.github.com/JaCraig/Aspectus/commit/ae205ce46ae4daf6e27a60b903275c677ca3c64f))
+* Update dependabot-reviewer.yml ([671f6f4](https://www.github.com/JaCraig/Aspectus/commit/671f6f4f69186f7ee164fb2598b5897d45ab2544))
+
 <a name="5.0.31"></a>
 ## [5.0.31](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.31) (2024-01-29)
 
