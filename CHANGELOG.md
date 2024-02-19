@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.34"></a>
+## [5.0.34](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.34) (2024-02-19)
+
+### Bug Fixes
+
+* bump the dependencies group with 1 update ([cfb53a9](https://www.github.com/JaCraig/Aspectus/commit/cfb53a9b1adab6724130d964a19dd5d482644731))
+
+### Other
+
+* Merge pull request #54 from JaCraig/dependabot/nuget/test/Aspectus.Tests/dependencies-5305f2162c ([6516e68](https://www.github.com/JaCraig/Aspectus/commit/6516e68fe67fe1ded855442f2c9b50b4b28db3c8))
+* Merge pull request #55 from JaCraig/dependabot/nuget/test/Aspectus.Tests/dependencies-0792913db0 ([b2110ec](https://www.github.com/JaCraig/Aspectus/commit/b2110ec78d0a3b52ce367dd8811627b2bc7f557e))
+* Merge pull request #56 from JaCraig/dependabot/nuget/dependencies-1885c9e26b ([3477b18](https://www.github.com/JaCraig/Aspectus/commit/3477b18bc5857f09528cd456b71d8b5f369e5889))
+* bump the dependencies group ([05c85e5](https://www.github.com/JaCraig/Aspectus/commit/05c85e56a5d20c1940f4ccedfec71272087c7070))
+* bump the dependencies group in /test/Aspectus.Tests with 1 update ([723808f](https://www.github.com/JaCraig/Aspectus/commit/723808f9d24f119451601c06ef107f5537b0c61e))
+
 <a name="5.0.33"></a>
 ## [5.0.33](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.33) (2024-02-13)
 
