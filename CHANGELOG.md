@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.44"></a>
+## [5.0.44](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.44) (2024-04-10)
+
+### Bug Fixes
+
+* bump Microsoft.Extensions.ObjectPool in the dependencies group ([1f53fb8](https://www.github.com/JaCraig/Aspectus/commit/1f53fb83cdb37c720e0364abdc1dcb7bea9088cd))
+
+### Other
+
+* Merge pull request #68 from JaCraig/dependabot/github_actions/dependencies-45223d3826 ([fee6a7e](https://www.github.com/JaCraig/Aspectus/commit/fee6a7ee6046d8af87d116ccb4a4b4b8e78d1c29))
+* Merge pull request #69 from JaCraig/dependabot/nuget/dependencies-6b38f4320a ([bd0d8b0](https://www.github.com/JaCraig/Aspectus/commit/bd0d8b0828ca1debe75243a192768b12d99619ae))
+* bump peaceiris/actions-gh-pages in the dependencies group ([2db7367](https://www.github.com/JaCraig/Aspectus/commit/2db7367fb6ded63383b90850e2fc164a2a7ea5ba))
+
 <a name="5.0.43"></a>
 ## [5.0.43](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.43) (2024-03-27)
 
