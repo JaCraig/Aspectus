@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.45"></a>
+## [5.0.45](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.45) (2024-04-29)
+
+### Bug Fixes
+
+* bump versionize from 1.22.0 to 1.23.0 in the dependencies group ([21ed72c](https://www.github.com/JaCraig/Aspectus/commit/21ed72cd931a85ef53d8d28b72404190a6abb19c))
+
+### Other
+
+* Merge pull request #70 from JaCraig/dependabot/nuget/test/Aspectus.Tests/dependencies-fc8f0a2f2d ([83cebd6](https://www.github.com/JaCraig/Aspectus/commit/83cebd61be27c95187348a43f17ba824553b5ca6))
+* Merge pull request #71 from JaCraig/dependabot/github_actions/dependencies-67cf71b959 ([6d3f23e](https://www.github.com/JaCraig/Aspectus/commit/6d3f23eac8b9bf715f93c3a832be82344f41c2c0))
+* Merge pull request #72 from JaCraig/dependabot/nuget/dependencies-6d2d24f1fd ([beb3777](https://www.github.com/JaCraig/Aspectus/commit/beb3777f1f88472ba1224867786cf3f38869285e))
+* bump dependabot/fetch-metadata in the dependencies group ([dcd2a92](https://www.github.com/JaCraig/Aspectus/commit/dcd2a9281fe58c8a92178e03c15f718251b3b7bb))
+* bump the dependencies group ([5adc53a](https://www.github.com/JaCraig/Aspectus/commit/5adc53aa88a01a45f6ef1ead06edfac827b364f2))
+
 <a name="5.0.44"></a>
 ## [5.0.44](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.44) (2024-04-10)
 
