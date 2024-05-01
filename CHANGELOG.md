@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.47"></a>
+## [5.0.47](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.47) (2024-05-01)
+
+### Bug Fixes
+
+* bump Canister.IoC from 5.3.7 to 5.3.8 in the dependencies group ([886d668](https://www.github.com/JaCraig/Aspectus/commit/886d6689f3c770da1d613db14afbf000615a2a91))
+
+### Other
+
+* Merge pull request #75 from JaCraig/dependabot/nuget/dependencies-6f86bb9051 ([2cd3d04](https://www.github.com/JaCraig/Aspectus/commit/2cd3d0438c8571629d200eff783cbf3519214ff6))
+
 <a name="5.0.46"></a>
 ## [5.0.46](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.46) (2024-04-30)
 
