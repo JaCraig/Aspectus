@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.50"></a>
+## [5.0.50](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.50) (2024-05-29)
+
+### Bug Fixes
+
+* bump Microsoft.Extensions.ObjectPool in the dependencies group ([242f4bc](https://www.github.com/JaCraig/Aspectus/commit/242f4bc106e7e3436169642d3d68b5311a1e97c3))
+
+### Other
+
+* --- ([09ed329](https://www.github.com/JaCraig/Aspectus/commit/09ed329265b2a8ee911e32b5bd39059de37efa46))
+* Merge pull request #78 from JaCraig/dependabot/nuget/test/Aspectus.Tests/dependencies-d10d8338a5 ([980184a](https://www.github.com/JaCraig/Aspectus/commit/980184ac4c9da3ed709fa25a8b88ae8b439decd7))
+* Merge pull request #79 from JaCraig/dependabot/nuget/test/Aspectus.Tests/dependencies-63bf006411 ([5e64ab3](https://www.github.com/JaCraig/Aspectus/commit/5e64ab389a8c158213f7a314d28dcedd0e088b2d))
+* Merge pull request #80 from JaCraig/dependabot/nuget/dependencies-ce0a861668 ([cadf854](https://www.github.com/JaCraig/Aspectus/commit/cadf8546171f1ea9a674b76afe3665f71d8d0624))
+* bump the dependencies group ([5ed08d4](https://www.github.com/JaCraig/Aspectus/commit/5ed08d4ae0625682b787cd868f48fe8bd8ff3606))
+
 <a name="5.0.49"></a>
 ## [5.0.49](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.49) (2024-05-15)
 
