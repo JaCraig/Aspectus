@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.51"></a>
+## [5.0.51](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.51) (2024-06-11)
+
+### Bug Fixes
+
+* bump the dependencies group with 2 updates ([c8b057d](https://www.github.com/JaCraig/Aspectus/commit/c8b057d83119949cc626482fbad6afe3c5d5910d))
+
+### Other
+
+* Merge pull request #81 from JaCraig/dependabot/nuget/dependencies-5f18d6d6d3 ([cfd8533](https://www.github.com/JaCraig/Aspectus/commit/cfd85332e1eca78e6fcd3a43b5f33b152eea3388))
+
 <a name="5.0.50"></a>
 ## [5.0.50](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.50) (2024-05-29)
 
