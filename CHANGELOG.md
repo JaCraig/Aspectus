@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.53"></a>
+## [5.0.53](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.53) (2024-06-24)
+
+### Bug Fixes
+
+* bump Serilog.Sinks.File in the dependencies group ([8d20c31](https://www.github.com/JaCraig/Aspectus/commit/8d20c31a115af17fb80ae452c0a6edfb3baebc8f))
+
+### Other
+
+* Merge pull request [#83](https://www.github.com/JaCraig/Aspectus/issues/83) from JaCraig/dependabot/nuget/dependencies-95888ce323 ([6172a1e](https://www.github.com/JaCraig/Aspectus/commit/6172a1ed1fb34ed01ede09534f5e1cbf462f91a4))
+
 <a name="5.0.52"></a>
 ## [5.0.52](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.52) (2024-06-17)
 
