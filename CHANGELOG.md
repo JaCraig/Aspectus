@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.57"></a>
+## [5.0.57](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.57) (2024-08-13)
+
+### Bug Fixes
+
+* bump Microsoft.Extensions.ObjectPool in the dependencies group ([9dda3e6](https://www.github.com/JaCraig/Aspectus/commit/9dda3e6fe548f244bb30c4dd9572a4081a2c3315))
+
+### Other
+
+* Merge pull request #90 from JaCraig/dependabot/nuget/dependencies-6e25e9bf34 ([d3e0035](https://www.github.com/JaCraig/Aspectus/commit/d3e00359e3323fa4bc2a5c8af5d117797509619c))
+
 <a name="5.0.56"></a>
 ## [5.0.56](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.56) (2024-08-01)
 
