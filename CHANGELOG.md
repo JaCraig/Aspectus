@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.59"></a>
+## [5.0.59](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.59) (2024-08-22)
+
+### Bug Fixes
+
+* bump Canister.IoC from 5.3.12 to 5.3.13 in the dependencies group ([c44d207](https://www.github.com/JaCraig/Aspectus/commit/c44d207d1a346f0cce68749b474845e2ec87bda0))
+
+### Other
+
+* Merge pull request #92 from JaCraig/dependabot/nuget/test/Aspectus.Tests/dependencies-20452041bf ([ff0a7ad](https://www.github.com/JaCraig/Aspectus/commit/ff0a7adb72f0822984c645601cabca0e8ad1c022))
+* Merge pull request #93 from JaCraig/dependabot/nuget/dependencies-d0f42047de ([e1da207](https://www.github.com/JaCraig/Aspectus/commit/e1da2074a7d85e64476e161e458bbf7831a3ae5c))
+* bump Microsoft.NET.Test.Sdk ([62171c2](https://www.github.com/JaCraig/Aspectus/commit/62171c25076f9df2cc109a1a4b73b97789dfb3fe))
+
 <a name="5.0.58"></a>
 ## [5.0.58](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.58) (2024-08-16)
 
