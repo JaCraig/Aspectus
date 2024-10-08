@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.60"></a>
+## [5.0.60](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.60) (2024-10-08)
+
+### Bug Fixes
+
+* bump the dependencies group with 3 updates ([3d9ef4d](https://www.github.com/JaCraig/Aspectus/commit/3d9ef4de442d35d44956d53ab93670ce52a6d77e))
+
+### Other
+
+* Merge pull request #94 from JaCraig/dependabot/nuget/test/Aspectus.Tests/dependencies-78c52a00e0 ([2da7343](https://www.github.com/JaCraig/Aspectus/commit/2da73438a6b761b00f86b0915cf403b6dd6aac96))
+* Merge pull request #95 from JaCraig/dependabot/nuget/test/Aspectus.Tests/dependencies-e833257e60 ([8c18c8b](https://www.github.com/JaCraig/Aspectus/commit/8c18c8b2b5923c7452eee605996e14fe6363ff2a))
+* Merge pull request #96 from JaCraig/dependabot/nuget/test/Aspectus.Tests/dependencies-799ab3113c ([7f495fa](https://www.github.com/JaCraig/Aspectus/commit/7f495fa91eec5e662c042f4b2475d5ab5c199314))
+* Merge pull request #97 from JaCraig/dependabot/nuget/dependencies-abc472f63a ([150ff64](https://www.github.com/JaCraig/Aspectus/commit/150ff6471ca92b82e3494ffd2b0bf87d29733573))
+* bump Microsoft.NET.Test.Sdk ([83050a8](https://www.github.com/JaCraig/Aspectus/commit/83050a8362dd2b381c9807cd8ed46a7dd7666e18))
+* bump xunit in /test/Aspectus.Tests in the dependencies group ([9f20ae6](https://www.github.com/JaCraig/Aspectus/commit/9f20ae6b09bc298147a43b92e0e234223bc539c7))
+* bump xunit in /test/Aspectus.Tests in the dependencies group ([fbd6667](https://www.github.com/JaCraig/Aspectus/commit/fbd666776eb9a8dceaff5a11b4b905f63dba7665))
+
 <a name="5.0.59"></a>
 ## [5.0.59](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.59) (2024-08-22)
 
