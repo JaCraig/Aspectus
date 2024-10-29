@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.62"></a>
+## [5.0.62](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.62) (2024-10-29)
+
+### Bug Fixes
+
+* bump the dependencies group with 2 updates ([ee9d656](https://www.github.com/JaCraig/Aspectus/commit/ee9d65618e531f68852a65aa6c40ee5d35c76660))
+* bump versionize from 2.0.0 to 2.1.0 in the dependencies group ([da2fec0](https://www.github.com/JaCraig/Aspectus/commit/da2fec0cf56050fc79c4f7e54365e1df8ac557a1))
+
+### Other
+
+* Merge pull request #100 from JaCraig/dependabot/nuget/dependencies-3894128c1d ([2d760d0](https://www.github.com/JaCraig/Aspectus/commit/2d760d0c4350b5069def2599bafb4eb630a2a37c))
+* Merge pull request #101 from JaCraig/dependabot/github_actions/dependencies-18190d55f2 ([c78c607](https://www.github.com/JaCraig/Aspectus/commit/c78c607c7a28b40737e5e87e8caa217adc5aeed6))
+* Merge pull request #99 from JaCraig/dependabot/nuget/dependencies-db76144f54 ([8ab45f1](https://www.github.com/JaCraig/Aspectus/commit/8ab45f1b5bf66e098f3b51fc691b015607cc4b00))
+* bump actions/setup-dotnet in the dependencies group ([e59904a](https://www.github.com/JaCraig/Aspectus/commit/e59904ac73fd0580b49ede66aadce4fcda479515))
+* Merge branch 'master' of https://github.com/JaCraig/Aspectus ([c513ef8](https://www.github.com/JaCraig/Aspectus/commit/c513ef87bac8f6afeeda8df03e8323d36447ef05))
+* Refactor versionize command in dotnet-publish.yml ([c2b9995](https://www.github.com/JaCraig/Aspectus/commit/c2b999568f8241e5506cfc7a4d20ce9e7d1a2087))
+
 <a name="5.0.61"></a>
 ## [5.0.61](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.61) (2024-10-09)
 
