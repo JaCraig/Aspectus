@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.1"></a>
+## [5.1.1](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.1.1) (2024-11-16)
+
+### Bug Fixes
+
+* Update test infrastructure and adding registration method ([96f12e1](https://www.github.com/JaCraig/Aspectus/commit/96f12e1487e715d092e47fe699825f2cacff4753))
+
+### Other
+
+* Merge ([e30a57b](https://www.github.com/JaCraig/Aspectus/commit/e30a57bfb931e48280f0051cf8e8f77568cd4a9a))
+* Update README.md ([1fec180](https://www.github.com/JaCraig/Aspectus/commit/1fec180cb30e15e17a630c508dbdc5f622287658))
+
 <a name="5.1.0"></a>
 ## [5.1.0](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.1.0) (2024-11-16)
 
