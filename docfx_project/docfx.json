@@ -3,7 +3,7 @@
     {
       "src": [
         {
-          "files": ["src/Aspectus/Aspectus.csproj"],
+          "files": ["Aspectus/Aspectus.csproj"],
           "src": "../"
         }
       ],

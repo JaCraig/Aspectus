@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Aspectus\Aspectus.csproj" />
+    <ProjectReference Include="..\Aspectus\Aspectus.csproj" />
   </ItemGroup>
 
 </Project>
