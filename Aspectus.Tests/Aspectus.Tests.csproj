@@ -4,7 +4,7 @@
     <Description>Tests for Aspectus</Description>
     <AssemblyTitle>Aspectus.Tests</AssemblyTitle>
     <Authors>James Craig</Authors>
-	  <TargetFrameworks>net6.0</TargetFrameworks>
+	  <TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
     <DebugType>portable</DebugType>
     <AssemblyName>Aspectus.Tests</AssemblyName>
     <PackageId>Aspectus.Tests</PackageId>
@@ -12,7 +12,6 @@
     <PackageTags>IoC</PackageTags>
     <PackageProjectUrl>https://github.com/JaCraig/Aspectus/</PackageProjectUrl>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <RuntimeIdentifiers>win7-x64;osx.10.10-x64;ubuntu.14.04-x64</RuntimeIdentifiers>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
@@ -20,7 +19,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
@@ -30,6 +28,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="xunit" Version="2.9.2" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'net7.0' or '$(TargetFramework)' == 'net8.0'">
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
