@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.0"></a>
+## [5.1.0](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.1.0) (2024-11-16)
+
+### Features
+
+* Finishing update ([02dab86](https://www.github.com/JaCraig/Aspectus/commit/02dab86768ec947f46d7de36b9bb9b48628414bb))
+
+### Bug Fixes
+
+* Refactor of Aspectus-related code ([c602cdd](https://www.github.com/JaCraig/Aspectus/commit/c602cdd3cba9f6e529e3ad146fd3c7bd2690587b))
+* Setting up coveralls ([773697a](https://www.github.com/JaCraig/Aspectus/commit/773697abbd85585b3a0464ad1805717b306453be))
+
 <a name="5.0.65"></a>
 ## [5.0.65](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.0.65) (2024-11-11)
 
