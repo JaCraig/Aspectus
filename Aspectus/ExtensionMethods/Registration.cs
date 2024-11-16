@@ -14,10 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using Aspectus.CodeGen;
+using Aspectus.Interfaces;
 using Canister.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.ObjectPool;
 using System.Reflection;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace Aspectus.ExtensionMethods
 {
     /// <summary>
     /// Registration extension methods
@@ -29,9 +33,21 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
         /// <returns>The bootstrapper</returns>
-        public static ICanisterConfiguration? RegisterAspectus(this ICanisterConfiguration? bootstrapper)
+        public static ICanisterConfiguration? RegisterAspectus(this ICanisterConfiguration? bootstrapper) => bootstrapper?.AddAssembly(typeof(Aspectus).GetTypeInfo().Assembly);
+
+        /// <summary>
+        /// Registers the Aspectus services with the provided IServiceCollection.
+        /// </summary>
+        /// <param name="services">The IServiceCollection to add the services to.</param>
+        /// <returns>The IServiceCollection with the registered services.</returns>
+        public static IServiceCollection? RegisterAspectus(this IServiceCollection? services)
         {
-            return bootstrapper?.AddAssembly(typeof(Aspectus.Aspectus).GetTypeInfo().Assembly);
+            var ObjectPoolProvider = new DefaultObjectPoolProvider();
+            return services?.AddTransient<Compiler>()
+                ?.AddAllTransient<IAspect>()
+                ?.AddAllTransient<IAOPModule>()
+                ?.AddSingleton(_ => ObjectPoolProvider.CreateStringBuilderPool())
+                ?.AddSingleton<Aspectus>();
         }
     }
 }

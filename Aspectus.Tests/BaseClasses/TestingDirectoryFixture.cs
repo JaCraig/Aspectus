@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Aspectus.ExtensionMethods;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
 using Serilog;
 using System;
@@ -48,10 +49,7 @@ namespace Aspectus.Tests.BaseClasses
         /// Performs application-defined tasks associated with freeing, releasing, or resetting
         /// unmanaged resources.
         /// </summary>
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
-        }
+        public void Dispose() => GC.SuppressFinalize(this);
 
         /// <summary>
         /// Gets the service provider.
@@ -66,8 +64,8 @@ namespace Aspectus.Tests.BaseClasses
                 if (ServiceProvider is not null)
                     return ServiceProvider;
                 var services = new ServiceCollection();
-                services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
-                services.AddCanisterModules(configure => configure.AddAssembly(typeof(TestingDirectoryFixture).GetTypeInfo().Assembly)
+                _ = services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
+                _ = services.AddCanisterModules(configure => configure.AddAssembly(typeof(TestingDirectoryFixture).GetTypeInfo().Assembly)
                    .RegisterAspectus());
                 ServiceProvider = services.BuildServiceProvider();
                 return ServiceProvider;

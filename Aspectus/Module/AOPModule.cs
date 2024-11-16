@@ -14,11 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using Aspectus.CodeGen;
-using Aspectus.Interfaces;
+using Aspectus.ExtensionMethods;
 using Canister.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.ObjectPool;
 
 namespace Aspectus.Module
 {
@@ -36,14 +34,6 @@ namespace Aspectus.Module
         /// Loads the module
         /// </summary>
         /// <param name="bootstrapper">Bootstrapper to register with</param>
-        public void Load(IServiceCollection? bootstrapper)
-        {
-            var objectPoolProvider = new DefaultObjectPoolProvider();
-            bootstrapper?.AddTransient<Compiler>()
-                .AddAllTransient<IAspect>()
-                .AddAllTransient<IAOPModule>()
-                .AddSingleton(_ => objectPoolProvider.CreateStringBuilderPool())
-                .AddSingleton<Aspectus>();
-        }
+        public void Load(IServiceCollection? bootstrapper) => bootstrapper.RegisterAspectus();
     }
 }

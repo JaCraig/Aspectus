@@ -1,11 +1,16 @@
-﻿using Aspectus.CodeGen;
+using Aspectus.CodeGen;
 using Aspectus.Interfaces;
 using Aspectus.Tests.Aspects;
 using Aspectus.Tests.BaseClasses;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.ObjectPool;
+using NSubstitute;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Text;
 using Xunit;
 
 namespace Aspectus.Tests
@@ -34,6 +39,103 @@ namespace Aspectus.Tests
 
     public class AspectusTests : TestingDirectoryFixture
     {
+        public AspectusTests()
+        {
+            _compiler = new Compiler();
+            _aspects = new[] { Substitute.For<IAspect>(), Substitute.For<IAspect>(), Substitute.For<IAspect>() };
+            _modules = new[] { Substitute.For<IAOPModule>(), Substitute.For<IAOPModule>(), Substitute.For<IAOPModule>() };
+            _logger = Substitute.For<ILogger<Aspectus>>();
+            _objectPool = new DefaultObjectPoolProvider().CreateStringBuilderPool(10, 10);
+            _testClass = new Aspectus(_compiler, _aspects, _modules, _logger, _objectPool);
+        }
+
+        private readonly IEnumerable<IAspect> _aspects;
+
+        private readonly Compiler _compiler;
+        private readonly ILogger<Aspectus> _logger;
+
+        private readonly IEnumerable<IAOPModule> _modules;
+
+        private readonly ObjectPool<StringBuilder> _objectPool;
+
+        private readonly Aspectus _testClass;
+
+        [Fact]
+        public void CanCallCreateWithBaseType()
+        {
+            // Arrange
+            Type baseType = typeof(AOPTestClass);
+
+            // Act
+            var Result = _testClass.Create(baseType);
+
+            // Assert
+            Assert.NotNull(Result);
+        }
+
+        [Fact]
+        public void CanCallCreateWithT()
+        {
+            // Act
+            AOPTestClass Result = _testClass.Create<AOPTestClass>();
+
+            // Assert
+            Assert.NotNull(Result);
+        }
+
+        [Fact]
+        public void CanCallFinalizeSetup() =>
+            // Act
+            _testClass.FinalizeSetup();
+
+        [Fact]
+        public void CanCallSetupWithAssemblies()
+        {
+            // Arrange
+            var TestClass = new Aspectus(new Compiler(), new List<IAspect>(), new List<IAOPModule>(), Substitute.For<ILogger<Aspectus>>(), new DefaultObjectPoolProvider().CreateStringBuilderPool(10, 10));
+            Assembly[] assemblies = new[] { Assembly.GetAssembly(typeof(AspectusTests)) };
+
+            // Act
+            TestClass.Setup(assemblies);
+        }
+
+        [Fact]
+        public void CanCallSetupWithTypes()
+        {
+            // Arrange
+            Type[] types = new[] { typeof(AOPTestClass), typeof(AOPTestClass2) };
+
+            // Act
+            _testClass.Setup(types);
+        }
+
+        [Fact]
+        public void CanCallToString()
+        {
+            // Act
+            var Result = _testClass.ToString();
+
+            // Assert
+            Assert.NotNull(Result);
+            Assert.NotEmpty(Result);
+        }
+
+        [Fact]
+        public void CanConstruct()
+        {
+            // Act
+            var instance = new Aspectus(_compiler, _aspects, _modules, _logger, _objectPool);
+
+            // Assert
+            Assert.NotNull(instance);
+
+            // Act
+            instance = new Aspectus(_compiler, _aspects, _modules);
+
+            // Assert
+            Assert.NotNull(instance);
+        }
+
         [Fact]
         public void Create()
         {
@@ -47,7 +149,7 @@ namespace Aspectus.Tests
         public void TestAspectFromCanister()
         {
             Logger.Information("AspectusTests.TestAspectTestMultiple");
-            var Test = GetServiceProvider().GetService<Aspectus>();
+            Aspectus Test = GetServiceProvider().GetService<Aspectus>();
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
             Assert.NotNull(Item);
