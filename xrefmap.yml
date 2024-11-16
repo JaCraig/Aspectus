@@ -364,6 +364,43 @@ references:
   isSpec: "True"
   fullName: Aspectus.CodeGen.Compiler.Create
   nameWithType: Compiler.Create
+- uid: Aspectus.ExtensionMethods
+  name: Aspectus.ExtensionMethods
+  href: api/Aspectus.ExtensionMethods.html
+  commentId: N:Aspectus.ExtensionMethods
+  fullName: Aspectus.ExtensionMethods
+  nameWithType: Aspectus.ExtensionMethods
+- uid: Aspectus.ExtensionMethods.Registration
+  name: Registration
+  href: api/Aspectus.ExtensionMethods.Registration.html
+  commentId: T:Aspectus.ExtensionMethods.Registration
+  fullName: Aspectus.ExtensionMethods.Registration
+  nameWithType: Registration
+- uid: Aspectus.ExtensionMethods.Registration.RegisterAspectus(Canister.Interfaces.ICanisterConfiguration)
+  name: RegisterAspectus(ICanisterConfiguration?)
+  href: api/Aspectus.ExtensionMethods.Registration.html#Aspectus_ExtensionMethods_Registration_RegisterAspectus_Canister_Interfaces_ICanisterConfiguration_
+  commentId: M:Aspectus.ExtensionMethods.Registration.RegisterAspectus(Canister.Interfaces.ICanisterConfiguration)
+  name.vb: RegisterAspectus(ICanisterConfiguration)
+  fullName: Aspectus.ExtensionMethods.Registration.RegisterAspectus(Canister.Interfaces.ICanisterConfiguration?)
+  fullName.vb: Aspectus.ExtensionMethods.Registration.RegisterAspectus(Canister.Interfaces.ICanisterConfiguration)
+  nameWithType: Registration.RegisterAspectus(ICanisterConfiguration?)
+  nameWithType.vb: Registration.RegisterAspectus(ICanisterConfiguration)
+- uid: Aspectus.ExtensionMethods.Registration.RegisterAspectus(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name: RegisterAspectus(IServiceCollection?)
+  href: api/Aspectus.ExtensionMethods.Registration.html#Aspectus_ExtensionMethods_Registration_RegisterAspectus_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  commentId: M:Aspectus.ExtensionMethods.Registration.RegisterAspectus(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name.vb: RegisterAspectus(IServiceCollection)
+  fullName: Aspectus.ExtensionMethods.Registration.RegisterAspectus(Microsoft.Extensions.DependencyInjection.IServiceCollection?)
+  fullName.vb: Aspectus.ExtensionMethods.Registration.RegisterAspectus(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  nameWithType: Registration.RegisterAspectus(IServiceCollection?)
+  nameWithType.vb: Registration.RegisterAspectus(IServiceCollection)
+- uid: Aspectus.ExtensionMethods.Registration.RegisterAspectus*
+  name: RegisterAspectus
+  href: api/Aspectus.ExtensionMethods.Registration.html#Aspectus_ExtensionMethods_Registration_RegisterAspectus_
+  commentId: Overload:Aspectus.ExtensionMethods.Registration.RegisterAspectus
+  isSpec: "True"
+  fullName: Aspectus.ExtensionMethods.Registration.RegisterAspectus
+  nameWithType: Registration.RegisterAspectus
 - uid: Aspectus.Interfaces
   name: Aspectus.Interfaces
   href: api/Aspectus.Interfaces.html
@@ -559,31 +596,3 @@ references:
   isSpec: "True"
   fullName: Aspectus.Module.AOPModule.Order
   nameWithType: AOPModule.Order
-- uid: Microsoft.Extensions.DependencyInjection
-  name: Microsoft.Extensions.DependencyInjection
-  href: api/Microsoft.Extensions.DependencyInjection.html
-  commentId: N:Microsoft.Extensions.DependencyInjection
-  fullName: Microsoft.Extensions.DependencyInjection
-  nameWithType: Microsoft.Extensions.DependencyInjection
-- uid: Microsoft.Extensions.DependencyInjection.Registration
-  name: Registration
-  href: api/Microsoft.Extensions.DependencyInjection.Registration.html
-  commentId: T:Microsoft.Extensions.DependencyInjection.Registration
-  fullName: Microsoft.Extensions.DependencyInjection.Registration
-  nameWithType: Registration
-- uid: Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus(Canister.Interfaces.ICanisterConfiguration)
-  name: RegisterAspectus(ICanisterConfiguration?)
-  href: api/Microsoft.Extensions.DependencyInjection.Registration.html#Microsoft_Extensions_DependencyInjection_Registration_RegisterAspectus_Canister_Interfaces_ICanisterConfiguration_
-  commentId: M:Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus(Canister.Interfaces.ICanisterConfiguration)
-  name.vb: RegisterAspectus(ICanisterConfiguration)
-  fullName: Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus(Canister.Interfaces.ICanisterConfiguration?)
-  fullName.vb: Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus(Canister.Interfaces.ICanisterConfiguration)
-  nameWithType: Registration.RegisterAspectus(ICanisterConfiguration?)
-  nameWithType.vb: Registration.RegisterAspectus(ICanisterConfiguration)
-- uid: Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus*
-  name: RegisterAspectus
-  href: api/Microsoft.Extensions.DependencyInjection.Registration.html#Microsoft_Extensions_DependencyInjection_Registration_RegisterAspectus_
-  commentId: Overload:Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus
-  isSpec: "True"
-  fullName: Microsoft.Extensions.DependencyInjection.Registration.RegisterAspectus
-  nameWithType: Registration.RegisterAspectus

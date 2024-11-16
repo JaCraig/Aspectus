@@ -62,6 +62,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Aspectus.ExtensionMethods.Registration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Aspectus.ExtensionMethods.Registration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Aspectus.ExtensionMethods.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Aspectus.ExtensionMethods.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Aspectus.Interfaces.IAOPModule.yml",
       "output": {
         ".html": {
@@ -116,26 +136,6 @@
       "output": {
         ".html": {
           "relative_path": "api/Aspectus.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Microsoft.Extensions.DependencyInjection.Registration.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Microsoft.Extensions.DependencyInjection.Registration.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Microsoft.Extensions.DependencyInjection.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Microsoft.Extensions.DependencyInjection.html"
         }
       },
       "version": ""
