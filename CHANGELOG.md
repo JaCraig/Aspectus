@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.0"></a>
+## [6.0.0](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.0) (2024-11-18)
+
+### Features
+
+* Fixing issue caused by .Net 9 libraries ([6b21851](https://www.github.com/JaCraig/Aspectus/commit/6b2185171a054798cee08604547911e6ef0e50ff))
+
+### Breaking Changes
+
+* Fixing issue caused by .Net 9 libraries ([6b21851](https://www.github.com/JaCraig/Aspectus/commit/6b2185171a054798cee08604547911e6ef0e50ff))
+
 <a name="5.1.1"></a>
 ## [5.1.1](https://www.github.com/JaCraig/Aspectus/releases/tag/v5.1.1) (2024-11-16)
 
