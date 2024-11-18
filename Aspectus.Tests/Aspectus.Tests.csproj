@@ -4,7 +4,7 @@
     <Description>Tests for Aspectus</Description>
     <AssemblyTitle>Aspectus.Tests</AssemblyTitle>
     <Authors>James Craig</Authors>
-	  <TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
+	  <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <DebugType>portable</DebugType>
     <AssemblyName>Aspectus.Tests</AssemblyName>
     <PackageId>Aspectus.Tests</PackageId>
