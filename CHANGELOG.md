@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.1"></a>
+## [6.0.1](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.1) (2024-11-18)
+
+### Bug Fixes
+
+* Update TargetFramework to net8.0 in docfx.json ([dd8cf81](https://www.github.com/JaCraig/Aspectus/commit/dd8cf81a3e2b51e5490bd5d0ec90e10a1038a851))
+
+### Other
+
+* Merge branch 'master' of https://github.com/JaCraig/Aspectus ([c164188](https://www.github.com/JaCraig/Aspectus/commit/c164188cc1109ee281cb0ad9a815e3b47433c1c7))
+
 <a name="6.0.0"></a>
 ## [6.0.0](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.0) (2024-11-18)
 
