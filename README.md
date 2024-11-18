@@ -63,7 +63,7 @@ For a more detailed guide on using Aspectus, including advanced scenarios and AO
 To build Aspectus from source, ensure you have the following:
 
 - Visual Studio 2022
-- .Net 6
+- .Net 8
 
 Simply clone the repository and open the solution in Visual Studio.
 
