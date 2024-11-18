@@ -24,7 +24,7 @@ Install-Package Aspectus
 
 Follow these steps to start using Aspectus in your project:
 
-1. Register Aspectus with your IoC container during startup. Example code for ASP.NET Core:
+1. Register Aspectus with your IoC container during startup. Example code:
 
    ```csharp
    ServiceProvider? ServiceProvider = new ServiceCollection().RegisterAspectus()?.BuildServiceProvider();
