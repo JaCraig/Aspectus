@@ -91,7 +91,7 @@
 <p>Follow these steps to start using Aspectus in your project:</p>
 <ol>
 <li><p>Register Aspectus with your IoC container during startup. Example code for ASP.NET Core:</p>
-<pre><code class="lang-csharp">ServiceProvider? ServiceProvider = new ServiceCollection().RegisterObjectCartographer()?.BuildServiceProvider();
+<pre><code class="lang-csharp">ServiceProvider? ServiceProvider = new ServiceCollection().RegisterAspectus()?.BuildServiceProvider();
 </code></pre>
 <p>or</p>
 <pre><code class="lang-csharp">ServiceProvider? ServiceProvider = new ServiceCollection().AddCanisterModules()?.BuildServiceProvider();
