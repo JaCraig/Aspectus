@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.2"></a>
+## [6.0.2](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.2) (2024-11-19)
+
+### Bug Fixes
+
+* bump Canister.IoC in /Aspectus in the dependencies group ([6a32090](https://www.github.com/JaCraig/Aspectus/commit/6a320905fefedfaf61fc9b15ffa8326b0a90de13))
+
+### Other
+
+* Merge pull request #108 from JaCraig/dependabot/nuget/Aspectus.Example/dependencies-401d70a937 ([15fc89b](https://www.github.com/JaCraig/Aspectus/commit/15fc89bca618d0c34d3d64fd22e467c2431ec0d0))
+* Merge pull request #109 from JaCraig/dependabot/nuget/Aspectus/dependencies-401d70a937 ([f75c345](https://www.github.com/JaCraig/Aspectus/commit/f75c3451e80e81cb4cb78f57fa7d8ef5d9aa848c))
+* Merge pull request #110 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-c978c3784b ([6c7c990](https://www.github.com/JaCraig/Aspectus/commit/6c7c990cc3ed2b0200b62ee9b04bb29941952014))
+* Update README.md ([39bb4e0](https://www.github.com/JaCraig/Aspectus/commit/39bb4e0107909ffa883c9667bdc9550ff4f7e257))
+* bump Canister.IoC in /Aspectus.Example in the dependencies group ([14a8284](https://www.github.com/JaCraig/Aspectus/commit/14a82849af5e8b2867560807a516102ad56d0710))
+* bump the dependencies group in /Aspectus.Tests with 2 updates ([603f228](https://www.github.com/JaCraig/Aspectus/commit/603f22868aff6eb16265fb2f0dc191d2cfb6aab4))
+* Update README.md ([aa8da8f](https://www.github.com/JaCraig/Aspectus/commit/aa8da8f6f5fdfcba9b6005e9397986d99c339bd2))
+* Update README.md ([0359283](https://www.github.com/JaCraig/Aspectus/commit/035928352561355a2f4628df1a37439e70fe0a23))
+* Update README.md ([0bd0e76](https://www.github.com/JaCraig/Aspectus/commit/0bd0e76e2419e59fb3b9f1d3107b2917f39c7986))
+
 <a name="6.0.1"></a>
 ## [6.0.1](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.1) (2024-11-18)
 
