@@ -53,8 +53,8 @@ namespace Aspectus
             modules ??= Array.Empty<IAOPModule>();
             Compiler = compiler ?? new Compiler(objectPool);
             if (Aspects.IsEmpty)
-                Aspects.Add(aspects);
-            modules.ForEachParallel(x => x.Setup(this));
+                _ = Aspects.Add(aspects);
+            _ = modules.ForEach(x => x.Setup(this));
             ObjectPool = objectPool;
         }
 
@@ -72,7 +72,7 @@ namespace Aspectus
         /// <summary>
         /// The list of aspects that are being used
         /// </summary>
-        private ConcurrentBag<IAspect> Aspects { get; } = new ConcurrentBag<IAspect>();
+        private ConcurrentBag<IAspect> Aspects { get; } = [];
 
         /// <summary>
         /// Gets the system's compiler
@@ -161,7 +161,7 @@ namespace Aspectus
             {
                 for (var x = 0; x < types.Length; ++x)
                 {
-                    _Classes.AddOrUpdate(types[x], types[x], (y, _) => y);
+                    _ = _Classes.AddOrUpdate(types[x], types[x], (y, _) => y);
                 }
                 return;
             }
@@ -177,10 +177,10 @@ namespace Aspectus
                 "System.Text",
                 "System.Threading.Tasks"
             };
-            Aspects.ForEach(x => Usings.AddIfUnique(x.Usings));
+            _ = Aspects.ForEach(x => Usings.AddIfUnique(x.Usings));
 
             var InterfacesUsed = new List<Type>();
-            Aspects.ForEach(x => InterfacesUsed.AddRange(x.InterfacesUsing ?? Array.Empty<Type>()));
+            _ = Aspects.ForEach(x => InterfacesUsed.AddRange(x.InterfacesUsing ?? Array.Empty<Type>()));
 
             StringBuilder Builder = ObjectPool?.Get() ?? new StringBuilder();
 
@@ -191,20 +191,21 @@ namespace Aspectus
 
                 var Namespace = "AspectusGeneratedTypes.C" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
                 var ClassName = TempType.Name + "Derived";
-                Builder.AppendLine(Setup(TempType, Namespace, ClassName, Usings, InterfacesUsed, TempAssemblies));
+                _ = Builder.AppendLine(Setup(TempType, Namespace, ClassName, Usings, InterfacesUsed, TempAssemblies));
             }
             try
             {
                 List<MetadataReference> MetadataReferences = GetFinalAssemblies(TempAssemblies);
-                Aspects.ForEach(x => MetadataReferences.AddIfUnique((z, y) => z.Display == y.Display, x.AssembliesUsing.ToArray()));
+                _ = Aspects.ForEach(x => MetadataReferences.AddIfUnique((z, y) => z.Display == y.Display, x.AssembliesUsing.ToArray()));
                 IEnumerable<Type> Types = Compiler.Create(Builder.ToString(), Usings, MetadataReferences.ToArray())
                                                     .Compile()
                                                     .LoadAssembly();
                 foreach (Type TempType in TempTypes)
                 {
-                    _Classes.AddOrUpdate(TempType,
-                        Types.FirstOrDefault(x => x.BaseType == TempType),
-                        (x, _) => x);
+                    Type? Value = Types.FirstOrDefault(x => x.BaseType == TempType);
+                    if (Value is null)
+                        continue;
+                    _ = _Classes.AddOrUpdate(TempType, Value, (x, _) => x);
                 }
             }
             catch (Exception Ex)
@@ -212,7 +213,7 @@ namespace Aspectus
                 Logger?.LogError(Ex, "Error compiling code");
                 foreach (Type TempType in TempTypes)
                 {
-                    _Classes.AddOrUpdate(TempType,
+                    _ = _Classes.AddOrUpdate(TempType,
                         TempType,
                         (x, _) => x);
                 }
@@ -236,15 +237,15 @@ namespace Aspectus
             Type? TempType = type;
             while (TempType != null)
             {
-                assembliesUsing.AddIfUnique(TempType.Assembly);
-                TempType.GetInterfaces().ForEach(x => GetAssembliesSimple(x, assembliesUsing));
-                TempType.GetEvents().ForEach(x => GetAssembliesSimple(x.EventHandlerType, assembliesUsing));
-                TempType.GetFields().ForEach(x => GetAssembliesSimple(x.FieldType, assembliesUsing));
-                TempType.GetProperties().ForEach(x => GetAssembliesSimple(x.PropertyType, assembliesUsing));
-                TempType.GetMethods().ForEach(x =>
+                _ = assembliesUsing.AddIfUnique(TempType.Assembly);
+                _ = TempType.GetInterfaces().ForEach(x => GetAssembliesSimple(x, assembliesUsing));
+                _ = TempType.GetEvents().ForEach(x => GetAssembliesSimple(x.EventHandlerType, assembliesUsing));
+                _ = TempType.GetFields().ForEach(x => GetAssembliesSimple(x.FieldType, assembliesUsing));
+                _ = TempType.GetProperties().ForEach(x => GetAssembliesSimple(x.PropertyType, assembliesUsing));
+                _ = TempType.GetMethods().ForEach(x =>
                 {
                     GetAssembliesSimple(x.ReturnType, assembliesUsing);
-                    x.GetParameters().ForEach(y => GetAssembliesSimple(y.ParameterType, assembliesUsing));
+                    _ = x.GetParameters().ForEach(y => GetAssembliesSimple(y.ParameterType, assembliesUsing));
                 });
                 TempType = TempType.BaseType;
                 if (TempType == typeof(object))
@@ -257,13 +258,13 @@ namespace Aspectus
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="assembliesUsing">The assemblies using.</param>
-        private static void GetAssembliesSimple(Type type, List<Assembly> assembliesUsing)
+        private static void GetAssembliesSimple(Type? type, List<Assembly> assembliesUsing)
         {
             Type? TempType = type;
             while (TempType != null)
             {
-                assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, TempType.Assembly);
-                TempType.GetInterfaces().ForEach(x => GetAssembliesSimple(x, assembliesUsing));
+                _ = assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, TempType.Assembly);
+                _ = TempType.GetInterfaces().ForEach(x => GetAssembliesSimple(x, assembliesUsing));
                 TempType = TempType.BaseType;
                 if (TempType == typeof(object))
                     break;
@@ -277,23 +278,23 @@ namespace Aspectus
         /// <returns>The final assemblies</returns>
         private static List<MetadataReference> GetFinalAssemblies(List<Assembly> assembliesUsing)
         {
-            assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, assembliesUsing
+            _ = assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, assembliesUsing
                                                     .SelectMany(x => x.GetReferencedAssemblies())
                                                     .Select(Assembly.Load).ToArray());
-            string[] Load = {
+            string[] Load = [
                 "mscorlib.dll",
                 "netstandard.dll"
-            };
+            ];
             var ReturnList = assembliesUsing.ForEach(x => (MetadataReference)MetadataReference.CreateFromFile(x.Location))
                                   .ToList();
             foreach (var Directory in assembliesUsing.Select(x => new FileInfo(x.Location).DirectoryName).Distinct())
             {
-                foreach (FileInfo? DLL in new DirectoryInfo(Directory)
+                foreach (FileInfo? DLL in new DirectoryInfo(Directory!)
                                             .EnumerateFiles("*.dll")
                                             .Where(x => Load.Contains(x.Name)))
                 {
                     PortableExecutableReference TempAssembly = MetadataReference.CreateFromFile(DLL.FullName);
-                    ReturnList.AddIfUnique((z, y) => z.Display == y.Display, TempAssembly);
+                    _ = ReturnList.AddIfUnique((z, y) => z.Display == y.Display, TempAssembly);
                 }
             }
             return ReturnList;
@@ -347,7 +348,7 @@ namespace Aspectus
             List<Assembly> assembliesUsing)
         {
             StringBuilder Builder = ObjectPool?.Get() ?? new StringBuilder();
-            Builder.AppendLineFormat(@"namespace {1}
+            _ = Builder.AppendLineFormat(@"namespace {1}
 {{
     {0}
 
@@ -360,18 +361,18 @@ namespace Aspectus
  interfaces.Count > 0 ? "," : string.Empty, interfaces.ToString(x => x.FullName.Replace("+", ".", StringComparison.Ordinal)));
             if (type.HasDefaultConstructor())
             {
-                Builder.AppendLineFormat(@"
+                _ = Builder.AppendLineFormat(@"
         public {0}()
             :base()
         {{
             ",
                type.Name + "Derived");
-                Aspects.ForEach(x => Builder.AppendLine(x.SetupDefaultConstructor(type)));
-                Builder.AppendLineFormat(@"
+                _ = Aspects.ForEach(x => Builder.AppendLine(x.SetupDefaultConstructor(type)));
+                _ = Builder.AppendLineFormat(@"
         }}");
             }
 
-            Aspects.ForEach(x => Builder.AppendLine(x.SetupInterfaces(type)));
+            _ = Aspects.ForEach(x => Builder.AppendLine(x.SetupInterfaces(type)));
 
             Type? TempType = type;
             var MethodsAlreadyDone = new List<string>();
@@ -390,7 +391,7 @@ namespace Aspectus
                         && Property.GetIndexParameters().Length == 0)
                     {
                         GetAssemblies(Property.PropertyType, assembliesUsing);
-                        Builder.AppendLineFormat(@"
+                        _ = Builder.AppendLineFormat(@"
         public override {0} {1}
         {{
             get
@@ -416,7 +417,7 @@ namespace Aspectus
                         && Property.GetIndexParameters().Length == 0)
                     {
                         GetAssemblies(Property.PropertyType, assembliesUsing);
-                        Builder.AppendLineFormat(@"
+                        _ = Builder.AppendLineFormat(@"
         public override {0} {1}
         {{
             get
@@ -451,9 +452,9 @@ namespace Aspectus
                         && !Method.IsGenericMethod)
                     {
                         GetAssemblies(Method.ReturnType, assembliesUsing);
-                        Method.GetParameters().ForEach(x => GetAssemblies(x.ParameterType, assembliesUsing));
+                        _ = Method.GetParameters().ForEach(x => GetAssemblies(x.ParameterType, assembliesUsing));
                         var Static = Method.IsStatic ? "static " : string.Empty;
-                        Builder.AppendLineFormat(@"
+                        _ = Builder.AppendLineFormat(@"
         {4} override {0} {1}({2})
         {{
             {3}
@@ -471,7 +472,7 @@ namespace Aspectus
                 if (TempType == typeof(object))
                     break;
             }
-            Builder.AppendLine(@"   }
+            _ = Builder.AppendLine(@"   }
 }");
             var ReturnValue = Builder.ToString();
             ObjectPool?.Return(Builder);
@@ -499,7 +500,7 @@ namespace Aspectus
                 BaseCall += Parameters.Length > 0 ? Parameters.ToString(x => (x.IsOut ? "out " : string.Empty) + x.Name) : string.Empty;
                 BaseCall += ");\r\n";
             }
-            Builder.AppendLineFormat(@"
+            _ = Builder.AppendLineFormat(@"
                 try
                 {{
                     {0}
