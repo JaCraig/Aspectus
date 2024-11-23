@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.3"></a>
+## [6.0.3](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.3) (2024-11-23)
+
+### Bug Fixes
+
+* Add discard operators and update method signatures ([abaf411](https://www.github.com/JaCraig/Aspectus/commit/abaf41168de2af8fe13841605d45a0dc48028adb))
+
 <a name="6.0.2"></a>
 ## [6.0.2](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.2) (2024-11-19)
 
