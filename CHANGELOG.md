@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.4"></a>
+## [6.0.4](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.4) (2024-11-24)
+
+### Bug Fixes
+
+* Update .editorconfig and add check in RegisterAspectus ([e2081b0](https://www.github.com/JaCraig/Aspectus/commit/e2081b0adb6f67704663b4d86888d6720a1d80a4))
+
+### Other
+
+* merge ([67fb140](https://www.github.com/JaCraig/Aspectus/commit/67fb140f832b648f71fd2039a54c995647b73c57))
+
 <a name="6.0.3"></a>
 ## [6.0.3](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.3) (2024-11-23)
 
