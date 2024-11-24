@@ -42,6 +42,8 @@ namespace Aspectus.ExtensionMethods
         /// <returns>The IServiceCollection with the registered services.</returns>
         public static IServiceCollection? RegisterAspectus(this IServiceCollection? services)
         {
+            if (services.Exists<Aspectus>())
+                return services;
             var ObjectPoolProvider = new DefaultObjectPoolProvider();
             return services?.AddTransient<Compiler>()
                 ?.AddAllTransient<IAspect>()
