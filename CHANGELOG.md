@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.5"></a>
+## [6.0.5](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.5) (2024-12-04)
+
+### Bug Fixes
+
+* bump Microsoft.CodeAnalysis.Common ([c9dd50a](https://www.github.com/JaCraig/Aspectus/commit/c9dd50ad94fa4bee561457d055b74c9f6ce47d28))
+
+### Other
+
+* Merge pull request #111 from JaCraig/dependabot/nuget/Aspectus/dependencies-7f9364fb86 ([b0b3465](https://www.github.com/JaCraig/Aspectus/commit/b0b3465cdcff324d7de06b4f6e775b54f87e6ace))
+* Merge pull request #112 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-d3c09456e9 ([fa91c11](https://www.github.com/JaCraig/Aspectus/commit/fa91c1115c6492c96d7bd1d4276e0b6fb8d49ec5))
+* bump the dependencies group in /Aspectus.Tests with 2 updates ([32b5ac3](https://www.github.com/JaCraig/Aspectus/commit/32b5ac33beaac542e20a248214f0fc411b1e2b48))
+
 <a name="6.0.4"></a>
 ## [6.0.4](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.4) (2024-11-24)
 
