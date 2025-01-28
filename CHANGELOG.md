@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.6"></a>
+## [6.0.6](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.6) (2025-01-28)
+
+### Bug Fixes
+
+* bump versionize in /Aspectus in the dependencies group ([68e5a10](https://www.github.com/JaCraig/Aspectus/commit/68e5a10c3c54f002abf105309254816d95b1e350))
+
+### Other
+
+* Merge pull request #113 from JaCraig/dependabot/nuget/Aspectus.Example/dependencies-0eb5dce03c ([db9fe9b](https://www.github.com/JaCraig/Aspectus/commit/db9fe9badf2806cc1f231e7e5911001c5f13eb42))
+* Merge pull request #114 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-d8dc3aff45 ([e974490](https://www.github.com/JaCraig/Aspectus/commit/e974490d53c7aad4dfbcf0f7172b657acf51fcc5))
+* Merge pull request #115 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-637ad84d5b ([a4dd33d](https://www.github.com/JaCraig/Aspectus/commit/a4dd33dd17a6dc01ccc4d60ae650682e63f52b4b))
+* Merge pull request #116 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-37a7915f86 ([74cebd4](https://www.github.com/JaCraig/Aspectus/commit/74cebd4863472975ff300529bbc873ea35685239))
+* Merge pull request #117 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-2d63af336a ([443714a](https://www.github.com/JaCraig/Aspectus/commit/443714af35c55dda33edfcac06dd6781c2919e4f))
+* Merge pull request #118 from JaCraig/dependabot/nuget/Aspectus.Example/dependencies-b8f1dc2221 ([db12a4f](https://www.github.com/JaCraig/Aspectus/commit/db12a4fc21f6a1472895597cc95f4c34a552b02b))
+* Merge pull request #119 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-df453abda2 ([12e178b](https://www.github.com/JaCraig/Aspectus/commit/12e178b9317c52ac3be6c6f1f7e622d057ee9cc3))
+* Merge pull request #120 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-293c44675e ([ab581cc](https://www.github.com/JaCraig/Aspectus/commit/ab581cc110a76904cd9735d52fb8c96fc145d83e))
+* Merge pull request #121 from JaCraig/dependabot/nuget/Aspectus/dependencies-836e21bf11 ([c3f130a](https://www.github.com/JaCraig/Aspectus/commit/c3f130a25ccbcbfebbe28e44f84159b903cc26c2))
+* bump husky in /Aspectus.Example in the dependencies group ([f89af89](https://www.github.com/JaCraig/Aspectus/commit/f89af89c75fc246d9b5c6f8a3b9d3ae37cc10cb1))
+* bump Microsoft.Extensions.Logging ([3211865](https://www.github.com/JaCraig/Aspectus/commit/32118656c4609edf83e532254ef5bba832fb8ec3))
+* bump the dependencies group in /Aspectus.Example with 2 updates ([cdf4b08](https://www.github.com/JaCraig/Aspectus/commit/cdf4b08dac637c9e56ca0a3673bd878cb62dd237))
+* bump the dependencies group in /Aspectus.Tests with 2 updates ([c7892b0](https://www.github.com/JaCraig/Aspectus/commit/c7892b01faf4878355a0704561782b75c861ef1a))
+* bump the dependencies group in /Aspectus.Tests with 2 updates ([ceace25](https://www.github.com/JaCraig/Aspectus/commit/ceace2518e41efaea2e515b677c2c84ef8d503c3))
+* bump the dependencies group in /Aspectus.Tests with 2 updates ([98e3990](https://www.github.com/JaCraig/Aspectus/commit/98e399051f887f80d70dea58a533ae7951ab64bc))
+* bump the dependencies group in /Aspectus.Tests with 2 updates ([0a6e250](https://www.github.com/JaCraig/Aspectus/commit/0a6e2500ef1a8043902b9c985f183127d8ecad64))
+* bump xunit.runner.visualstudio ([971bb1d](https://www.github.com/JaCraig/Aspectus/commit/971bb1d98bade53ecc3d53c7be9181db8a144702))
+
 <a name="6.0.5"></a>
 ## [6.0.5](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.5) (2024-12-04)
 
