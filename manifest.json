@@ -18,7 +18,11 @@
           "relative_path": "api/Aspectus.Aspectus.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Aspectus.Aspectus",
+      "Summary": "<p sourcefile=\"api/Aspectus.Aspectus.yml\" sourcestartlinenumber=\"1\">AOP interface manager</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -28,7 +32,11 @@
           "relative_path": "api/Aspectus.CodeGen.BaseClasses.CompilerBase.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Aspectus.CodeGen.BaseClasses.CompilerBase",
+      "Summary": "<p sourcefile=\"api/Aspectus.CodeGen.BaseClasses.CompilerBase.yml\" sourcestartlinenumber=\"1\">Compiler base class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -38,7 +46,11 @@
           "relative_path": "api/Aspectus.CodeGen.BaseClasses.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Aspectus.CodeGen.BaseClasses",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -48,7 +60,11 @@
           "relative_path": "api/Aspectus.CodeGen.Compiler.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Aspectus.CodeGen.Compiler",
+      "Summary": "<p sourcefile=\"api/Aspectus.CodeGen.Compiler.yml\" sourcestartlinenumber=\"1\">Compiler</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -58,7 +74,11 @@
           "relative_path": "api/Aspectus.CodeGen.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Aspectus.CodeGen",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -68,7 +88,11 @@
           "relative_path": "api/Aspectus.ExtensionMethods.Registration.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Aspectus.ExtensionMethods.Registration",
+      "Summary": "<p sourcefile=\"api/Aspectus.ExtensionMethods.Registration.yml\" sourcestartlinenumber=\"1\">Registration extension methods</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -78,7 +102,11 @@
           "relative_path": "api/Aspectus.ExtensionMethods.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Aspectus.ExtensionMethods",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -88,7 +116,11 @@
           "relative_path": "api/Aspectus.Interfaces.IAOPModule.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Aspectus.Interfaces.IAOPModule",
+      "Summary": "<p sourcefile=\"api/Aspectus.Interfaces.IAOPModule.yml\" sourcestartlinenumber=\"1\">AOP module interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -98,7 +130,11 @@
           "relative_path": "api/Aspectus.Interfaces.IAspect.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Aspectus.Interfaces.IAspect",
+      "Summary": "<p sourcefile=\"api/Aspectus.Interfaces.IAspect.yml\" sourcestartlinenumber=\"1\">Aspect interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -108,7 +144,11 @@
           "relative_path": "api/Aspectus.Interfaces.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Aspectus.Interfaces",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -118,7 +158,11 @@
           "relative_path": "api/Aspectus.Module.AOPModule.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Aspectus.Module.AOPModule",
+      "Summary": "<p sourcefile=\"api/Aspectus.Module.AOPModule.yml\" sourcestartlinenumber=\"1\">AOP module</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -128,7 +172,11 @@
           "relative_path": "api/Aspectus.Module.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Aspectus.Module",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -138,7 +186,11 @@
           "relative_path": "api/Aspectus.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Aspectus",
+      "Summary": null
     },
     {
       "type": "Conceptual",
