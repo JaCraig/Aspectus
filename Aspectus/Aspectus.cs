@@ -49,8 +49,8 @@ namespace Aspectus
         public Aspectus(Compiler compiler, IEnumerable<IAspect> aspects, IEnumerable<IAOPModule> modules, ILogger<Aspectus>? logger, ObjectPool<StringBuilder>? objectPool)
         {
             Logger = logger;
-            aspects ??= Array.Empty<IAspect>();
-            modules ??= Array.Empty<IAOPModule>();
+            aspects ??= [];
+            modules ??= [];
             Compiler = compiler ?? new Compiler(objectPool);
             if (Aspects.IsEmpty)
                 _ = Aspects.Add(aspects);
@@ -68,6 +68,11 @@ namespace Aspectus
             : this(compiler, aspects, modules, null, null)
         {
         }
+
+        /// <summary>
+        /// Dictionary containing generated types and associates it with original type
+        /// </summary>
+        private readonly ConcurrentDictionary<Type, Type> _Classes = new();
 
         /// <summary>
         /// The list of aspects that are being used
@@ -91,11 +96,6 @@ namespace Aspectus
         private ObjectPool<StringBuilder>? ObjectPool { get; }
 
         /// <summary>
-        /// Dictionary containing generated types and associates it with original type
-        /// </summary>
-        private readonly ConcurrentDictionary<Type, Type> _Classes = new();
-
-        /// <summary>
         /// Creates an object of the specified base type, registering the type if necessary
         /// </summary>
         /// <typeparam name="T">The base type</typeparam>
@@ -113,12 +113,12 @@ namespace Aspectus
                 return null;
             if (!_Classes.ContainsKey(baseType))
                 Setup(baseType);
-            if (!_Classes.ContainsKey(baseType) || _Classes[baseType] is null)
+            if (!_Classes.TryGetValue(baseType, out Type? Value) || Value is null)
                 return GetInstance(baseType);
-            var ReturnObject = GetInstance(_Classes[baseType]);
+            var ReturnObject = GetInstance(Value);
             if (ReturnObject is null)
                 return ReturnObject;
-            if (_Classes[baseType] != baseType)
+            if (Value != baseType)
             {
                 foreach (IAspect Aspect in Aspects)
                 {
@@ -159,9 +159,9 @@ namespace Aspectus
             IEnumerable<Type> TempTypes = FilterTypesToSetup(types);
             if (!TempTypes.Any())
             {
-                for (var x = 0; x < types.Length; ++x)
+                for (var X = 0; X < types.Length; ++X)
                 {
-                    _ = _Classes.AddOrUpdate(types[x], types[x], (y, _) => y);
+                    _ = _Classes.AddOrUpdate(types[X], types[X], (y, _) => y);
                 }
                 return;
             }
@@ -186,7 +186,7 @@ namespace Aspectus
 
             foreach (Type TempType in TempTypes)
             {
-                Logger?.LogDebug("Generating type for {0}", TempType.GetName(ObjectPool));
+                Logger?.LogDebug("Generating type for {typeName}", TempType.GetName(ObjectPool));
                 GetAssemblies(TempType, TempAssemblies);
 
                 var Namespace = "AspectusGeneratedTypes.C" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -196,8 +196,8 @@ namespace Aspectus
             try
             {
                 List<MetadataReference> MetadataReferences = GetFinalAssemblies(TempAssemblies);
-                _ = Aspects.ForEach(x => MetadataReferences.AddIfUnique((z, y) => z.Display == y.Display, x.AssembliesUsing.ToArray()));
-                IEnumerable<Type> Types = Compiler.Create(Builder.ToString(), Usings, MetadataReferences.ToArray())
+                _ = Aspects.ForEach(x => MetadataReferences.AddIfUnique((z, y) => z.Display == y.Display, [.. x.AssembliesUsing]));
+                IEnumerable<Type> Types = Compiler.Create(Builder.ToString(), Usings, [.. MetadataReferences])
                                                     .Compile()
                                                     .LoadAssembly();
                 foreach (Type TempType in TempTypes)
@@ -278,9 +278,9 @@ namespace Aspectus
         /// <returns>The final assemblies</returns>
         private static List<MetadataReference> GetFinalAssemblies(List<Assembly> assembliesUsing)
         {
-            _ = assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, assembliesUsing
+            _ = assembliesUsing.AddIfUnique((z, y) => z.Location == y.Location, [.. assembliesUsing
                                                     .SelectMany(x => x.GetReferencedAssemblies())
-                                                    .Select(Assembly.Load).ToArray());
+                                                    .Select(Assembly.Load)]);
             string[] Load = [
                 "mscorlib.dll",
                 "netstandard.dll"
@@ -314,8 +314,8 @@ namespace Aspectus
         /// <returns>The types that can be set up</returns>
         private Type[] FilterTypesToSetup(IEnumerable<Type> enumerable)
         {
-            enumerable ??= Array.Empty<Type>();
-            return enumerable.Where(x =>
+            enumerable ??= [];
+            return [.. enumerable.Where(x =>
             {
                 Type TempTypeInfo = x;
                 return !_Classes.ContainsKey(x)
@@ -326,8 +326,7 @@ namespace Aspectus
                         && TempTypeInfo.IsVisible
                         && x.HasDefaultConstructor()
                         && !string.IsNullOrEmpty(x.Namespace);
-            })
-            .ToArray();
+            })];
         }
 
         /// <summary>
@@ -357,8 +356,8 @@ namespace Aspectus
 ", usings.ToString(x => "using " + x + ";", "\r\n"),
  namespaceUsing,
  className,
- type.FullName.Replace("+", ".", StringComparison.Ordinal),
- interfaces.Count > 0 ? "," : string.Empty, interfaces.ToString(x => x.FullName.Replace("+", ".", StringComparison.Ordinal)));
+ type.FullName?.Replace("+", ".", StringComparison.Ordinal) ?? "",
+ interfaces.Count > 0 ? "," : string.Empty, interfaces.ToString(x => x.FullName?.Replace("+", ".", StringComparison.Ordinal) ?? ""));
             if (type.HasDefaultConstructor())
             {
                 _ = Builder.AppendLineFormat(@"
@@ -378,9 +377,9 @@ namespace Aspectus
             var MethodsAlreadyDone = new List<string>();
             while (TempType != null)
             {
-                for (int i = 0, MaxLength = TempType.GetProperties().Length; i < MaxLength; i++)
+                for (int I = 0, MaxLength = TempType.GetProperties().Length; I < MaxLength; I++)
                 {
-                    PropertyInfo Property = TempType.GetProperties()[i];
+                    PropertyInfo Property = TempType.GetProperties()[I];
                     MethodInfo? GetMethodInfo = Property.GetMethod;
                     MethodInfo? SetMethodInfo = Property.SetMethod;
                     if (!MethodsAlreadyDone.Contains("get_" + Property.Name)
@@ -439,9 +438,9 @@ namespace Aspectus
                     }
                 }
 
-                for (int i = 0, MaxLength = TempType.GetMethods().Length; i < MaxLength; i++)
+                for (int I = 0, MaxLength = TempType.GetMethods().Length; I < MaxLength; I++)
                 {
-                    MethodInfo Method = TempType.GetMethods()[i];
+                    MethodInfo Method = TempType.GetMethods()[I];
                     const string MethodAttribute = "public";
                     if (!MethodsAlreadyDone.Contains(Method.Name)
                         && Method.IsVirtual
@@ -493,7 +492,7 @@ namespace Aspectus
             ParameterInfo[] Parameters = methodInfo.GetParameters();
             if (isProperty)
             {
-                BaseCall += Parameters.Length > 0 ? "=" + Parameters.ToString(x => x.Name) + ";" : ";";
+                BaseCall += Parameters.Length > 0 ? "=" + Parameters.ToString(x => x.Name ?? "") + ";" : ";";
             }
             else
             {

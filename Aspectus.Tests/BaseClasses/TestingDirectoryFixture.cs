@@ -24,6 +24,16 @@ namespace Aspectus.Tests.BaseClasses
         }
 
         /// <summary>
+        /// The service lock
+        /// </summary>
+        private static readonly object _ServiceLock = new();
+
+        /// <summary>
+        /// The service provider
+        /// </summary>
+        private static IServiceProvider _ServiceProvider;
+
+        /// <summary>
         /// Gets the logger.
         /// </summary>
         /// <value>The logger.</value>
@@ -34,16 +44,6 @@ namespace Aspectus.Tests.BaseClasses
         /// </summary>
         /// <value>The object pool.</value>
         public static ObjectPool<StringBuilder> ObjectPool => GetServiceProvider().GetService<ObjectPool<StringBuilder>>();
-
-        /// <summary>
-        /// The service lock
-        /// </summary>
-        protected static object ServiceLock = new();
-
-        /// <summary>
-        /// The service provider
-        /// </summary>
-        protected static IServiceProvider ServiceProvider;
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting
@@ -57,18 +57,18 @@ namespace Aspectus.Tests.BaseClasses
         /// <returns></returns>
         protected static IServiceProvider GetServiceProvider()
         {
-            if (ServiceProvider is not null)
-                return ServiceProvider;
-            lock (ServiceLock)
+            if (_ServiceProvider is not null)
+                return _ServiceProvider;
+            lock (_ServiceLock)
             {
-                if (ServiceProvider is not null)
-                    return ServiceProvider;
-                var services = new ServiceCollection();
-                _ = services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
-                _ = services.AddCanisterModules(configure => configure.AddAssembly(typeof(TestingDirectoryFixture).GetTypeInfo().Assembly)
+                if (_ServiceProvider is not null)
+                    return _ServiceProvider;
+                var Services = new ServiceCollection();
+                _ = Services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
+                _ = Services.AddCanisterModules(configure => configure.AddAssembly(typeof(TestingDirectoryFixture).GetTypeInfo().Assembly)
                    .RegisterAspectus());
-                ServiceProvider = services.BuildServiceProvider();
-                return ServiceProvider;
+                _ServiceProvider = Services.BuildServiceProvider();
+                return _ServiceProvider;
             }
         }
     }

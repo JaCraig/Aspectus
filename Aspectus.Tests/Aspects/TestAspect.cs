@@ -17,10 +17,10 @@ namespace Aspectus.Tests.Aspects
     {
         public TestAspect()
         {
-            AssembliesUsing = new List<MetadataReference>
-            {
+            AssembliesUsing =
+            [
                 MetadataReference.CreateFromFile(typeof(TestAspect).GetTypeInfo().Assembly.Location)
-            };
+            ];
             foreach (var DLL in new FileInfo(typeof(object).GetTypeInfo().Assembly.Location).Directory
                                                         .EnumerateFiles("*.dll")
                                                         .Where(x => Load.Contains(x.Name)))
@@ -31,18 +31,18 @@ namespace Aspectus.Tests.Aspects
         }
 
         private readonly string[] Load =
-            {
+            [
             "mscorlib.dll",
 "mscorlib.ni.dll",
 "System.Collections.Concurrent.dll",
 "System.Collections.dll",
 "System.Collections.Immutable.dll",
 "System.Runtime.dll"
-        };
+        ];
 
         public ICollection<MetadataReference> AssembliesUsing { get; }
 
-        public ICollection<Type> InterfacesUsing { get; } = new Type[] { typeof(IExample) };
+        public ICollection<Type> InterfacesUsing { get; } = [typeof(IExample)];
 
         public ICollection<string> Usings { get; } = Array.Empty<string>();
 

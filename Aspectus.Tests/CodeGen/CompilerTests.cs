@@ -48,7 +48,7 @@ namespace Aspectus.Tests.CodeGen
             // Arrange
             const string Code = "TestValue702238313";
             var Usings = new[] { "TestValue983550931", "TestValue1147447478", "TestValue723567240" };
-            MetadataReference[] References = { MetadataReference.CreateFromFile(Assembly.GetAssembly(typeof(string)).Location), MetadataReference.CreateFromFile(Assembly.GetAssembly(typeof(string)).Location), MetadataReference.CreateFromFile(Assembly.GetAssembly(typeof(string)).Location) };
+            MetadataReference[] References = [MetadataReference.CreateFromFile(Assembly.GetAssembly(typeof(string)).Location), MetadataReference.CreateFromFile(Assembly.GetAssembly(typeof(string)).Location), MetadataReference.CreateFromFile(Assembly.GetAssembly(typeof(string)).Location)];
 
             // Act
             _ = _TestClass.Create(Code, Usings, References);

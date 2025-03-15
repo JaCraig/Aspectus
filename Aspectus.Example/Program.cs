@@ -44,13 +44,13 @@ public class AOPTestClass
     /// Example property. In order to override it, the property must be virtual. Note that the
     /// system will skip non virtual properties.
     /// </summary>
-    public virtual List<string> D { get; set; } = new List<string>();
+    public virtual List<string> D { get; set; } = [];
 }
 
 /// <summary>
 /// Example application showing a basic example of how to use Aspectus
 /// </summary>
-internal class Program
+internal static class Program
 {
     /// <summary>
     /// Defines the entry point of the application.
@@ -96,13 +96,14 @@ public class TestAspect : IAspect
     public TestAspect()
     {
         // This is where we load the assemblies that we want to use.
-        AssembliesUsing = new List<MetadataReference>
-            {
+        AssembliesUsing =
+            [
                 MetadataReference.CreateFromFile(typeof(TestAspect).GetTypeInfo().Assembly.Location)
-            };
+            ];
         foreach (FileInfo? DLL in new FileInfo(typeof(object).GetTypeInfo().Assembly.Location).Directory
-                                                    .EnumerateFiles("*.dll")
-                                                    .Where(x => _Load.Contains(x.Name)))
+                                                    ?.EnumerateFiles("*.dll")
+                                                    .Where(x => _Load.Contains(x.Name))
+                                                    ?? [])
         {
             PortableExecutableReference TempAssembly = MetadataReference.CreateFromFile(DLL.FullName);
             AssembliesUsing.Add(TempAssembly);
@@ -117,7 +118,7 @@ public class TestAspect : IAspect
     /// <summary>
     /// List of interfaces that need to be injected by this aspect
     /// </summary>
-    public ICollection<Type> InterfacesUsing { get; } = new Type[] { typeof(IExample) };
+    public ICollection<Type> InterfacesUsing { get; } = [typeof(IExample)];
 
     /// <summary>
     /// Using statements that the aspect requires
@@ -128,14 +129,14 @@ public class TestAspect : IAspect
     /// The DLLs we want to load and use.
     /// </summary>
     private readonly string[] _Load =
-        {
+        [
             "mscorlib.dll",
 "mscorlib.ni.dll",
 "System.Collections.Concurrent.dll",
 "System.Collections.dll",
 "System.Collections.Immutable.dll",
 "System.Runtime.dll"
-        };
+        ];
 
     /// <summary>
     /// Used to hook into the object once it has been created

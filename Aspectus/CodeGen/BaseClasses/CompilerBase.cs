@@ -42,7 +42,7 @@ namespace Aspectus.CodeGen.BaseClasses
         protected CompilerBase(string assemblyName, ObjectPool<StringBuilder>? objectPool = null)
         {
             AssemblyName = assemblyName;
-            var DebuggableAttribute = Assembly.GetEntryAssembly().GetCustomAttribute<DebuggableAttribute>();
+            var DebuggableAttribute = Assembly.GetEntryAssembly()?.GetCustomAttribute<DebuggableAttribute>();
             Optimize = CheckJitProperty(DebuggableAttribute);
             Code = objectPool?.Get() ?? new StringBuilder();
             ObjectPool = objectPool;
@@ -56,7 +56,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <summary>
         /// Dictionary containing generated types and associates it with original type
         /// </summary>
-        public List<Type> Classes { get; private set; } = new List<Type>();
+        public List<Type> Classes { get; private set; } = [];
 
         /// <summary>
         /// Gets the assembly stream.
@@ -73,7 +73,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// Gets or sets the assemblies.
         /// </summary>
         /// <value>The assemblies.</value>
-        private List<MetadataReference> Assemblies { get; } = new List<MetadataReference>();
+        private List<MetadataReference> Assemblies { get; } = [];
 
         /// <summary>
         /// Gets or sets the code.
@@ -91,7 +91,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// Gets or sets the usings.
         /// </summary>
         /// <value>The usings.</value>
-        private List<string> Usings { get; } = new List<string>();
+        private List<string> Usings { get; } = [];
 
         /// <summary>
         /// Compiles this instance.
@@ -103,7 +103,7 @@ namespace Aspectus.CodeGen.BaseClasses
             var CSharpCompiler = CSharpCompilation.Create(AssemblyName + ".dll")
                 .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, usings: Usings, optimizationLevel: Optimize ? OptimizationLevel.Release : OptimizationLevel.Debug))
                 .AddReferences(Assemblies)
-                .AddSyntaxTrees(new SyntaxTree[] { CSharpSyntaxTree.ParseText(Code.ToString()) });
+                .AddSyntaxTrees([CSharpSyntaxTree.ParseText(Code.ToString())]);
             using (var TempStream = new MemoryStream())
             {
                 var Result = CSharpCompiler.Emit(TempStream);
@@ -134,7 +134,9 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <returns>The types within the assembly</returns>
         public IEnumerable<Type> LoadAssembly()
         {
-            AssemblyStream?.Seek(0, SeekOrigin.Begin);
+            if (AssemblyStream is null)
+                return Classes;
+            AssemblyStream.Seek(0, SeekOrigin.Begin);
             var ResultingAssembly = AssemblyLoadContext.Default.LoadFromStream(AssemblyStream, null);
             Classes.AddIfUnique((x, y) => x.FullName == y.FullName, ResultingAssembly.GetTypes());
             return Classes;
@@ -156,8 +158,7 @@ namespace Aspectus.CodeGen.BaseClasses
         /// <exception cref="ArgumentNullException">typeToCreate</exception>
         protected static T Create<T>(Type typeToCreate, params object[] args)
         {
-            if (typeToCreate is null)
-                throw new ArgumentNullException(nameof(typeToCreate));
+            ArgumentNullException.ThrowIfNull(typeToCreate, nameof(typeToCreate));
             return (T)FastActivator.CreateInstance(typeToCreate, args);
         }
 
@@ -193,7 +194,7 @@ namespace Aspectus.CodeGen.BaseClasses
                 ObjectPool = null;
                 AssemblyStream?.Dispose();
                 AssemblyStream = null;
-                Classes = new List<Type>();
+                Classes = [];
             }
         }
 
@@ -202,10 +203,10 @@ namespace Aspectus.CodeGen.BaseClasses
         /// </summary>
         /// <param name="debuggableAttribute">The debuggable attribute.</param>
         /// <returns>True if in Release mode, false otherwise</returns>
-        private static bool CheckJitProperty(DebuggableAttribute debuggableAttribute)
+        private static bool CheckJitProperty(DebuggableAttribute? debuggableAttribute)
         {
             return debuggableAttribute != null
-                && !(bool)(debuggableAttribute.GetType().GetProperty("IsJITOptimizerDisabled").GetValue(debuggableAttribute) ?? true);
+                && !(bool)(debuggableAttribute.GetType().GetProperty("IsJITOptimizerDisabled")?.GetValue(debuggableAttribute) ?? true);
         }
     }
 }

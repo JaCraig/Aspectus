@@ -16,7 +16,6 @@ limitations under the License.
 
 using Microsoft.Extensions.ObjectPool;
 using System;
-using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
@@ -40,7 +39,7 @@ namespace Aspectus.HelperFunctions
         /// <returns>The collection with the added items</returns>
         public static ConcurrentBag<T> Add<T>(this ConcurrentBag<T> collection, IEnumerable<T> items)
         {
-            collection ??= new ConcurrentBag<T>();
+            collection ??= [];
             if (items is null)
                 return collection;
             foreach (var Item in items)
@@ -65,9 +64,9 @@ namespace Aspectus.HelperFunctions
             if (items is null || items.Length == 0)
                 return true;
             var ReturnValue = false;
-            for (int i = 0, itemsLength = items.Length; i < itemsLength; i++)
+            for (int I = 0, ItemsLength = items.Length; I < ItemsLength; I++)
             {
-                var Item = items[i];
+                var Item = items[I];
                 if (predicate(Item))
                 {
                     collection.Add(Item);
@@ -92,7 +91,7 @@ namespace Aspectus.HelperFunctions
                 return false;
             if (items?.Any() != true)
                 return true;
-            return collection.AddIf(predicate, items.ToArray());
+            return collection.AddIf(predicate, [.. items]);
         }
 
         /// <summary>
@@ -159,7 +158,7 @@ namespace Aspectus.HelperFunctions
         {
             if (builder is null || string.IsNullOrEmpty(format))
                 return builder;
-            objects ??= Array.Empty<object>();
+            objects ??= [];
             provider ??= CultureInfo.InvariantCulture;
             return builder.AppendFormat(provider, format, objects).AppendLine();
         }
@@ -183,7 +182,7 @@ namespace Aspectus.HelperFunctions
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> list, Action<T> action)
         {
             if (list is null)
-                return Array.Empty<T>();
+                return [];
             if (action is null)
                 return list;
             foreach (var Item in list)
@@ -195,15 +194,15 @@ namespace Aspectus.HelperFunctions
         /// Does a function for each item in the IEnumerable, returning a list of the results
         /// </summary>
         /// <typeparam name="T">Object type</typeparam>
-        /// <typeparam name="R">Return type</typeparam>
+        /// <typeparam name="TResult">Return type</typeparam>
         /// <param name="list">IEnumerable to iterate over</param>
         /// <param name="function">Function to do</param>
         /// <returns>The resulting list</returns>
-        public static IEnumerable<R> ForEach<T, R>(this IEnumerable<T> list, Func<T, R> function)
+        public static IEnumerable<TResult> ForEach<T, TResult>(this IEnumerable<T> list, Func<T, TResult> function)
         {
             if (list is null || function is null)
-                return Array.Empty<R>();
-            var ReturnList = new List<R>(list.Count());
+                return [];
+            var ReturnList = new List<TResult>(list.Count());
             foreach (var Item in list)
                 ReturnList.Add(function(Item));
             return ReturnList;
@@ -219,7 +218,7 @@ namespace Aspectus.HelperFunctions
         public static IEnumerable<T> ForEachParallel<T>(this IEnumerable<T> list, Action<T> action)
         {
             if (list is null)
-                return Array.Empty<T>();
+                return [];
             if (action is null)
                 return list;
             Parallel.ForEach(list, action);
@@ -246,10 +245,10 @@ namespace Aspectus.HelperFunctions
             {
                 Output.Append(objectType.DeclaringType is null ? objectType.Namespace : objectType.DeclaringType.GetName(objectPool))
                     .Append('.');
-                if (objectType.Name.Contains("`", StringComparison.Ordinal))
+                if (objectType.Name.Contains('`', StringComparison.Ordinal))
                 {
                     var GenericTypes = objectType.GetGenericArguments();
-                    Output.Append(objectType.Name, 0, objectType.Name.IndexOf("`", StringComparison.Ordinal))
+                    Output.Append(objectType.Name, 0, objectType.Name.IndexOf('`'))
                         .Append('<');
                     var Seperator = string.Empty;
                     foreach (var GenericType in GenericTypes)
