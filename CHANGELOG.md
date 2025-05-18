@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.8"></a>
+## [6.0.8](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.8) (2025-05-18)
+
+### Bug Fixes
+
+* **dependencies:** update package versions ([9c1b598](https://www.github.com/JaCraig/Aspectus/commit/9c1b5980bc4d41304c0ea35188ea014167e52b23))
+* **tests:** update logging for null safety ([8ee7a1d](https://www.github.com/JaCraig/Aspectus/commit/8ee7a1d052cf9b9e9b43c9c100f9dc37968f0805))
+
+### Other
+
+* Merge pull request #124 from JaCraig/dependabot/nuget/Aspectus.Example/dependencies-977c693e78 ([01c6a6e](https://www.github.com/JaCraig/Aspectus/commit/01c6a6e9d7c0d2ff4d1a33ffc58ab1eb56ab8c4c))
+* Merge pull request #125 from JaCraig/dependabot/nuget/Aspectus/multi-0aa923f81c ([362316c](https://www.github.com/JaCraig/Aspectus/commit/362316c738db4cd010cc656452dca2c7b78fdc87))
+* Merge pull request #126 from JaCraig/dependabot/nuget/Aspectus/multi-76efb919e8 ([e7d8a9a](https://www.github.com/JaCraig/Aspectus/commit/e7d8a9aa64eb4994d8f40dbe72ccf6c6b595592c))
+* Update: ([1d323fb](https://www.github.com/JaCraig/Aspectus/commit/1d323fbaf7afae0cc0efdd4919ee8b3ae6f273d4))
+* Update: ([208e104](https://www.github.com/JaCraig/Aspectus/commit/208e104604969a33e51d3e2a96c57953f9b2ed21))
+* bump the dependencies group in /Aspectus.Example with 2 updates ([9c49488](https://www.github.com/JaCraig/Aspectus/commit/9c4948879b8198e50cca10dff456b5150523bde3))
+* **tests, aspects:** simplify collection initializations ([5085c72](https://www.github.com/JaCraig/Aspectus/commit/5085c729146945e3998c173f257b0abc8c92e990))
+
 <a name="6.0.7"></a>
 ## [6.0.7](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.7) (2025-03-15)
 
