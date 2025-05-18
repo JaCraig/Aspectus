@@ -139,7 +139,7 @@ namespace Aspectus.Tests
         [Fact]
         public void Create()
         {
-            Logger.Information("AspectusTests.Create");
+            Logger?.Information("AspectusTests.Create");
             var Test = new Aspectus(new Compiler(ObjectPool), [], [], GetServiceProvider().GetService<ILogger<Aspectus>>(), ObjectPool);
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
             Assert.NotNull(Item);
@@ -148,7 +148,7 @@ namespace Aspectus.Tests
         [Fact]
         public void TestAspectFromCanister()
         {
-            Logger.Information("AspectusTests.TestAspectTestMultiple");
+            Logger?.Information("AspectusTests.TestAspectTestMultiple");
             Aspectus Test = GetServiceProvider().GetService<Aspectus>();
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
@@ -166,7 +166,7 @@ namespace Aspectus.Tests
         [Fact]
         public void TestAspectTest()
         {
-            Logger.Information("AspectusTests.TestAspectTest");
+            Logger?.Information("AspectusTests.TestAspectTest");
             var Test = new Aspectus(new Compiler("TestAspectTest", ObjectPool), new[] { new TestAspect() }.ToList(), [], GetServiceProvider().GetService<ILogger<Aspectus>>(), ObjectPool);
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
@@ -179,7 +179,7 @@ namespace Aspectus.Tests
         [Fact]
         public void TestAspectTestAfterClean()
         {
-            Logger.Information("AspectusTests.TestAspectTestAfterClean");
+            Logger?.Information("AspectusTests.TestAspectTestAfterClean");
             var Test = new Aspectus(new Compiler("TestAspectTestAfterClean", ObjectPool), new[] { new TestAspect() }.ToList(), [], GetServiceProvider().GetService<ILogger<Aspectus>>(), ObjectPool);
             Test.FinalizeSetup();
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
@@ -196,7 +196,7 @@ namespace Aspectus.Tests
         [Fact]
         public void TestAspectTestBeforeClean()
         {
-            Logger.Information("AspectusTests.TestAspectTestBeforeClean");
+            Logger?.Information("AspectusTests.TestAspectTestBeforeClean");
             var Test = new Aspectus(new Compiler("TestAspectTestBeforeClean", ObjectPool), new[] { new TestAspect() }.ToList(), [], GetServiceProvider().GetService<ILogger<Aspectus>>(), ObjectPool);
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             Test.FinalizeSetup();
@@ -215,7 +215,7 @@ namespace Aspectus.Tests
         [Fact]
         public void TestAspectTestMultiple()
         {
-            Logger.Information("AspectusTests.TestAspectTestMultiple");
+            Logger?.Information("AspectusTests.TestAspectTestMultiple");
             var Test = new Aspectus(new Compiler("TestAspectTestMultiple", ObjectPool), new[] { new TestAspect() }.ToList(), [], GetServiceProvider().GetService<ILogger<Aspectus>>(), ObjectPool);
             Test.Setup(typeof(AOPTestClass), typeof(AOPTestClass2));
             var Item = (AOPTestClass)Test.Create(typeof(AOPTestClass));
