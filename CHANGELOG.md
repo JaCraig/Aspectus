@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.9"></a>
+## [6.0.9](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.9) (2025-05-19)
+
+### Bug Fixes
+
+* **aspectus:** replace ConcurrentBag with List ([2195dea](https://www.github.com/JaCraig/Aspectus/commit/2195dea71e73cf0d2503b06eabc44ce5c6835124))
+* **tests:** update logging to prevent null reference errors ([6fb9385](https://www.github.com/JaCraig/Aspectus/commit/6fb93854fbb5df4796c2f6833d5796a0243aea1a))
+
+### Other
+
+* **aspectus:** improve performance and readability ([0ae9eb2](https://www.github.com/JaCraig/Aspectus/commit/0ae9eb2ee7b4ff5a9c92565a14dee93a9f615164))
+
 <a name="6.0.8"></a>
 ## [6.0.8](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.8) (2025-05-18)
 
