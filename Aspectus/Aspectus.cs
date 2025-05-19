@@ -72,7 +72,12 @@ namespace Aspectus
         /// <summary>
         /// Dictionary containing generated types and associates it with original type
         /// </summary>
-        private readonly ConcurrentDictionary<Type, Type> _Classes = new();
+        private readonly Dictionary<Type, Type> _Classes = [];
+
+        /// <summary>
+        /// Lock object to prevent multiple threads from trying to set up the same type at the same time
+        /// </summary>
+        private readonly object _LockObject = new();
 
         /// <summary>
         /// The list of aspects that are being used
@@ -118,12 +123,11 @@ namespace Aspectus
             var ReturnObject = GetInstance(Value);
             if (ReturnObject is null)
                 return ReturnObject;
-            if (Value != baseType)
+            if (Value == baseType)
+                return ReturnObject;
+            foreach (IAspect Aspect in Aspects)
             {
-                foreach (IAspect Aspect in Aspects)
-                {
-                    Aspect.Setup(ReturnObject);
-                }
+                Aspect.Setup(ReturnObject);
             }
             return ReturnObject;
         }
@@ -156,69 +160,76 @@ namespace Aspectus
         {
             if (Compiler is null)
                 return;
-            IEnumerable<Type> TempTypes = FilterTypesToSetup(types);
-            if (!TempTypes.Any())
-            {
-                for (var X = 0; X < types.Length; ++X)
-                {
-                    _ = _Classes.AddOrUpdate(types[X], types[X], (y, _) => y);
-                }
+            if (types is null || types.Length == 0)
                 return;
-            }
-            var TempAssemblies = new List<Assembly>();
-            GetAssemblies(typeof(object), TempAssemblies);
-            GetAssemblies(typeof(Enumerable), TempAssemblies);
-
-            var Usings = new List<string>
+            if (types.All(_Classes.ContainsKey))
+                return;
+            lock (_LockObject)
             {
-                "System",
-                "System.Collections.Generic",
-                "System.Linq",
-                "System.Text",
-                "System.Threading.Tasks"
-            };
-            _ = Aspects.ForEach(x => Usings.AddIfUnique(x.Usings));
+                if (types.All(_Classes.ContainsKey))
+                    return;
+                IEnumerable<Type> TempTypes = FilterTypesToSetup(types);
+                if (!TempTypes.Any())
+                {
+                    for (var X = 0; X < types.Length; ++X)
+                    {
+                        _ = _Classes[types[X]] = types[X];
+                    }
+                    return;
+                }
+                var TempAssemblies = new List<Assembly>();
+                GetAssemblies(typeof(object), TempAssemblies);
+                GetAssemblies(typeof(Enumerable), TempAssemblies);
 
-            var InterfacesUsed = new List<Type>();
-            _ = Aspects.ForEach(x => InterfacesUsed.AddRange(x.InterfacesUsing ?? Array.Empty<Type>()));
+                var Usings = new List<string>
+                {
+                    "System",
+                    "System.Collections.Generic",
+                    "System.Linq",
+                    "System.Text",
+                    "System.Threading.Tasks"
+                };
+                _ = Aspects.ForEach(x => Usings.AddIfUnique(x.Usings));
 
-            StringBuilder Builder = ObjectPool?.Get() ?? new StringBuilder();
+                var InterfacesUsed = new List<Type>();
+                _ = Aspects.ForEach(x => InterfacesUsed.AddRange(x.InterfacesUsing ?? Array.Empty<Type>()));
 
-            foreach (Type TempType in TempTypes)
-            {
-                Logger?.LogDebug("Generating type for {typeName}", TempType.GetName(ObjectPool));
-                GetAssemblies(TempType, TempAssemblies);
+                StringBuilder Builder = ObjectPool?.Get() ?? new StringBuilder();
 
-                var Namespace = "AspectusGeneratedTypes.C" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-                var ClassName = TempType.Name + "Derived";
-                _ = Builder.AppendLine(Setup(TempType, Namespace, ClassName, Usings, InterfacesUsed, TempAssemblies));
-            }
-            try
-            {
-                List<MetadataReference> MetadataReferences = GetFinalAssemblies(TempAssemblies);
-                _ = Aspects.ForEach(x => MetadataReferences.AddIfUnique((z, y) => z.Display == y.Display, [.. x.AssembliesUsing]));
-                IEnumerable<Type> Types = Compiler.Create(Builder.ToString(), Usings, [.. MetadataReferences])
-                                                    .Compile()
-                                                    .LoadAssembly();
                 foreach (Type TempType in TempTypes)
                 {
-                    Type? Value = Types.FirstOrDefault(x => x.BaseType == TempType);
-                    if (Value is null)
-                        continue;
-                    _ = _Classes.AddOrUpdate(TempType, Value, (x, _) => x);
+                    Logger?.LogDebug("Generating type for {typeName}", TempType.GetName(ObjectPool));
+                    GetAssemblies(TempType, TempAssemblies);
+
+                    var Namespace = "AspectusGeneratedTypes.C" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+                    var ClassName = TempType.Name + "Derived";
+                    _ = Builder.AppendLine(Setup(TempType, Namespace, ClassName, Usings, InterfacesUsed, TempAssemblies));
                 }
-            }
-            catch (Exception Ex)
-            {
-                Logger?.LogError(Ex, "Error compiling code");
-                foreach (Type TempType in TempTypes)
+                try
                 {
-                    _ = _Classes.AddOrUpdate(TempType,
-                        TempType,
-                        (x, _) => x);
+                    List<MetadataReference> MetadataReferences = GetFinalAssemblies(TempAssemblies);
+                    _ = Aspects.ForEach(x => MetadataReferences.AddIfUnique((z, y) => z.Display == y.Display, [.. x.AssembliesUsing]));
+                    IEnumerable<Type> Types = Compiler.Create(Builder.ToString(), Usings, [.. MetadataReferences])
+                                                        .Compile()
+                                                        .LoadAssembly();
+                    foreach (Type TempType in TempTypes)
+                    {
+                        Type? Value = Types.FirstOrDefault(x => x.BaseType == TempType);
+                        if (Value is null)
+                            continue;
+                        _ = _Classes[TempType] = Value;
+                    }
                 }
+                catch (Exception Ex)
+                {
+                    Logger?.LogError(Ex, "Error compiling code");
+                    foreach (Type TempType in TempTypes)
+                    {
+                        _ = _Classes[TempType] = TempType;
+                    }
+                }
+                ObjectPool?.Return(Builder);
             }
-            ObjectPool?.Return(Builder);
         }
 
         /// <summary>

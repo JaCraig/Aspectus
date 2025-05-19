@@ -21,7 +21,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Aspectus.HelperFunctions
 {
@@ -42,7 +41,7 @@ namespace Aspectus.HelperFunctions
             collection ??= [];
             if (items is null)
                 return collection;
-            foreach (var Item in items)
+            foreach (T? Item in items)
             {
                 collection.Add(Item);
             }
@@ -66,7 +65,7 @@ namespace Aspectus.HelperFunctions
             var ReturnValue = false;
             for (int I = 0, ItemsLength = items.Length; I < ItemsLength; I++)
             {
-                var Item = items[I];
+                T? Item = items[I];
                 if (predicate(Item))
                 {
                     collection.Add(Item);
@@ -89,9 +88,7 @@ namespace Aspectus.HelperFunctions
         {
             if (collection is null || predicate is null)
                 return false;
-            if (items?.Any() != true)
-                return true;
-            return collection.AddIf(predicate, [.. items]);
+            return items?.Any() != true || collection.AddIf(predicate, [.. items]);
         }
 
         /// <summary>
@@ -109,9 +106,7 @@ namespace Aspectus.HelperFunctions
         {
             if (collection is null || predicate is null)
                 return false;
-            if (items is null)
-                return true;
-            return collection.AddIf(x => !collection.Any(y => predicate(x, y)), items);
+            return items is null || collection.AddIf(x => !collection.Any(y => predicate(x, y)), items);
         }
 
         /// <summary>
@@ -125,9 +120,7 @@ namespace Aspectus.HelperFunctions
         {
             if (collection is null)
                 return false;
-            if (items is null)
-                return true;
-            return collection.AddIf(x => !collection.Contains(x), items);
+            return items is null || collection.AddIf(x => !collection.Contains(x), items);
         }
 
         /// <summary>
@@ -141,9 +134,7 @@ namespace Aspectus.HelperFunctions
         {
             if (collection is null)
                 return false;
-            if (items is null)
-                return true;
-            return collection.AddIf(x => !collection.Contains(x), items);
+            return items is null || collection.AddIf(x => !collection.Contains(x), items);
         }
 
         /// <summary>
@@ -185,7 +176,7 @@ namespace Aspectus.HelperFunctions
                 return [];
             if (action is null)
                 return list;
-            foreach (var Item in list)
+            foreach (T? Item in list)
                 action(Item);
             return list;
         }
@@ -203,26 +194,9 @@ namespace Aspectus.HelperFunctions
             if (list is null || function is null)
                 return [];
             var ReturnList = new List<TResult>(list.Count());
-            foreach (var Item in list)
+            foreach (T? Item in list)
                 ReturnList.Add(function(Item));
             return ReturnList;
-        }
-
-        /// <summary>
-        /// Does an action for each item in the IEnumerable in parallel
-        /// </summary>
-        /// <typeparam name="T">Object type</typeparam>
-        /// <param name="list">IEnumerable to iterate over</param>
-        /// <param name="action">Action to do</param>
-        /// <returns>The original list</returns>
-        public static IEnumerable<T> ForEachParallel<T>(this IEnumerable<T> list, Action<T> action)
-        {
-            if (list is null)
-                return [];
-            if (action is null)
-                return list;
-            Parallel.ForEach(list, action);
-            return list;
         }
 
         /// <summary>
@@ -235,7 +209,7 @@ namespace Aspectus.HelperFunctions
         {
             if (objectType is null)
                 return string.Empty;
-            var Output = objectPool?.Get() ?? new StringBuilder();
+            StringBuilder Output = objectPool?.Get() ?? new StringBuilder();
             if (objectType.Name == "Void")
             {
                 objectPool?.Return(Output);
@@ -243,24 +217,24 @@ namespace Aspectus.HelperFunctions
             }
             else
             {
-                Output.Append(objectType.DeclaringType is null ? objectType.Namespace : objectType.DeclaringType.GetName(objectPool))
+                _ = Output.Append(objectType.DeclaringType is null ? objectType.Namespace : objectType.DeclaringType.GetName(objectPool))
                     .Append('.');
                 if (objectType.Name.Contains('`', StringComparison.Ordinal))
                 {
-                    var GenericTypes = objectType.GetGenericArguments();
-                    Output.Append(objectType.Name, 0, objectType.Name.IndexOf('`'))
+                    Type[] GenericTypes = objectType.GetGenericArguments();
+                    _ = Output.Append(objectType.Name, 0, objectType.Name.IndexOf('`'))
                         .Append('<');
                     var Seperator = string.Empty;
-                    foreach (var GenericType in GenericTypes)
+                    foreach (Type GenericType in GenericTypes)
                     {
-                        Output.Append(Seperator).Append(GenericType.GetName(objectPool));
+                        _ = Output.Append(Seperator).Append(GenericType.GetName(objectPool));
                         Seperator = ",";
                     }
-                    Output.Append('>');
+                    _ = Output.Append('>');
                 }
                 else
                 {
-                    Output.Append(objectType.Name);
+                    _ = Output.Append(objectType.Name);
                 }
             }
             var ReturnValue = Output.ToString().Replace("&", string.Empty, StringComparison.Ordinal);
@@ -298,7 +272,7 @@ namespace Aspectus.HelperFunctions
             }
 
             seperator ??= string.Empty;
-            itemOutput ??= DefaultToStringConverter<T>;
+            itemOutput ??= DefaultToStringConverter;
             return string.Join(seperator, list.Select(itemOutput));
         }
 
@@ -308,9 +282,6 @@ namespace Aspectus.HelperFunctions
         /// <typeparam name="TValue">The type of the value.</typeparam>
         /// <param name="value">The value.</param>
         /// <returns>The value as a string</returns>
-        private static string DefaultToStringConverter<TValue>(TValue value)
-        {
-            return value?.ToString() ?? string.Empty;
-        }
+        private static string DefaultToStringConverter<TValue>(TValue value) => value?.ToString() ?? string.Empty;
     }
 }
