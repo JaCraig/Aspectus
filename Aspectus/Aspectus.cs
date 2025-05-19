@@ -22,7 +22,6 @@ using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -52,8 +51,8 @@ namespace Aspectus
             aspects ??= [];
             modules ??= [];
             Compiler = compiler ?? new Compiler(objectPool);
-            if (Aspects.IsEmpty)
-                _ = Aspects.Add(aspects);
+            if (Aspects.Count == 0)
+                Aspects.AddRange(aspects);
             _ = modules.ForEach(x => x.Setup(this));
             ObjectPool = objectPool;
         }
@@ -82,7 +81,7 @@ namespace Aspectus
         /// <summary>
         /// The list of aspects that are being used
         /// </summary>
-        private ConcurrentBag<IAspect> Aspects { get; } = [];
+        private List<IAspect> Aspects { get; } = [];
 
         /// <summary>
         /// Gets the system's compiler
@@ -189,10 +188,10 @@ namespace Aspectus
                     "System.Text",
                     "System.Threading.Tasks"
                 };
-                _ = Aspects.ForEach(x => Usings.AddIfUnique(x.Usings));
+                Aspects.ForEach(x => Usings.AddIfUnique(x.Usings));
 
                 var InterfacesUsed = new List<Type>();
-                _ = Aspects.ForEach(x => InterfacesUsed.AddRange(x.InterfacesUsing ?? Array.Empty<Type>()));
+                Aspects.ForEach(x => InterfacesUsed.AddRange(x.InterfacesUsing ?? Array.Empty<Type>()));
 
                 StringBuilder Builder = ObjectPool?.Get() ?? new StringBuilder();
 
@@ -208,7 +207,7 @@ namespace Aspectus
                 try
                 {
                     List<MetadataReference> MetadataReferences = GetFinalAssemblies(TempAssemblies);
-                    _ = Aspects.ForEach(x => MetadataReferences.AddIfUnique((z, y) => z.Display == y.Display, [.. x.AssembliesUsing]));
+                    Aspects.ForEach(x => MetadataReferences.AddIfUnique((z, y) => z.Display == y.Display, [.. x.AssembliesUsing]));
                     IEnumerable<Type> Types = Compiler.Create(Builder.ToString(), Usings, [.. MetadataReferences])
                                                         .Compile()
                                                         .LoadAssembly();
@@ -377,12 +376,12 @@ namespace Aspectus
         {{
             ",
                type.Name + "Derived");
-                _ = Aspects.ForEach(x => Builder.AppendLine(x.SetupDefaultConstructor(type)));
+                Aspects.ForEach(x => Builder.AppendLine(x.SetupDefaultConstructor(type)));
                 _ = Builder.AppendLineFormat(@"
         }}");
             }
 
-            _ = Aspects.ForEach(x => Builder.AppendLine(x.SetupInterfaces(type)));
+            Aspects.ForEach(x => Builder.AppendLine(x.SetupInterfaces(type)));
 
             Type? TempType = type;
             var MethodsAlreadyDone = new List<string>();
@@ -525,11 +524,11 @@ namespace Aspectus
                     throw;
                 }}",
                 methodInfo.ReturnType != typeof(void) ? methodInfo.ReturnType.GetName(ObjectPool) + " " + ReturnValue + ";" : string.Empty,
-                Aspects.ForEach(x => x.SetupStartMethod(methodInfo, type)).ToString(x => x, "\r\n"),
+                Aspects.ToString(x => x.SetupStartMethod(methodInfo, type), "\r\n"),
                 BaseCall,
-                Aspects.ForEach(x => x.SetupEndMethod(methodInfo, type, ReturnValue)).ToString(x => x, "\r\n"),
+                Aspects.ToString(x => x.SetupEndMethod(methodInfo, type, ReturnValue), "\r\n"),
                 string.IsNullOrEmpty(ReturnValue) ? string.Empty : "return " + ReturnValue + ";",
-                Aspects.ForEach(x => x.SetupExceptionMethod(methodInfo, type)).ToString(x => x, "\r\n"));
+                Aspects.ToString(x => x.SetupExceptionMethod(methodInfo, type), "\r\n"));
             var ReturnVal = Builder.ToString();
             ObjectPool?.Return(Builder);
             return ReturnVal;

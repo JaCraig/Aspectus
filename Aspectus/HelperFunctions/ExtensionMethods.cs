@@ -16,7 +16,6 @@ limitations under the License.
 
 using Microsoft.Extensions.ObjectPool;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -29,25 +28,6 @@ namespace Aspectus.HelperFunctions
     /// </summary>
     internal static class ExtensionMethods
     {
-        /// <summary>
-        /// Adds a list of items to the collection
-        /// </summary>
-        /// <typeparam name="T">The type of the items in the collection</typeparam>
-        /// <param name="collection">Collection</param>
-        /// <param name="items">Items to add</param>
-        /// <returns>The collection with the added items</returns>
-        public static ConcurrentBag<T> Add<T>(this ConcurrentBag<T> collection, IEnumerable<T> items)
-        {
-            collection ??= [];
-            if (items is null)
-                return collection;
-            foreach (T? Item in items)
-            {
-                collection.Add(Item);
-            }
-            return collection;
-        }
-
         /// <summary>
         /// Adds items to the collection if it passes the predicate test
         /// </summary>
@@ -84,12 +64,7 @@ namespace Aspectus.HelperFunctions
         /// <param name="predicate">Predicate that an item needs to satisfy in order to be added</param>
         /// <param name="items">Items to add to the collection</param>
         /// <returns>True if it is added, false otherwise</returns>
-        public static bool AddIf<T>(this ICollection<T> collection, Predicate<T> predicate, IEnumerable<T> items)
-        {
-            if (collection is null || predicate is null)
-                return false;
-            return items?.Any() != true || collection.AddIf(predicate, [.. items]);
-        }
+        public static bool AddIf<T>(this ICollection<T> collection, Predicate<T> predicate, IEnumerable<T> items) => collection is not null && predicate is not null && (items?.Any() != true || collection.AddIf(predicate, [.. items]));
 
         /// <summary>
         /// Adds an item to the collection if it isn't already in the collection
@@ -102,12 +77,7 @@ namespace Aspectus.HelperFunctions
         /// </param>
         /// <param name="items">Items to add to the collection</param>
         /// <returns>True if it is added, false otherwise</returns>
-        public static bool AddIfUnique<T>(this ICollection<T> collection, Func<T, T, bool> predicate, params T[] items)
-        {
-            if (collection is null || predicate is null)
-                return false;
-            return items is null || collection.AddIf(x => !collection.Any(y => predicate(x, y)), items);
-        }
+        public static bool AddIfUnique<T>(this ICollection<T> collection, Func<T, T, bool> predicate, params T[] items) => collection is not null && predicate is not null && (items is null || collection.AddIf(x => !collection.Any(y => predicate(x, y)), items));
 
         /// <summary>
         /// Adds an item to the collection if it isn't already in the collection
@@ -116,12 +86,7 @@ namespace Aspectus.HelperFunctions
         /// <param name="collection">Collection to add to</param>
         /// <param name="items">Items to add to the collection</param>
         /// <returns>True if it is added, false otherwise</returns>
-        public static bool AddIfUnique<T>(this ICollection<T> collection, IEnumerable<T> items)
-        {
-            if (collection is null)
-                return false;
-            return items is null || collection.AddIf(x => !collection.Contains(x), items);
-        }
+        public static bool AddIfUnique<T>(this ICollection<T> collection, IEnumerable<T> items) => collection is not null && (items is null || collection.AddIf(x => !collection.Contains(x), items));
 
         /// <summary>
         /// Adds an item to the collection if it isn't already in the collection
@@ -130,12 +95,7 @@ namespace Aspectus.HelperFunctions
         /// <param name="collection">Collection to add to</param>
         /// <param name="items">Items to add to the collection</param>
         /// <returns>True if it is added, false otherwise</returns>
-        public static bool AddIfUnique<T>(this ICollection<T> collection, params T[] items)
-        {
-            if (collection is null)
-                return false;
-            return items is null || collection.AddIf(x => !collection.Contains(x), items);
-        }
+        public static bool AddIfUnique<T>(this ICollection<T> collection, params T[] items) => collection is not null && (items is null || collection.AddIf(x => !collection.Contains(x), items));
 
         /// <summary>
         /// Does an AppendFormat and then an AppendLine on the StringBuilder
