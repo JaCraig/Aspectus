@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.13"></a>
+## [6.0.13](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.13) (2025-06-27)
+
+### Bug Fixes
+
+* **dependabot:** correct formatting of patterns in configuration ([957dca5](https://www.github.com/JaCraig/Aspectus/commit/957dca5860ddd39addb33a5ba1d7f52332a395dc))
+
+### Other
+
+* Merge pull request #130 from JaCraig/dependabot/nuget/Aspectus/dependencies-16673a67f6 ([ee141c0](https://www.github.com/JaCraig/Aspectus/commit/ee141c0ecc92a28f4a2aceac20a45c53a9ce3931))
+* Bump the dependencies group with 1 update ([e025ca7](https://www.github.com/JaCraig/Aspectus/commit/e025ca749f94d452eeccb6c4af642b000506b6f1))
+
 <a name="6.0.12"></a>
 ## [6.0.12](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.12) (2025-06-23)
 
