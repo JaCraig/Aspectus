@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.15"></a>
+## [6.0.15](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.15) (2025-08-05)
+
+### Bug Fixes
+
+* Bump the dependencies group with 3 updates ([613228b](https://www.github.com/JaCraig/Aspectus/commit/613228bf98298029113424557533ffea84faf3f7))
+
+### Other
+
+* Merge pull request #133 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-4ed9f62a39 ([e2e88a2](https://www.github.com/JaCraig/Aspectus/commit/e2e88a2c2092d1a7b243834ee55d0b59a762c55c))
+* Merge pull request #134 from JaCraig/dependabot/nuget/Aspectus/dependencies-33f7d2adb4 ([7ea7846](https://www.github.com/JaCraig/Aspectus/commit/7ea7846eb9e72ba153c4540d38c93fbcbf80a797))
+* Merge pull request #135 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-f5ef2f2cd0 ([1309e01](https://www.github.com/JaCraig/Aspectus/commit/1309e011d065d9e8c1f6ac62f363d7cec569a2eb))
+* Merge pull request #136 from JaCraig/dependabot/nuget/Aspectus/dependencies-5ed711f466 ([40de9ea](https://www.github.com/JaCraig/Aspectus/commit/40de9ea128d60ee8ba77614113b0a40ae894940b))
+* Merge pull request #137 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-0b34180b1d ([58901ad](https://www.github.com/JaCraig/Aspectus/commit/58901adc9167280bb80a30504b6aae6b8ecff130))
+* Merge pull request #138 from JaCraig/dependabot/nuget/Aspectus/dependencies-11230f6751 ([f725d48](https://www.github.com/JaCraig/Aspectus/commit/f725d48cf9897405f7f53ebdb2595d465b66e461))
+* Bump the dependencies group with 1 update ([b5a7c59](https://www.github.com/JaCraig/Aspectus/commit/b5a7c59f23161e15133cec9474b21ff9ffc53212))
+* Bump the dependencies group with 1 update ([092f037](https://www.github.com/JaCraig/Aspectus/commit/092f037e0267733288a07d93f52dc9cf8f0a9f85))
+* Bump the dependencies group with 1 update ([3304ae9](https://www.github.com/JaCraig/Aspectus/commit/3304ae97245deb0251ce47b15fcdda7e6cc150ea))
+* Bump the dependencies group with 2 updates ([982bade](https://www.github.com/JaCraig/Aspectus/commit/982bade0bf9ea52a796c837b20c25ab5f30221b1))
+* Bump the dependencies group with 3 updates ([c879e86](https://www.github.com/JaCraig/Aspectus/commit/c879e868e8a936976754595368e1172066dc9732))
+
 <a name="6.0.14"></a>
 ## [6.0.14](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.0.14) (2025-06-27)
 
