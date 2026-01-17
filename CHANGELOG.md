@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.1.2"></a>
+## [6.1.2](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.1.2) (2026-01-17)
+
+### Bug Fixes
+
+* **deps:** update NuGet package versions in projects ([fcd10cb](https://www.github.com/JaCraig/Aspectus/commit/fcd10cbabe3aa3a5e95862754951ab53fca26fb3))
+
+### Other
+
+* Merge pull request #156 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-cfbb3d4850 ([9303773](https://www.github.com/JaCraig/Aspectus/commit/9303773209ca5da8db669e8f5f168896d015bb9c))
+* Merge pull request #157 from JaCraig/dependabot/nuget/Aspectus/dependencies-c7c86c3b31 ([3e9a209](https://www.github.com/JaCraig/Aspectus/commit/3e9a2093125ffd9f0f1c9abdae06221ea82cd21a))
+* Merge pull request #158 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-c5c37a21ab ([e5cf61a](https://www.github.com/JaCraig/Aspectus/commit/e5cf61aa2acdc832aa8137f1a0b053bc22dcfdd3))
+* Bump the dependencies group with 1 update ([1d95e1c](https://www.github.com/JaCraig/Aspectus/commit/1d95e1cf0d0c5b73437becf1d8011a7e73d23127))
+* Bump the dependencies group with 3 updates ([12b48ef](https://www.github.com/JaCraig/Aspectus/commit/12b48ef79e5360b19edf5f48b9392b308f2c4336))
+* Bump the dependencies group with 4 updates ([a9e2b24](https://www.github.com/JaCraig/Aspectus/commit/a9e2b24f8f2fa6ef93e08c923d3a160c36d6739f))
+* Specify languages for CodeQL analysis ([b0db013](https://www.github.com/JaCraig/Aspectus/commit/b0db0130069970d211c7ba116b93237b7a0989df))
+* **deps:** update Roslyn packages to v5.0.0 ([1f87383](https://www.github.com/JaCraig/Aspectus/commit/1f8738368f0edfb9c40238833e3e8de4b9ae52ae))
+
 <a name="6.1.1"></a>
 ## [6.1.1](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.1.1) (2025-11-13)
 
