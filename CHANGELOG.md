@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.0"></a>
+## [6.2.0](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.0) (2026-02-12)
+
+### Features
+
+* **project:** add .NET 10.0 to target frameworks ([6a0db2e](https://www.github.com/JaCraig/Aspectus/commit/6a0db2e78fa79f17148fc145074f5762be53bc79))
+
 <a name="6.1.5"></a>
 ## [6.1.5](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.1.5) (2026-02-11)
 
