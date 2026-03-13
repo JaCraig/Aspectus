@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.3"></a>
+## [6.2.3](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.3) (2026-03-13)
+
+### Bug Fixes
+
+* Bump the dependencies group with 6 updates ([deec802](https://www.github.com/JaCraig/Aspectus/commit/deec8024e2d2b83254f513e7a8e48352df7eb3e8))
+
+### Other
+
+* Merge pull request #176 from JaCraig/dependabot/nuget/dot-config/dependencies-ef2d746a42 ([262a627](https://www.github.com/JaCraig/Aspectus/commit/262a627991b14f2aa13e37858b769dae625eae16))
+* Merge pull request #177 from JaCraig/dependabot/nuget/dot-config/dependencies-ef2d746a42 ([457877f](https://www.github.com/JaCraig/Aspectus/commit/457877f2ee5f9b027427a3a59f96c76e8ebcb797))
+* Merge pull request #178 from JaCraig/dependabot/nuget/dot-config/dependencies-9884071bea ([800ae34](https://www.github.com/JaCraig/Aspectus/commit/800ae34f3118c0baaae6ddd323c2c96d56ceff20))
+* Merge pull request #179 from JaCraig/dependabot/nuget/dot-config/dependencies-9884071bea ([7566a51](https://www.github.com/JaCraig/Aspectus/commit/7566a512f39a033343624538e5087c085249987b))
+* Bump the dependencies group with 1 update ([c37a4f7](https://www.github.com/JaCraig/Aspectus/commit/c37a4f7ecbcfab6dd997213df8ddbbef647291ee))
+* Bump the dependencies group with 1 update ([b3f1a87](https://www.github.com/JaCraig/Aspectus/commit/b3f1a87a47ab616b5b938e0f1dfd7a53003672df))
+* Bump the dependencies group with 6 updates ([9969b30](https://www.github.com/JaCraig/Aspectus/commit/9969b30251a9f1168ad16d7bfaf8aece397cb276))
+
 <a name="6.2.2"></a>
 ## [6.2.2](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.2) (2026-03-11)
 
