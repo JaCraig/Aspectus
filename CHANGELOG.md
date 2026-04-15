@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.6"></a>
+## [6.2.6](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.6) (2026-04-15)
+
+### Bug Fixes
+
+* Bump the dependencies group with 5 updates ([b2d1e19](https://www.github.com/JaCraig/Aspectus/commit/b2d1e19ea96c602908dd801f837bc53823b37c8d))
+
+### Other
+
+* Merge pull request #184 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-92e0d09f4d ([72b3d16](https://www.github.com/JaCraig/Aspectus/commit/72b3d16892699453b27a3fc442c063b04f417c51))
+* Merge pull request #185 from JaCraig/dependabot/nuget/Aspectus/dependencies-2c200042b0 ([ad4cc32](https://www.github.com/JaCraig/Aspectus/commit/ad4cc32afb92e5ee1557bc0ae4ffa193d405765d))
+* Bump the dependencies group with 1 update ([4405044](https://www.github.com/JaCraig/Aspectus/commit/4405044f64b780c36274e00b9ba03911797d8597))
+
 <a name="6.2.5"></a>
 ## [6.2.5](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.5) (2026-03-30)
 
