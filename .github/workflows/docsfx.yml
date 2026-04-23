@@ -5,8 +5,7 @@ on:
     branches: [ "master" ]
 
 permissions:
-  pages: write
-  id-token: write
+  contents: write
 
 jobs:
   publish-docs:
