@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.10"></a>
+## [6.2.10](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.10) (2026-04-23)
+
+### Bug Fixes
+
+* **tests:** update Microsoft.Extensions.Logging to 10.0.7 ([3714055](https://www.github.com/JaCraig/Aspectus/commit/3714055db5335494a226ec2d91f6e394e34ab4ea))
+
 <a name="6.2.9"></a>
 ## [6.2.9](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.9) (2026-04-23)
 
