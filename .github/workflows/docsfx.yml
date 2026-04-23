@@ -2,10 +2,11 @@ name: Document Site Publish
 
 on:
   push:
-    branches: ["master"]
+    branches: [ "master" ]
 
 permissions:
-  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   publish-docs:
