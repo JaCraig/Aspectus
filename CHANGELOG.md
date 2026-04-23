@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.11"></a>
+## [6.2.11](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.11) (2026-04-23)
+
+### Bug Fixes
+
+* **workflow:** update permissions in docsfx.yml ([27c7420](https://www.github.com/JaCraig/Aspectus/commit/27c7420275ffb44de56eca27f9f31a7cceef7490))
+
+### Other
+
+* Merge branch 'master' of https://github.com/JaCraig/Aspectus ([dbeddce](https://www.github.com/JaCraig/Aspectus/commit/dbeddce315972f83f08dee2ea794b3c42f5a8322))
+
 <a name="6.2.10"></a>
 ## [6.2.10](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.10) (2026-04-23)
 
