@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.13"></a>
+## [6.2.13](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.13) (2026-04-24)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([75e0ed3](https://www.github.com/JaCraig/Aspectus/commit/75e0ed343533c257676c9681fd9cc0453a12a73c))
+
+### Other
+
+* Merge pull request #190 from JaCraig/dependabot/nuget/Aspectus/dependencies-a832645107 ([7ff009d](https://www.github.com/JaCraig/Aspectus/commit/7ff009da4251ca52becb2a929526cae3033fd288))
+
 <a name="6.2.12"></a>
 ## [6.2.12](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.12) (2026-04-23)
 
