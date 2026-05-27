@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.18"></a>
+## [6.2.18](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.18) (2026-05-27)
+
+### Bug Fixes
+
+* **workflows:** remove PERSONAL_ACCESS_TOKEN from workflows ([f282243](https://www.github.com/JaCraig/Aspectus/commit/f2822436d50c4c0537a7067e7795f6e2b23e5fcd))
+
+### Other
+
+* Merge pull request #196 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-000af58116 ([1fbb9ed](https://www.github.com/JaCraig/Aspectus/commit/1fbb9edc402f9223e231f6030a8a92fe73591271))
+* Merge pull request #197 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-3fec291e4a ([5557a00](https://www.github.com/JaCraig/Aspectus/commit/5557a00c3c49fd421d3462432678002e89eb94cc))
+* Bump the dependencies group with 1 update ([3af3eef](https://www.github.com/JaCraig/Aspectus/commit/3af3eeffb0ed110c40e41a3b039a04bc233781c5))
+* Bump the dependencies group with 2 updates ([012f833](https://www.github.com/JaCraig/Aspectus/commit/012f8335436f374e0145875804843bc06f56a817))
+* **copilot:** add instructions for commit message formatting ([cb8652d](https://www.github.com/JaCraig/Aspectus/commit/cb8652d7e8042f9afff52f9d691b4f23510bfc65))
+
 <a name="6.2.17"></a>
 ## [6.2.17](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.17) (2026-05-14)
 
