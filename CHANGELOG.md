@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.19"></a>
+## [6.2.19](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.19) (2026-07-10)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([5c5d2fd](https://www.github.com/JaCraig/Aspectus/commit/5c5d2fd8ad365693d17db4f8ef701963dc156f8c))
+* Bump the dependencies group with 2 updates ([b01ae5d](https://www.github.com/JaCraig/Aspectus/commit/b01ae5d4b58ec5d398d52d7b1dbea72424abdc7f))
+* Bump the dependencies group with 3 updates ([ee462db](https://www.github.com/JaCraig/Aspectus/commit/ee462dbe48949b6a0afe8bcc92b6d201dd30d21a))
+* **deps:** bump Microsoft.CodeAnalysis.CSharp to 5.6.0 ([e6454b9](https://www.github.com/JaCraig/Aspectus/commit/e6454b914e92bb77d2c51ec0dc832cb9406d727b))
+
+### Other
+
+* Merge pull request #198 from JaCraig/dependabot/nuget/Aspectus/dependencies-8fb6fb061b ([1f12c4d](https://www.github.com/JaCraig/Aspectus/commit/1f12c4dc6fedea066d58d85c10466a0f45ca8525))
+* Merge pull request #199 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-041891a2d4 ([10d92ac](https://www.github.com/JaCraig/Aspectus/commit/10d92ac533e88a49df75a051776f3f23af16030b))
+* Merge pull request #200 from JaCraig/dependabot/nuget/Aspectus/dependencies-39c4440e63 ([f05e0a7](https://www.github.com/JaCraig/Aspectus/commit/f05e0a7edd200bb657ab2faa860ac00c3c601284))
+* Merge pull request #201 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-6375374326 ([4680560](https://www.github.com/JaCraig/Aspectus/commit/468056057cd06cc4d3dfc73544f82053ab7eb6fd))
+* Merge pull request #202 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-407341980e ([7dd8893](https://www.github.com/JaCraig/Aspectus/commit/7dd889348f1de9de5d35c416c48836c89bfb22c2))
+* Merge pull request #203 from JaCraig/dependabot/nuget/Aspectus/dependencies-af8ec0a4c9 ([fbc4a38](https://www.github.com/JaCraig/Aspectus/commit/fbc4a386e813bc9980dafa3ac91b121baf54d335))
+* Bump the dependencies group with 1 update ([44686e7](https://www.github.com/JaCraig/Aspectus/commit/44686e7d6884b3a6fd71926b6357c04b9fcceb59))
+* Bump the dependencies group with 1 update ([3fcb923](https://www.github.com/JaCraig/Aspectus/commit/3fcb923f82a38d94032da31528de62be2848285d))
+* Bump the dependencies group with 1 update ([5ca4e61](https://www.github.com/JaCraig/Aspectus/commit/5ca4e6195a73d90cc84b1454c86476ba7c61b808))
+
 <a name="6.2.18"></a>
 ## [6.2.18](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.18) (2026-05-27)
 
