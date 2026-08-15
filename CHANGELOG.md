@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.21"></a>
+## [6.2.21](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.21) (2026-08-15)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([d996f0c](https://www.github.com/JaCraig/Aspectus/commit/d996f0ce9b2ad3d6085edd637518b72dbae2566c))
+* Bump the dependencies group with 4 updates ([2ebc4f5](https://www.github.com/JaCraig/Aspectus/commit/2ebc4f5ef114a3aa64d36f6fe3e0cad5eea665b6))
+
+### Other
+
+* Merge pull request #206 from JaCraig/dependabot/nuget/dot-config/dependencies-d580172a4f ([3067d1e](https://www.github.com/JaCraig/Aspectus/commit/3067d1ec242588fd8a7a3df171b1d189f928d2ca))
+* Merge pull request #207 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-89437b9470 ([80a473a](https://www.github.com/JaCraig/Aspectus/commit/80a473a5b90d18e455ae12c50c7842787d7b9ce4))
+* Merge pull request #208 from JaCraig/dependabot/nuget/Aspectus/dependencies-70e5457483 ([5b4e557](https://www.github.com/JaCraig/Aspectus/commit/5b4e557aa09bdcb346501d76bb1bdab5a00690ac))
+* Merge pull request #209 from JaCraig/dependabot/nuget/Aspectus/dependencies-0f43b74034 ([dc6fe50](https://www.github.com/JaCraig/Aspectus/commit/dc6fe5001ff1de2a215f72695310d1151fd85b5f))
+* Merge pull request #210 from JaCraig/dependabot/nuget/Aspectus.Tests/dependencies-17a1da8d87 ([9c3dd60](https://www.github.com/JaCraig/Aspectus/commit/9c3dd605b1f1a0594748f43cedb2f01a2c8a45c7))
+* Bump the dependencies group with 1 update ([9efa1aa](https://www.github.com/JaCraig/Aspectus/commit/9efa1aa52203af17484352c268f2bc94b5a4e160))
+* Bump the dependencies group with 1 update ([7845871](https://www.github.com/JaCraig/Aspectus/commit/784587122b4445e8af843f0aac307e922380ea19))
+* Bump the dependencies group with 5 updates ([9dd64d0](https://www.github.com/JaCraig/Aspectus/commit/9dd64d000a4d10735444352787a93865abb4bc19))
+
 <a name="6.2.20"></a>
 ## [6.2.20](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.20) (2026-07-18)
 
