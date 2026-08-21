@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.22"></a>
+## [6.2.22](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.22) (2026-08-21)
+
+### Bug Fixes
+
+* Bump the dependencies group with 2 updates ([b6ee897](https://www.github.com/JaCraig/Aspectus/commit/b6ee8973d847320d3fe41529b8416fc1ea4fd76b))
+
+### Other
+
+* Merge pull request #211 from JaCraig/dependabot/nuget/Aspectus/dependencies-a52fe67089 ([c64374d](https://www.github.com/JaCraig/Aspectus/commit/c64374df760199b766d81ea750a255accf985ac2))
+* **deps:** bump Microsoft.CodeAnalysis.CSharp to 5.9.0 ([8f613cc](https://www.github.com/JaCraig/Aspectus/commit/8f613cc41079bbeb37e6ac21d9ecd82dfb01561d))
+
 <a name="6.2.21"></a>
 ## [6.2.21](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.21) (2026-08-15)
 
