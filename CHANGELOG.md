@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="7.0.0"></a>
+## [7.0.0](https://www.github.com/JaCraig/Aspectus/releases/tag/v7.0.0) (2026-11-12)
+
+### Features
+
+* **project:** update target frameworks to net10.0 and net11.0 ([5a889e1](https://www.github.com/JaCraig/Aspectus/commit/5a889e181f2d819aa2d771af2b917cabb0f517ea))
+
+### Bug Fixes
+
+* Merge branch 'master' of https://github.com/JaCraig/Aspectus ([05304af](https://www.github.com/JaCraig/Aspectus/commit/05304af94b51debc3ff090d2d9c9eb7d170fb2e8))
+
+### Breaking Changes
+
+* **project:** update target frameworks to net10.0 and net11.0 ([5a889e1](https://www.github.com/JaCraig/Aspectus/commit/5a889e181f2d819aa2d771af2b917cabb0f517ea))
+
 <a name="6.2.23"></a>
 ## [6.2.23](https://www.github.com/JaCraig/Aspectus/releases/tag/v6.2.23) (2026-11-08)
 
