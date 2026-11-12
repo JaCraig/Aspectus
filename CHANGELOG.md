@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="7.0.1"></a>
+## [7.0.1](https://www.github.com/JaCraig/Aspectus/releases/tag/v7.0.1) (2026-11-12)
+
+### Bug Fixes
+
+* **deps:** update Microsoft package versions ([8d8d2bd](https://www.github.com/JaCraig/Aspectus/commit/8d8d2bd33a14b5d074dd48548b59395f5fd8d8e8))
+
 <a name="7.0.0"></a>
 ## [7.0.0](https://www.github.com/JaCraig/Aspectus/releases/tag/v7.0.0) (2026-11-12)
 
